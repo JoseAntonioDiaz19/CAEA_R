@@ -52,7 +52,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         String pathSalir = "/img/salir32x32.png";  
         URL urlSalir = this.getClass().getResource(pathSalir);  
         ImageIcon imgSalir= new ImageIcon(urlSalir);  
-        botonUsuarios.setIcon(imgSalir);
+        botonSalir.setIcon(imgSalir);
     }
     
 
@@ -564,12 +564,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAvances;
+    public javax.swing.JButton botonAvances;
     public javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonExpandir;
-    private javax.swing.JButton botonReportes;
-    private javax.swing.JButton botonSalir;
-    private javax.swing.JButton botonUsuarios;
+    public javax.swing.JButton botonReportes;
+    public javax.swing.JButton botonSalir;
+    public javax.swing.JButton botonUsuarios;
     private javax.swing.JComboBox<String> boxCicloEscolar;
     private javax.swing.JComboBox<String> boxGrado;
     private javax.swing.JComboBox<String> boxRegion;
