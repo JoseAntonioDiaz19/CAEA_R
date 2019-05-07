@@ -245,6 +245,7 @@ public class vistaReportes extends javax.swing.JDialog {
         getContentPane().add(panelPrincipal);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void fieldNumeroControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNumeroControlActionPerformed
