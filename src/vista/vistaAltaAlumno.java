@@ -356,6 +356,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         getContentPane().add(panelPrincipal);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

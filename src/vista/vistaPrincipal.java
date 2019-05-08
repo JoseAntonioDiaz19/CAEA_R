@@ -76,11 +76,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
         boxRegion = new javax.swing.JComboBox<>();
         boxGrado = new javax.swing.JComboBox<>();
         fieldNumerocontrol = new javax.swing.JTextField();
+        panelNombre = new javax.swing.JPanel();
         fieldApePaterno = new javax.swing.JTextField();
         fieldApeMaterno = new javax.swing.JTextField();
         fieldNombre = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        panelBotones = new javax.swing.JPanel();
+        botonBuscar = new javax.swing.JButton();
+        botonRegistrar = new javax.swing.JButton();
         panelTabla = new javax.swing.JPanel();
         scrollTablaPrincipal = new javax.swing.JScrollPane();
         tablaPrincipal = new javax.swing.JTable();
@@ -92,7 +94,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         botonSalir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
 
-        setPreferredSize(new java.awt.Dimension(1000, 579));
+        setPreferredSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -153,6 +155,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(panelSesionUsuario, gridBagConstraints);
 
         panelCampos.setBackground(new java.awt.Color(8, 38, 67));
+        panelCampos.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         panelCampos.setLayout(new java.awt.GridBagLayout());
 
         boxCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -162,7 +165,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelCampos.add(boxCicloEscolar, gridBagConstraints);
 
@@ -211,9 +214,14 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelCampos.add(fieldNumerocontrol, gridBagConstraints);
+
+        panelNombre.setBackground(new java.awt.Color(8, 38, 67));
+        panelNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(0, 89, 124), null));
+        panelNombre.setForeground(new java.awt.Color(0, 102, 102));
+        panelNombre.setLayout(new java.awt.GridBagLayout());
 
         fieldApePaterno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldApePaterno.setForeground(new java.awt.Color(153, 153, 153));
@@ -233,7 +241,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelCampos.add(fieldApePaterno, gridBagConstraints);
+        panelNombre.add(fieldApePaterno, gridBagConstraints);
 
         fieldApeMaterno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldApeMaterno.setForeground(new java.awt.Color(153, 153, 153));
@@ -253,7 +261,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelCampos.add(fieldApeMaterno, gridBagConstraints);
+        panelNombre.add(fieldApeMaterno, gridBagConstraints);
 
         fieldNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldNombre.setForeground(new java.awt.Color(153, 153, 153));
@@ -274,35 +282,58 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelCampos.add(fieldNombre, gridBagConstraints);
+        panelNombre.add(fieldNombre, gridBagConstraints);
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 51));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Buscar");
-        jButton1.setAlignmentX(0.5F);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelCampos.add(panelNombre, gridBagConstraints);
+
+        panelBotones.setBackground(new java.awt.Color(8, 38, 67));
+        panelBotones.setLayout(new java.awt.GridBagLayout());
+
+        botonBuscar.setBackground(new java.awt.Color(153, 0, 51));
+        botonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setText("Buscar");
+        botonBuscar.setAlignmentX(0.5F);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        panelCampos.add(jButton1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        panelBotones.add(botonBuscar, gridBagConstraints);
 
-        jButton2.setBackground(new java.awt.Color(153, 0, 51));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Registrar");
-        jButton2.setAlignmentX(0.5F);
+        botonRegistrar.setBackground(new java.awt.Color(153, 0, 51));
+        botonRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegistrar.setText("Registrar");
+        botonRegistrar.setAlignmentX(0.5F);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 0);
-        panelCampos.add(jButton2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 0);
+        panelBotones.add(botonRegistrar, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        panelCampos.add(panelBotones, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -565,8 +596,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonAvances;
+    private javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonExpandir;
+    public javax.swing.JButton botonRegistrar;
     public javax.swing.JButton botonReportes;
     public javax.swing.JButton botonSalir;
     public javax.swing.JButton botonUsuarios;
@@ -578,12 +611,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNombre;
     public javax.swing.JTextField fieldNombreUsuario;
     private javax.swing.JTextField fieldNumerocontrol;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelUsuario;
+    private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelCampos;
     public javax.swing.JPanel panelMenu;
+    private javax.swing.JPanel panelNombre;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelSesionUsuario;
     private javax.swing.JPanel panelTabla;

@@ -29,10 +29,10 @@ public class controlVistaSesionUsuario {
     }
 
     private void init() {
-        sqlSesionUsuario sqlUsuario = new sqlSesionUsuario(sesionVista);
+        sqlUsuario = new sqlSesionUsuario(sesionVista);
         sesionVista.setVisible(true);
         sesionVista.setLocationRelativeTo(null);
-        sesionVista.botonEntrar.addActionListener(this::iniciar_sesion);     
+        sesionVista.botonEntrar.addActionListener(this::botonEntrar);     
         
         sesionVista.contraseña.addKeyListener(new KeyListener() {
             @Override
@@ -69,7 +69,7 @@ public class controlVistaSesionUsuario {
         });
     }
 
-    public void iniciar_sesion(ActionEvent e) {
+    public void botonEntrar(ActionEvent e) {
         System.out.println("Metodo iniciar_sesion clase controlVistaSesionUsuario");
         sqlUsuario = new sqlSesionUsuario(sesionVista);
         String valorPass = new String(sesionVista.contraseña.getPassword());
@@ -94,14 +94,7 @@ public class controlVistaSesionUsuario {
         vistaPrincipal ventanaPrincipal = new vistaPrincipal();
         controlVistaPrincipal ctrlPrincipalVista = new controlVistaPrincipal( ventanaPrincipal);
         
-        
-        sqlUsuario = new sqlSesionUsuario(sesionVista);
-        try {
-            sqlUsuario.datosUsuarioActual(modeloUsuario);
-        } catch (SQLException ex) {
-            Logger.getLogger(controlVistaSesionUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        sqlUsuario = new sqlSesionUsuario(sesionVista);       
          //Cargar datos de usuario en la interfaz
         try {
             modeloUsuario = sqlUsuario.datosUsuarioActual(modeloUsuario);

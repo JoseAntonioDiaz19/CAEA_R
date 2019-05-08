@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
-
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import modelo.modeloSesionUsuario;
+import vista.vistaAltaAlumno;
 import vista.vistaAltaUsuario;
 import vista.vistaAvances;
 import vista.vistaPrincipal;
@@ -24,8 +19,8 @@ public class controlVistaPrincipal {
     vistaReportes vistaReportes;
     vistaAltaUsuario vistaAltaUsuario;
     vistaAvances  vistaAvances ;
-    
-
+    vistaAltaAlumno vistaAltaAlumno;
+   
     controlVistaPrincipal(vistaPrincipal ventanaPrincipal) {
        this.ventanaPrincipal = ventanaPrincipal;
 
@@ -35,10 +30,7 @@ public class controlVistaPrincipal {
                 close();
             }
         });
-       
-       eventos();
-        
-       
+       eventos();   
     }
     
     private void eventos(){
@@ -47,6 +39,7 @@ public class controlVistaPrincipal {
         ventanaPrincipal.botonSalir.addActionListener(this::botonSalir);
         ventanaPrincipal.botonUsuarios.addActionListener(this::botonUsuarios);
         ventanaPrincipal.botonAvances.addActionListener(this::botonAvances);
+        ventanaPrincipal.botonRegistrar.addActionListener(this::botonRegistrar);
     }
     
     private void close(){ 
@@ -55,7 +48,6 @@ public class controlVistaPrincipal {
         vistaSesion.setVisible(true);
         controlVistaSesionUsuario controlVistaSesionUsuario = new controlVistaSesionUsuario(vistaSesion, modeloSesionUsuario);
         System.out.println("Nueva ventana de inicio de sesion");
-       
     } 
 
     public void botonCerrarSesion(ActionEvent e){
@@ -75,11 +67,9 @@ public class controlVistaPrincipal {
         if (respuesta == JOptionPane.YES_OPTION) {
             ventanaPrincipal.dispose();
             close();
-            
         }else{
             JOptionPane.showMessageDialog(vistaSesion, "Te salvaste!!!");
         }
-        
     }
     
     public void botonUsuarios(ActionEvent e){
@@ -90,5 +80,10 @@ public class controlVistaPrincipal {
     public void botonAvances(ActionEvent e){
         vistaAvances = new vistaAvances(ventanaPrincipal, true);
         vistaAvances.setVisible(true);
+    }
+    
+    public void botonRegistrar (ActionEvent e){
+        vistaAltaAlumno = new vistaAltaAlumno(ventanaPrincipal, true);
+        vistaAltaAlumno.setVisible(true);
     }
 }
