@@ -27,11 +27,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         initComponents();
         JTextField [] tfs ={txtnocontrolusuario,txtnombreusuario,txtapellidopaterno,txtapellidomaternousuario,txtnombredeusuario,txtcontraseñausuario};
         HintText(tfs);
-        
-        ImageIcon re= new ImageIcon("src/img/usuario.png");
-        Icon fondo= new ImageIcon(re.getImage().getScaledInstance(lblusuario.getWidth(), lblusuario.getHeight(),Image.SCALE_DEFAULT));
-        lblusuario.setIcon(fondo);
-        this.repaint();
     }
     
     private void HintText(JTextField [] tfs)
@@ -111,12 +106,12 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnagregarusuario = new javax.swing.JButton();
         btnactualizarusuario = new javax.swing.JButton();
         btneliminarusuario = new javax.swing.JButton();
-        lblusuario = new javax.swing.JLabel();
         panelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -127,7 +122,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         panelTitulo.setLayout(new java.awt.GridBagLayout());
 
         labelTitulo.setBackground(new java.awt.Color(8, 38, 67));
-        labelTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        labelTitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         labelTitulo.setText("Registro de Usuarios");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -251,7 +246,12 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(txtcontraseñausuario, gridBagConstraints);
 
+        btnbuscarusuario.setBackground(new java.awt.Color(8, 38, 67));
+        btnbuscarusuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnbuscarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnbuscarusuario.setText("Buscar");
+        btnbuscarusuario.setBorder(null);
+        btnbuscarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
@@ -262,7 +262,12 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btnbuscarusuario, gridBagConstraints);
 
+        btnagregarusuario.setBackground(new java.awt.Color(8, 38, 67));
+        btnagregarusuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnagregarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnagregarusuario.setText("Guardar");
+        btnagregarusuario.setBorder(null);
+        btnagregarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -273,7 +278,12 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btnagregarusuario, gridBagConstraints);
 
+        btnactualizarusuario.setBackground(new java.awt.Color(8, 38, 67));
+        btnactualizarusuario.setForeground(new java.awt.Color(255, 255, 255));
+        btnactualizarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
         btnactualizarusuario.setText("Actualizar");
+        btnactualizarusuario.setBorder(null);
+        btnactualizarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -285,6 +295,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         panelDatos.add(btnactualizarusuario, gridBagConstraints);
 
         btneliminarusuario.setText("Eliminar");
+        btneliminarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -294,17 +305,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btneliminarusuario, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 40;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(lblusuario, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -312,12 +312,12 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 20;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 20);
         panelPrincipal.add(panelDatos, gridBagConstraints);
 
         panelTabla.setBackground(new java.awt.Color(8, 38, 67));
         panelTabla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelTabla.setLayout(new java.awt.GridLayout());
+        panelTabla.setLayout(new java.awt.GridLayout(1, 0));
 
         jTable1.setBackground(new java.awt.Color(8, 38, 67));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -346,7 +346,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 20);
         panelPrincipal.add(panelTabla, gridBagConstraints);
 
         getContentPane().add(panelPrincipal);
@@ -411,7 +411,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JLabel lblusuario;
     private javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTabla;

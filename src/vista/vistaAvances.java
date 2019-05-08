@@ -184,8 +184,13 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         panelBusqueda.add(boxGrado, gridBagConstraints);
 
+        botonBuscar.setBackground(new java.awt.Color(8, 38, 67));
         botonBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         botonBuscar.setText("Buscar");
+        botonBuscar.setBorder(null);
+        botonBuscar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -634,8 +639,13 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBotones.setBackground(new java.awt.Color(8, 38, 67));
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
+        botonGuardar.setBackground(new java.awt.Color(8, 38, 67));
         botonGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         botonGuardar.setText("Guardar");
+        botonGuardar.setBorder(null);
+        botonGuardar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -644,8 +654,13 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 40);
         panelBotones.add(botonGuardar, gridBagConstraints);
 
+        botonActualizar.setBackground(new java.awt.Color(8, 38, 67));
         botonActualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        botonActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
         botonActualizar.setText("Actualizar");
+        botonActualizar.setBorder(null);
+        botonActualizar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
