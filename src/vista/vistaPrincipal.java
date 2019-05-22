@@ -92,7 +92,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         botonReportes = new javax.swing.JButton();
         botonUsuarios = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelInferiorVacio = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
@@ -479,14 +479,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
         panelMenu.add(botonSalir, gridBagConstraints);
 
-        jPanel1.setBackground(new java.awt.Color(0, 87, 126));
+        panelInferiorVacio.setBackground(new java.awt.Color(0, 87, 126));
+        panelInferiorVacio.setMinimumSize(new java.awt.Dimension(10, 20));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        panelMenu.add(jPanel1, gridBagConstraints);
+        panelMenu.add(panelInferiorVacio, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -611,10 +612,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField fieldNombre;
     public javax.swing.JTextField fieldNombreUsuario;
     private javax.swing.JTextField fieldNumerocontrol;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelCampos;
+    private javax.swing.JPanel panelInferiorVacio;
     public javax.swing.JPanel panelMenu;
     private javax.swing.JPanel panelNombre;
     private javax.swing.JPanel panelPrincipal;

@@ -15,14 +15,17 @@ import vista.vistaSesionUsuario;
 public class controlVistaPrincipal {
 
     vistaPrincipal ventanaPrincipal;
-    vistaSesionUsuario vistaSesion;
+    vistaSesionUsuario vistaSesionUsuario;
     vistaReportes vistaReportes;
     vistaAltaUsuario vistaAltaUsuario;
     vistaAvances  vistaAvances ;
     vistaAltaAlumno vistaAltaAlumno;
+    controlVistaAltaAlumno controlVistaAltaAlumno;
+    modeloSesionUsuario modeloUsuario;
    
-    controlVistaPrincipal(vistaPrincipal ventanaPrincipal) {
+    controlVistaPrincipal(vistaPrincipal ventanaPrincipal, modeloSesionUsuario modeloUsuario) {
        this.ventanaPrincipal = ventanaPrincipal;
+       this.modeloUsuario = modeloUsuario;
 
        ventanaPrincipal.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -43,10 +46,10 @@ public class controlVistaPrincipal {
     }
     
     private void close(){ 
-        vistaSesion = new vistaSesionUsuario();
+        vistaSesionUsuario = new vistaSesionUsuario();
         modeloSesionUsuario modeloSesionUsuario = new modeloSesionUsuario();
-        vistaSesion.setVisible(true);
-        controlVistaSesionUsuario controlVistaSesionUsuario = new controlVistaSesionUsuario(vistaSesion, modeloSesionUsuario);
+        vistaSesionUsuario.setVisible(true);
+        controlVistaSesionUsuario controlVistaSesionUsuario = new controlVistaSesionUsuario(vistaSesionUsuario, modeloSesionUsuario);
         System.out.println("Nueva ventana de inicio de sesion");
     } 
 
@@ -68,7 +71,7 @@ public class controlVistaPrincipal {
             ventanaPrincipal.dispose();
             close();
         }else{
-            JOptionPane.showMessageDialog(vistaSesion, "Te salvaste!!!");
+            JOptionPane.showMessageDialog(vistaSesionUsuario, "Te salvaste!!!");
         }
     }
     
@@ -84,6 +87,7 @@ public class controlVistaPrincipal {
     
     public void botonRegistrar (ActionEvent e){
         vistaAltaAlumno = new vistaAltaAlumno(ventanaPrincipal, true);
-        vistaAltaAlumno.setVisible(true);
+        controlVistaAltaAlumno = new controlVistaAltaAlumno(vistaAltaAlumno, modeloUsuario );
+        vistaAltaAlumno.setVisible(true); 
     }
 }

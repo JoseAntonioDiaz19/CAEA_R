@@ -8,13 +8,12 @@ import modelo.modeloSesionUsuario;
 import vista.vistaSesionUsuario;
 
 public class sqlSesionUsuario {
-    
     Connection connection;
-    vistaSesionUsuario sesionVista;
+    vistaSesionUsuario vistaSesionUsuario;
     conexion conexion;
 
-    public sqlSesionUsuario(vistaSesionUsuario sesionVista) {
-        this.sesionVista = sesionVista;
+    public sqlSesionUsuario(vistaSesionUsuario vistaSesionUsuario) {
+        this.vistaSesionUsuario = vistaSesionUsuario;
     }
     
     public boolean buscar_usuario(modeloSesionUsuario modeloUsuario) throws SQLException{
@@ -24,7 +23,7 @@ public class sqlSesionUsuario {
         ResultSet resultado;
         conexion = new conexion();
         try{
-            connection = conexion.getConexion(sesionVista);
+            connection = conexion.getConexion(vistaSesionUsuario);
             sql = connection.prepareStatement(existe);
             sql.setString(1, modeloUsuario.getUsuario());
             sql.setString(2, modeloUsuario.getPassword());
@@ -60,7 +59,7 @@ public class sqlSesionUsuario {
         ResultSet resultado;
         conexion = new conexion();
         try{
-            connection = conexion.getConexion(sesionVista);
+            connection = conexion.getConexion(vistaSesionUsuario);
             sql = connection.prepareStatement(datosUsuario);
             sql.setString(1, datosSesion.getUsuario());
             sql.setString(2, datosSesion.getPassword());

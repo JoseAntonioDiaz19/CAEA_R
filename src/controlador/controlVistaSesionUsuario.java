@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 import java.awt.event.*;
 import java.sql.SQLException;
@@ -14,13 +9,12 @@ import modeloSQL.sqlSesionUsuario;
 import vista.vistaPrincipal;
 import vista.vistaSesionUsuario;
 /**
- *
- * @author campu
+ * @author Dizan
  */
 public class controlVistaSesionUsuario {
     modeloSesionUsuario modeloUsuario;
     vistaSesionUsuario sesionVista;
-     sqlSesionUsuario sqlUsuario;
+     sqlSesionUsuario sqlSesionUsuario;
     
     public controlVistaSesionUsuario(vistaSesionUsuario sesionVista, modeloSesionUsuario modeloUsuario) {
         this.sesionVista = sesionVista;
@@ -29,7 +23,7 @@ public class controlVistaSesionUsuario {
     }
 
     private void init() {
-        sqlUsuario = new sqlSesionUsuario(sesionVista);
+        sqlSesionUsuario = new sqlSesionUsuario(sesionVista);
         sesionVista.setVisible(true);
         sesionVista.setLocationRelativeTo(null);
         sesionVista.botonEntrar.addActionListener(this::botonEntrar);     
@@ -51,7 +45,7 @@ public class controlVistaSesionUsuario {
                     System.out.println("Contraseña = " + valorPass);
 
                     try {
-                        if (sqlUsuario.buscar_usuario(modeloUsuario)) {
+                        if (sqlSesionUsuario.buscar_usuario(modeloUsuario)) {
                             abrirVistaPrincipal();
                             sesionVista.setVisible(false);
                         }
@@ -71,14 +65,14 @@ public class controlVistaSesionUsuario {
 
     public void botonEntrar(ActionEvent e) {
         System.out.println("Metodo iniciar_sesion clase controlVistaSesionUsuario");
-        sqlUsuario = new sqlSesionUsuario(sesionVista);
+        sqlSesionUsuario = new sqlSesionUsuario(sesionVista);
         String valorPass = new String(sesionVista.contraseña.getPassword());
         String usuario = sesionVista.fieldUsuario.getText();
         modeloUsuario.setUsuario(usuario);
         modeloUsuario.setPassword(valorPass);
 
         try {
-            if (sqlUsuario.buscar_usuario(modeloUsuario)) {
+            if (sqlSesionUsuario.buscar_usuario(modeloUsuario)) {
                 abrirVistaPrincipal();
                 sesionVista.setVisible(false);
             }
@@ -92,19 +86,19 @@ public class controlVistaSesionUsuario {
     public void abrirVistaPrincipal() {
         System.out.println("Vista principal creada");
         vistaPrincipal ventanaPrincipal = new vistaPrincipal();
-        controlVistaPrincipal ctrlPrincipalVista = new controlVistaPrincipal( ventanaPrincipal);
-        
-        sqlUsuario = new sqlSesionUsuario(sesionVista);       
+ 
+        sqlSesionUsuario = new sqlSesionUsuario(sesionVista);       
          //Cargar datos de usuario en la interfaz
         try {
-            modeloUsuario = sqlUsuario.datosUsuarioActual(modeloUsuario);
+            modeloUsuario = sqlSesionUsuario.datosUsuarioActual(modeloUsuario);
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaSesionUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ventanaPrincipal.fieldNombreUsuario.setText( modeloUsuario.getApe_paterno()+" "
-                                                    + modeloUsuario.getApe_materno()+" "
-                                                    + modeloUsuario.getNombre());
+        ventanaPrincipal.fieldNombreUsuario.setText(modeloUsuario.getApe_paterno()+" "
+                                                  + modeloUsuario.getApe_materno()+" "
+                                                  + modeloUsuario.getNombre());
         
+        controlVistaPrincipal ctrlPrincipalVista = new controlVistaPrincipal(ventanaPrincipal, modeloUsuario);
         ventanaPrincipal.setVisible(true);
     }
 }
