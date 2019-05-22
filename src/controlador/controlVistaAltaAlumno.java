@@ -14,7 +14,6 @@ public class controlVistaAltaAlumno {
     vistaSesionUsuario vistaSesionUsuario;
     modeloSesionUsuario modeloUsuario;
     
-
     controlVistaAltaAlumno(vistaAltaAlumno vistaAltaAlumno, modeloSesionUsuario modeloUsuario) {
         this.vistaAltaAlumno = vistaAltaAlumno;
         this.modeloUsuario = modeloUsuario;
