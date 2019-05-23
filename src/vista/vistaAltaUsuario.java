@@ -250,7 +250,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnbuscarusuario.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnbuscarusuario.setText("Buscar");
-        btnbuscarusuario.setBorder(null);
         btnbuscarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -266,7 +265,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnagregarusuario.setForeground(new java.awt.Color(255, 255, 255));
         btnagregarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnagregarusuario.setText("Guardar");
-        btnagregarusuario.setBorder(null);
         btnagregarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -282,7 +280,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnactualizarusuario.setForeground(new java.awt.Color(255, 255, 255));
         btnactualizarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
         btnactualizarusuario.setText("Actualizar");
-        btnactualizarusuario.setBorder(null);
         btnactualizarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;

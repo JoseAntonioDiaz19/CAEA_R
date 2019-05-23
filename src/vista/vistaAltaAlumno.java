@@ -402,18 +402,18 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonGuardar;
-    private javax.swing.JComboBox<String> boxAño;
-    private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxDia;
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JComboBox<String> boxMes;
-    private javax.swing.JComboBox<String> boxRegion;
-    private javax.swing.JComboBox<String> boxSexo;
-    private javax.swing.JTextField fieldApe_materno;
-    private javax.swing.JTextField fieldApe_paterno;
-    private javax.swing.JTextField fieldNombre;
-    private javax.swing.JTextField fieldNumeroControl;
+    public javax.swing.JButton botonGuardar;
+    public javax.swing.JComboBox<String> boxAño;
+    public javax.swing.JComboBox<String> boxCicloEscolar;
+    public javax.swing.JComboBox<String> boxDia;
+    public javax.swing.JComboBox<String> boxGrado;
+    public javax.swing.JComboBox<String> boxMes;
+    public javax.swing.JComboBox<String> boxRegion;
+    public javax.swing.JComboBox<String> boxSexo;
+    public javax.swing.JTextField fieldApe_materno;
+    public javax.swing.JTextField fieldApe_paterno;
+    public javax.swing.JTextField fieldNombre;
+    public javax.swing.JTextField fieldNumeroControl;
     private javax.swing.JLabel labelApe_materno;
     private javax.swing.JLabel labelApe_paterno;
     private javax.swing.JLabel labelCicloEscolar;
@@ -426,7 +426,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelDatosAlumno;
-    private javax.swing.JPanel panelPrincipal;
+    public javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTitulo;
     // End of variables declaration//GEN-END:variables
 }

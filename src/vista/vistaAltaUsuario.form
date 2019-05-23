@@ -206,9 +206,6 @@
                   <Image iconType="3" name="/img/buscar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
               <Constraints>
@@ -229,9 +226,6 @@
                   <Image iconType="3" name="/img/guardar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
               <Constraints>
@@ -252,9 +246,6 @@
                   <Image iconType="3" name="/img/actualizar.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
                 <Property name="focusPainted" type="boolean" value="false"/>
               </Properties>
               <Constraints>
