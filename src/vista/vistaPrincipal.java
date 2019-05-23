@@ -164,7 +164,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelCampos.setLayout(new java.awt.GridBagLayout());
 
         boxCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccione ciclo escolar -" }));
+        boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccione Ciclo Escolar -" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -175,7 +175,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelCampos.add(boxCicloEscolar, gridBagConstraints);
 
         boxRegion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Region -" }));
+        boxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccione Region -" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -186,7 +186,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelCampos.add(boxRegion, gridBagConstraints);
 
         boxGrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Grado -" }));
+        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccione Grado -" }));
         boxGrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxGradoActionPerformed(evt);

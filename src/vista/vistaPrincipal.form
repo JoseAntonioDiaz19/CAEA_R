@@ -155,7 +155,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="- Seleccione ciclo escolar -"/>
+                    <StringItem index="0" value="- Seleccione Ciclo Escolar -"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -176,7 +176,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="- Region -"/>
+                    <StringItem index="0" value="- Seleccione Region -"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -197,7 +197,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="- Grado -"/>
+                    <StringItem index="0" value="- Seleccione Grado -"/>
                   </StringArray>
                 </Property>
               </Properties>

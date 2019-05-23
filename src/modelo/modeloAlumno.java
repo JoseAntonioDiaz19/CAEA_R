@@ -9,7 +9,7 @@ public class modeloAlumno {
     private String nombre;
     private String ape_paterno;
     private String ape_materno;
-    private char sexo;
+    private String sexo;
     private String fecha_nacimiento;
     private String cicloEscolar;
     private int grado;  
@@ -18,15 +18,7 @@ public class modeloAlumno {
         
     }
 
-    public modeloAlumno(int numeroControl, 
-                        int idRegion, 
-                        String nombre, String ape_paterno, 
-                        String ape_materno, 
-                        char sexo, 
-                        String fecha_nacimiento, 
-                        String cicloEscolar, 
-                        int grado) {
-        
+    public modeloAlumno(int numeroControl, int idRegion, String nombre, String ape_paterno, String ape_materno, String sexo, String fecha_nacimiento, String cicloEscolar, int grado) {
         this.numeroControl = numeroControl;
         this.idRegion = idRegion;
         this.nombre = nombre;
@@ -37,6 +29,9 @@ public class modeloAlumno {
         this.cicloEscolar = cicloEscolar;
         this.grado = grado;
     }
+    
+    
+
     /**
      * @return the numeroControl
      */
@@ -110,14 +105,14 @@ public class modeloAlumno {
     /**
      * @return the sexo
      */
-    public char getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
     /**
      * @param sexo the sexo to set
      */
-    public void setSexo(char sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
@@ -162,4 +157,6 @@ public class modeloAlumno {
     public void setGrado(int grado) {
         this.grado = grado;
     }
+
+   
 }
