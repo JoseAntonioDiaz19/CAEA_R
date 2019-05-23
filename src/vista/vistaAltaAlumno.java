@@ -220,7 +220,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         panelDatosAlumno.add(fieldApe_materno, gridBagConstraints);
 
         boxSexo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        boxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo" }));
+        boxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sexo", "H", "M" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;

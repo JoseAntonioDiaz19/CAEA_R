@@ -183,12 +183,12 @@ public class controlVistaPrincipal {
         if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloGrado();
         }
-      
     }
     
     private void boxRegion(ItemEvent eventItem){
         String itemCiclo = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
         String itemRegion = (String) ventanaPrincipal.boxRegion.getSelectedItem();
+        String itemGrado = (String) ventanaPrincipal.boxGrado.getSelectedItem();
         
         if (!itemRegion.equals("- Seleccione Region -")) {
             buscarPorRegion();
@@ -197,6 +197,10 @@ public class controlVistaPrincipal {
         if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemRegion.equals("- Seleccione Region -")) {
             buscarCicloRegion(); 
         }
+        
+        if (!itemGrado.equals("- Seleccione Grado -") && !itemRegion.equals("- Seleccione Region -")) {
+            buscarRegionGrado();
+        }  
     }
     
     private void boxGrado(ItemEvent eventItem){
@@ -211,7 +215,10 @@ public class controlVistaPrincipal {
         if (!itemGrado.equals("- Seleccione Grado -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") ) {
             buscarCicloGrado();
         }
-      
+        
+        if (!itemGrado.equals("- Seleccione Grado -") && !itemRegion.equals("- Seleccione Region -")) {
+            buscarRegionGrado();
+        } 
     }
    
     private void buscarPorCicloEscolar(){
@@ -223,7 +230,6 @@ public class controlVistaPrincipal {
         busqueda = sqlPrincipal.buscarPorCicloEscolar(cicloSeleccionado);
         int iteraciones =  busqueda.size();
 
-        System.out.println("iteraciones = " + iteraciones);
         for (int i = 0; i < iteraciones; i++) {
                 ventanaPrincipal.modeloTabla.addRow(new Object[]{
                                     busqueda.get(i).getNocontrol(),
@@ -240,16 +246,14 @@ public class controlVistaPrincipal {
        }    
     }
     
-    
-    
     private void buscarPorRegion(){
         ventanaPrincipal.modeloTabla.setRowCount(0);
-        String itemSeleccionado = (String) ventanaPrincipal.boxRegion.getSelectedItem();
-        itemSeleccionado = itemSeleccionado.substring(1,itemSeleccionado.length());
+        String region = (String) ventanaPrincipal.boxRegion.getSelectedItem();
+        region = region.substring(1,region.length());
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
         
         ArrayList <modeloTablaPrincipal>  busqueda;
-        busqueda = sqlPrincipal.buscarPorRegion(itemSeleccionado);
+        busqueda = sqlPrincipal.buscarPorRegion(region);
         int iteraciones =  busqueda.size();
 
         for (int i = 0; i < iteraciones; i++) {
@@ -297,6 +301,7 @@ public class controlVistaPrincipal {
         ventanaPrincipal.modeloTabla.setRowCount(0);
         String itemCiclo = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
         String itemRegion = (String) ventanaPrincipal.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(1,itemRegion.length());
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
         
         ArrayList <modeloTablaPrincipal>  busqueda;
@@ -327,6 +332,61 @@ public class controlVistaPrincipal {
         
         ArrayList <modeloTablaPrincipal>  busqueda;
         busqueda = sqlPrincipal.buscarCicloGrado(itemCiclo, itemGrado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }      
+    }
+    
+    private void buscarRegionGrado(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        int itemGrado = Integer.parseInt((String) ventanaPrincipal.boxGrado.getSelectedItem());
+        String itemRegion = (String) ventanaPrincipal.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(1,itemRegion.length());
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarRegionGrado(itemRegion, itemGrado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }      
+    }
+    
+    private void buscarCicloRegionGrado(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        String itemCiclo = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
+        int itemGrado = Integer.parseInt((String) ventanaPrincipal.boxGrado.getSelectedItem());
+        String itemRegion = (String) ventanaPrincipal.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(1,itemRegion.length());
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarCicloRegionGrado(itemCiclo, itemRegion, itemGrado);
         int iteraciones =  busqueda.size();
 
         for (int i = 0; i < iteraciones; i++) {

@@ -58,4 +58,5 @@ public class controlVistaAltaAlumno {
             Logger.getLogger(controlVistaAltaAlumno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }

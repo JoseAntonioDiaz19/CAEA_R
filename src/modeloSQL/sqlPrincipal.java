@@ -401,4 +401,99 @@ public class sqlPrincipal {
         }
         return lista;
     }
+    
+    public ArrayList<modeloTablaPrincipal> buscarRegionGrado(String region, int grado){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE grado = ? and region = ?");
+            sql.setInt(1, grado);
+            sql.setString(2, region);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<modeloTablaPrincipal> buscarCicloRegionGrado(String ciclo,String region ,int grado){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE cicloescolar = ? and region = ? and grado = ?");
+            sql.setString(1, ciclo);
+            sql.setString(2, region);
+            sql.setInt(3, grado);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
 }
