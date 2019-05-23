@@ -496,16 +496,54 @@ public class sqlPrincipal {
         }
         return lista;
     }
+    
+    public ArrayList<modeloTablaPrincipal> buscarApellidosNombre(String ape_paterno, String ape_materno, String nombre){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE ape_paterno LIKE '%'||?||'%' and ape_materno LIKE '%'||?||'%' and nombre LIKE '%'||?||'%'");
+            sql.setString(1, ape_paterno);
+            sql.setString(2, ape_materno);
+            sql.setString(3, nombre);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    
 }
-
-
-// String existe = "SELECT "
-//                        + "idproducto, "
-//                        + "nombre_producto, "
-//                        + "precio_compra, "
-//                        + "precio_venta, "
-//                        + "cantidad_producto "+
-//                        "FROM producto "
-//                        +"WHERE nombre_producto "
-//                            + "LIKE '%'||"+"'"+nombre_producto+"'"+"||'%' "
-//                            + "ORDER BY idproducto, nombre_producto";

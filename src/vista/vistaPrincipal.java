@@ -8,6 +8,8 @@ package vista;
 import java.awt.Color;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -16,6 +18,9 @@ import javax.swing.table.DefaultTableModel;
 public class vistaPrincipal extends javax.swing.JFrame {
  
     public DefaultTableModel modeloTabla;
+    public JPopupMenu popup = new JPopupMenu();
+    public JMenuItem itemEditar = new JMenuItem("Editar");
+    
     /**
      * Creates new form interfaz_Principal
      */
@@ -25,7 +30,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
     public vistaPrincipal() {
         initComponents();
         modeloTabla = (DefaultTableModel) tablaPrincipal.getModel() ;
+        popupMenuTabla();
         personalizarComponentes();
+       
+    }
+    
+    private void popupMenuTabla(){
+       
+        popup.add(itemEditar);
+        tablaPrincipal.setComponentPopupMenu(popup);
     }
     
     private void personalizarComponentes(){
@@ -369,9 +382,16 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 "No. Control", "A. Paterno", "A. Materno", "Nombre", "Grado", "Región", "Ciclo escolar", "Situación", "Estado", "Estado Actual/Final"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true, true, true
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -629,9 +649,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> boxCicloEscolar;
     public javax.swing.JComboBox<String> boxGrado;
     public javax.swing.JComboBox<String> boxRegion;
-    private javax.swing.JTextField fieldApeMaterno;
-    private javax.swing.JTextField fieldApePaterno;
-    private javax.swing.JTextField fieldNombre;
+    public javax.swing.JTextField fieldApeMaterno;
+    public javax.swing.JTextField fieldApePaterno;
+    public javax.swing.JTextField fieldNombre;
     public javax.swing.JTextField fieldNombreUsuario;
     public javax.swing.JTextField fieldNumerocontrol;
     private javax.swing.JLabel labelUsuario;
@@ -644,6 +664,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelSesionUsuario;
     private javax.swing.JPanel panelTabla;
     private javax.swing.JScrollPane scrollTablaPrincipal;
-    private javax.swing.JTable tablaPrincipal;
+    public javax.swing.JTable tablaPrincipal;
     // End of variables declaration//GEN-END:variables
 }

@@ -56,6 +56,7 @@ public class controlVistaPrincipal {
         ventanaPrincipal.boxCicloEscolar.addItemListener(this::boxCicloEscolar);
         ventanaPrincipal.boxRegion.addItemListener(this::boxRegion);
         ventanaPrincipal.boxGrado.addItemListener(this::boxGrado);
+       ventanaPrincipal.itemEditar.addActionListener(this::itemEditar);
         
     }
     
@@ -136,7 +137,46 @@ public class controlVistaPrincipal {
    }
    
    private void botonBuscar(ActionEvent e){
-        buscarPorNocontrol();
+        String nocontrol =  ventanaPrincipal.fieldNumerocontrol.getText();
+        String ape_paterno = ventanaPrincipal.fieldApePaterno.getText();
+        System.out.println("ape_paterno = " + ape_paterno);
+        String ape_materno = ventanaPrincipal.fieldApeMaterno.getText();
+        System.out.println("ape_materno = " + ape_materno);
+        String nombre = ventanaPrincipal.fieldNombre.getText();
+        System.out.println("nombre = " + nombre);
+        
+        if (!"Numero de control".equals(nocontrol)) {
+             buscarPorNocontrol();
+        }
+        
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                !"Apellido Materno".equals(ape_materno) &&
+                    !"Nombre".equals(nombre) && "Numero de control".equals(nocontrol)) {
+            buscarApellidosNombre();
+        }
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                "Apellido Materno".equals(ape_materno) &&
+                    "Nombre".equals(nombre) && "Numero de control".equals(nocontrol)) {
+            JOptionPane.showMessageDialog(null, "¿Escriba el apellido materno y el nombre");
+        }
+        
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                !"Apellido Materno".equals(ape_materno) &&
+                    "Nombre".equals(nombre) && "Numero de control".equals(nocontrol)) {
+            JOptionPane.showMessageDialog(null, "¿Escriba el nombre");
+        }
+        
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                "Apellido Materno".equals(ape_materno) &&
+                    !"Nombre".equals(nombre) && "Numero de control".equals(nocontrol)) {
+            JOptionPane.showMessageDialog(null, "¿Escriba el apellido materno");
+        }
+        
+        if ("Apellido Paterno".equals(ape_paterno) && 
+                !"Apellido Materno".equals(ape_materno) &&
+                    !"Nombre".equals(nombre) && "Numero de control".equals(nocontrol)) {
+            JOptionPane.showMessageDialog(null, "¿Escriba el apellido paterno");
+        }
    }
    
    private void buscarPorNocontrol(){
@@ -147,6 +187,10 @@ public class controlVistaPrincipal {
         busquedaNocontrol = sqlPrincipal.buscarPorNocontrol(nocontrol);
        
         int iteraciones =  busquedaNocontrol.size();
+        System.out.println("iteraciones = " + iteraciones);
+        if (iteraciones == 0) {
+            JOptionPane.showMessageDialog(null, "¡No existe el numero el numero de control!");
+       }
        
         System.out.println("iteraciones = " + iteraciones);
         for (int i = 0; i < iteraciones; i++) {
@@ -416,5 +460,40 @@ public class controlVistaPrincipal {
                                     busqueda.get(i).getEstado_actual_final()  
             });
        }      
+    }
+    
+    private void buscarApellidosNombre(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        String ape_paterno = ventanaPrincipal.fieldApePaterno.getText().toUpperCase();
+        String ape_materno = ventanaPrincipal.fieldApeMaterno.getText().toUpperCase();
+        String nombre = ventanaPrincipal.fieldNombre.getText().toUpperCase();
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarApellidosNombre(ape_paterno, ape_materno, nombre);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }      
+    }
+    
+    private void itemEditar(ActionEvent e){
+        
+        int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
+        String nombre = String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 3));
+        JOptionPane.showMessageDialog(null, "Menu editar: "+nombre);
+        
     }
 }
