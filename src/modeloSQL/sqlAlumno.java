@@ -1,16 +1,17 @@
 package modeloSQL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import modelo.modeloAlumno;
 import modelo.modeloSesionUsuario;
 /**
- *
  * @author Dizan
  */
 public class sqlAlumno {
     Connection con;
     conexion conexion;
+    int resultado =0;
     modeloSesionUsuario modeloUsuario;
     boolean correctoInsertar;
 
@@ -22,21 +23,22 @@ public class sqlAlumno {
         
         CallableStatement sql;
         String insert = "SELECT alta_alumno( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String consulta = "call alta_alumno(?, ?, ?, ?, ?, ?, ?, ?. ?)";
         conexion = new conexion();
         try{
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareCall(consulta);
-            sql.setInt(1, alumno.getNumeroControl());
-            sql.setInt(2, alumno.getIdRegion());
-            sql.setString(3, alumno.getNombre());
-            sql.setString(4, alumno.getApe_paterno());
-            sql.setString(5, alumno.getApe_materno());
-            sql.setString(6, alumno.getSexo());
-            sql.setString(7, alumno.getFecha_nacimiento());
-            sql.setString(8, alumno.getCicloEscolar());
-            sql.setInt(9, alumno.getGrado());
-            sql.execute();
+            try (PreparedStatement psql = con.prepareStatement(insert)) {
+                psql.setInt(1, alumno.getNumeroControl());
+                psql.setInt(2, alumno.getIdRegion());
+                psql.setString(3, alumno.getNombre());
+                psql.setString(4, alumno.getApe_paterno());
+                psql.setString(5, alumno.getApe_materno());
+                psql.setString(6, alumno.getSexo());
+                psql.setString(7, alumno.getFecha_nacimiento());
+                psql.setString(8, alumno.getCicloEscolar());
+                psql.setInt(9, alumno.getGrado());
+                psql.execute();
+            }
+            correctoInsertar = true;
         }
         catch (final SQLException e){
             correctoInsertar = false;
