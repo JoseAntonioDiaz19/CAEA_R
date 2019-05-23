@@ -1,6 +1,5 @@
 package modelo;
 /**
- *
  * @author Dizan
  */
 public class modeloTablaPrincipal {
@@ -13,7 +12,32 @@ public class modeloTablaPrincipal {
     private String region;
     private String cicloescolar;
     private String situacion;
+    private String estado;
+    private String estado_actual_final;
 
+    public modeloTablaPrincipal(int nocontrol, 
+                                String ape_paterno, 
+                                String ape_materno, 
+                                String nombre, 
+                                int grado, 
+                                String region, 
+                                String cicloescolar, 
+                                String situacion, 
+                                String estado, 
+                                String estado_actual_final) {
+        
+        this.nocontrol = nocontrol;
+        this.ape_paterno = ape_paterno;
+        this.ape_materno = ape_materno;
+        this.nombre = nombre;
+        this.grado = grado;
+        this.region = region;
+        this.cicloescolar = cicloescolar;
+        this.situacion = situacion;
+        this.estado = estado;
+        this.estado_actual_final = estado_actual_final;
+    }
+   
     /**
      * @return the nocontrol
      */
@@ -124,6 +148,34 @@ public class modeloTablaPrincipal {
      */
     public void setSituacion(String situacion) {
         this.situacion = situacion;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    /**
+     * @return the estado_actual_final
+     */
+    public String getEstado_actual_final() {
+        return estado_actual_final;
+    }
+
+    /**
+     * @param estado_actual_final the estado_actual_final to set
+     */
+    public void setEstado_actual_final(String estado_actual_final) {
+        this.estado_actual_final = estado_actual_final;
     }
 
 }

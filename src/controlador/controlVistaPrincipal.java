@@ -1,7 +1,10 @@
 package controlador;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.modeloSesionUsuario;
+import modelo.modeloTablaPrincipal;
+import modeloSQL.sqlPrincipal;
 import vista.vistaAltaAlumno;
 import vista.vistaAltaUsuario;
 import vista.vistaAvances;
@@ -22,6 +25,8 @@ public class controlVistaPrincipal {
     vistaAltaAlumno vistaAltaAlumno;
     controlVistaAltaAlumno controlVistaAltaAlumno;
     modeloSesionUsuario modeloUsuario;
+    modeloTablaPrincipal modeloTablaPrincipal;
+
    
     controlVistaPrincipal(vistaPrincipal ventanaPrincipal, modeloSesionUsuario modeloUsuario) {
        this.ventanaPrincipal = ventanaPrincipal;
@@ -33,7 +38,11 @@ public class controlVistaPrincipal {
                 close();
             }
         });
-       eventos();   
+       eventos();  
+       
+       llenarCiclosEscolares();
+       llenarRegiones();
+       llenarGrados();
     }
     
     private void eventos(){
@@ -43,6 +52,7 @@ public class controlVistaPrincipal {
         ventanaPrincipal.botonUsuarios.addActionListener(this::botonUsuarios);
         ventanaPrincipal.botonAvances.addActionListener(this::botonAvances);
         ventanaPrincipal.botonRegistrar.addActionListener(this::botonRegistrar);
+        ventanaPrincipal.botonBuscar.addActionListener(this::botonBuscar);
     }
     
     private void close(){ 
@@ -90,4 +100,62 @@ public class controlVistaPrincipal {
         controlVistaAltaAlumno = new controlVistaAltaAlumno(vistaAltaAlumno, modeloUsuario );
         vistaAltaAlumno.setVisible(true); 
     }
+    
+    private void llenarCiclosEscolares(){
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <String> ciclosEscolares;
+        ciclosEscolares = sqlPrincipal.ciclosEscolares();
+        int iteraciones = ciclosEscolares.size();
+        for (int i = 0; i < iteraciones; i++) {
+            ventanaPrincipal.boxCicloEscolar.addItem(ciclosEscolares.get(i));
+        } 
+    }
+    
+   private void llenarRegiones(){
+       sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+       ArrayList <String> regiones;
+       regiones = sqlPrincipal.regiones();
+       int iteraciones = regiones.size();
+       for (int i = 0; i < iteraciones; i++) {
+           ventanaPrincipal.boxRegion.addItem(regiones.get(i));
+       }
+   }
+   
+   private void llenarGrados(){
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <String>  grados;
+        grados = sqlPrincipal.grados();
+        int iteraciones = grados.size();
+        for (int i = 0; i < iteraciones; i++) {
+           ventanaPrincipal.boxGrado.addItem(grados.get(i));
+       }
+   }
+   
+   private void botonBuscar(ActionEvent e){
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <modeloTablaPrincipal>  busquedaNocontrol;
+        String nocontrol = ventanaPrincipal.fieldNumerocontrol.getText();
+        busquedaNocontrol = sqlPrincipal.buscarNocontrol(nocontrol);
+       
+        int iteraciones;
+        iteraciones = (busquedaNocontrol.size());
+        System.out.println("iteraciones = " + iteraciones);
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busquedaNocontrol.get(i).getNocontrol(),
+                                    busquedaNocontrol.get(i).getApe_paterno(),
+                                    busquedaNocontrol.get(i).getApe_materno(),
+                                    busquedaNocontrol.get(i).getNombre(),
+                                    busquedaNocontrol.get(i).getGrado(),
+                                    busquedaNocontrol.get(i).getRegion(),
+                                    busquedaNocontrol.get(i).getCicloescolar(),
+                                    busquedaNocontrol.get(i).getSituacion(),
+                                    busquedaNocontrol.get(i).getEstado(),
+                                    busquedaNocontrol.get(i).getEstado_actual_final()  
+            });
+           
+       }
+        
+   }
+   
 }

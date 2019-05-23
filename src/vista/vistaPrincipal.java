@@ -8,12 +8,14 @@ package vista;
 import java.awt.Color;
 import java.net.URL;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author AxiosGaming
  */
 public class vistaPrincipal extends javax.swing.JFrame {
-
+ 
+    public DefaultTableModel modeloTabla;
     /**
      * Creates new form interfaz_Principal
      */
@@ -22,8 +24,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
   int xx,xy;
     public vistaPrincipal() {
         initComponents();
+        modeloTabla = (DefaultTableModel) tablaPrincipal.getModel() ;
         personalizarComponentes();
     }
+    
     private void personalizarComponentes(){
         scrollTablaPrincipal.getViewport().setBackground(new Color(8,38,67));
         
@@ -159,7 +163,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelCampos.setLayout(new java.awt.GridBagLayout());
 
         boxCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Ciclo escolar -" }));
+        boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Seleccione ciclo escolar -" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -170,7 +174,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelCampos.add(boxCicloEscolar, gridBagConstraints);
 
         boxRegion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Region -", " " }));
+        boxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Region -" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -354,24 +358,25 @@ public class vistaPrincipal extends javax.swing.JFrame {
         tablaPrincipal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaPrincipal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "No. Control", "A. Paterno", "A. Materno", "Nombre", "Grado", "Región", "Ciclo escolar", "Situación"
+                "No. Control", "A. Paterno", "A. Materno", "Nombre", "Grado", "Región", "Ciclo escolar", "Situación", "Estado", "Estado Actual/Final"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true
+                false, true, true, true, true, true, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        tablaPrincipal.setColumnSelectionAllowed(true);
         tablaPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaPrincipal.setGridColor(new java.awt.Color(153, 204, 255));
         tablaPrincipal.setSelectionBackground(new java.awt.Color(204, 204, 255));
@@ -381,6 +386,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
             tablaPrincipal.getColumnModel().getColumn(0).setMinWidth(100);
             tablaPrincipal.getColumnModel().getColumn(0).setPreferredWidth(100);
             tablaPrincipal.getColumnModel().getColumn(0).setMaxWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(1).setMinWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(1).setPreferredWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(1).setMaxWidth(200);
+            tablaPrincipal.getColumnModel().getColumn(2).setMinWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(2).setPreferredWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(2).setMaxWidth(200);
+            tablaPrincipal.getColumnModel().getColumn(3).setMinWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(3).setMaxWidth(200);
             tablaPrincipal.getColumnModel().getColumn(4).setMinWidth(50);
             tablaPrincipal.getColumnModel().getColumn(4).setPreferredWidth(50);
             tablaPrincipal.getColumnModel().getColumn(4).setMaxWidth(50);
@@ -393,6 +407,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
             tablaPrincipal.getColumnModel().getColumn(7).setMinWidth(100);
             tablaPrincipal.getColumnModel().getColumn(7).setPreferredWidth(100);
             tablaPrincipal.getColumnModel().getColumn(7).setMaxWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(8).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(8).setPreferredWidth(50);
+            tablaPrincipal.getColumnModel().getColumn(8).setMaxWidth(120);
+            tablaPrincipal.getColumnModel().getColumn(9).setMinWidth(110);
+            tablaPrincipal.getColumnModel().getColumn(9).setPreferredWidth(110);
+            tablaPrincipal.getColumnModel().getColumn(9).setMaxWidth(120);
         }
 
         panelTabla.add(scrollTablaPrincipal);
@@ -597,21 +617,21 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonAvances;
-    private javax.swing.JButton botonBuscar;
+    public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonCerrarSesion;
     private javax.swing.JButton botonExpandir;
     public javax.swing.JButton botonRegistrar;
     public javax.swing.JButton botonReportes;
     public javax.swing.JButton botonSalir;
     public javax.swing.JButton botonUsuarios;
-    private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JComboBox<String> boxRegion;
+    public javax.swing.JComboBox<String> boxCicloEscolar;
+    public javax.swing.JComboBox<String> boxGrado;
+    public javax.swing.JComboBox<String> boxRegion;
     private javax.swing.JTextField fieldApeMaterno;
     private javax.swing.JTextField fieldApePaterno;
     private javax.swing.JTextField fieldNombre;
     public javax.swing.JTextField fieldNombreUsuario;
-    private javax.swing.JTextField fieldNumerocontrol;
+    public javax.swing.JTextField fieldNumerocontrol;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelCampos;
