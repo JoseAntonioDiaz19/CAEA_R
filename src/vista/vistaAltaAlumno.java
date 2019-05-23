@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
 
 /**
@@ -10,6 +5,10 @@ package vista;
  * @author Dizan
  */
 public class vistaAltaAlumno extends javax.swing.JDialog {
+
+    boolean esBisiesto = false; 
+
+    boolean cambioAño = false;
 
     /**
      * Creates new form vistaAltaAlumno
@@ -234,6 +233,11 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
 
         boxAño.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         boxAño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021" }));
+        boxAño.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                boxAñoItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -250,6 +254,11 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         boxMes.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 boxMesItemStateChanged(evt);
+            }
+        });
+        boxMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxMesActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -363,11 +372,118 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    public void mes31() {
+        boxDia.removeAllItems();
+        boxDia.addItem("Dia");
+        for (int i = 1; i < 10; i++) {
+            boxDia.addItem("0" + i);
+        }
+        for (int j = 10; j < 20; j++) {
+            boxDia.addItem(String.valueOf(j));
+
+        }
+        for (int k = 20; k < 30; k++) {
+            boxDia.addItem(String.valueOf(k));
+        }
+        for (int f = 30; f < 32; f++) {
+            boxDia.addItem(String.valueOf(f));
+        }
+    }
+
+    public void mes30() {
+        boxDia.removeAllItems();
+        boxDia.addItem("Dia");
+        for (int i = 1; i < 10; i++) {
+            boxDia.addItem("0" + i);
+        }
+        for (int j = 10; j < 20; j++) {
+            boxDia.addItem(String.valueOf(j));
+
+        }
+        for (int k = 20; k < 30; k++) {
+            boxDia.addItem(String.valueOf(k));
+        }
+        for (int f = 30; f < 31; f++) {
+            boxDia.addItem(String.valueOf(f));
+        }
+    }
+
+    public void mes28() {
+        boxDia.removeAllItems();
+        boxDia.addItem("Dia");
+        for (int i = 1; i < 10; i++) {
+            boxDia.addItem("0" + i);
+        }
+        for (int j = 10; j < 20; j++) {
+            boxDia.addItem(String.valueOf(j));
+
+        }
+        for (int k = 20; k < 29; k++) {
+            boxDia.addItem(String.valueOf(k));
+        }
+    }
+
+    public void mes29() {
+        boxDia.removeAllItems();
+        boxDia.addItem("Dia");
+        for (int i = 1; i < 10; i++) {
+            boxDia.addItem("0" + i);
+        }
+        for (int j = 10; j < 20; j++) {
+            boxDia.addItem(String.valueOf(j));
+
+        }
+        for (int k = 20; k < 30; k++) {
+            boxDia.addItem(String.valueOf(k));
+        }
+    }
 
     private void boxMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesItemStateChanged
-        // TODO add your handling code here:
-        
+
+            String seleccion = (String) boxMes.getSelectedItem();
+        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("06") || seleccion.equals("10") || seleccion.equals("12")) {
+             mes31();
+            //Abril, Junio, Septiembre y Noviembre.
+        }
+        if (seleccion.equals("04") || seleccion.equals("06") || seleccion.equals("09") || seleccion.equals("11")) {
+            mes30();
+        }
+        if (seleccion.equals("02") && esBisiesto) {
+            mes29();
+        }
+        if (seleccion.equals("02") && esBisiesto == false) {
+            mes28();
+        }
     }//GEN-LAST:event_boxMesItemStateChanged
+
+    private void boxMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxMesActionPerformed
+
+    private void boxAñoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxAñoItemStateChanged
+        // TODO add your handling code here:
+        cambioAño = true;
+        String añobisiesto = (String) boxAño.getSelectedItem();
+        if (!añobisiesto.equals("Año")) {
+            if ((añobisiesto.equals("2000"))
+                    || (añobisiesto.equals("2004"))
+                    || (añobisiesto.equals("2008"))
+                    || (añobisiesto.equals("2012"))
+                    || (añobisiesto.equals("2016"))
+                    || (añobisiesto.equals("2020"))
+                    || (añobisiesto.equals("2024"))
+                    || (añobisiesto.equals("2028"))
+                    || (añobisiesto.equals("2032"))) {
+                esBisiesto = true;
+                boxMesItemStateChanged(evt);
+            } else {
+                esBisiesto = false;
+                boxMesItemStateChanged(evt);
+            }
+        }
+        else
+            cambioAño = false;
+    }//GEN-LAST:event_boxAñoItemStateChanged
 
     /**
      * @param args the command line arguments
