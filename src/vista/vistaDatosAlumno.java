@@ -413,6 +413,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         getContentPane().add(panelPrincipal);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
