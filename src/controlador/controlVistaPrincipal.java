@@ -13,7 +13,6 @@ import vista.vistaPrincipal;
 import vista.vistaReportes;
 import vista.vistaSesionUsuario;
 /**
- *
  * @author Dizan
  */
 public class controlVistaPrincipal {
@@ -183,6 +182,12 @@ public class controlVistaPrincipal {
         if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloGrado();
         }
+        
+        if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloRegionGrado();
+        }  
+        
     }
     
     private void boxRegion(ItemEvent eventItem){
@@ -201,6 +206,10 @@ public class controlVistaPrincipal {
         if (!itemGrado.equals("- Seleccione Grado -") && !itemRegion.equals("- Seleccione Region -")) {
             buscarRegionGrado();
         }  
+       if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloRegionGrado();
+        }  
     }
     
     private void boxGrado(ItemEvent eventItem){
@@ -218,6 +227,10 @@ public class controlVistaPrincipal {
         
         if (!itemGrado.equals("- Seleccione Grado -") && !itemRegion.equals("- Seleccione Region -")) {
             buscarRegionGrado();
+        } 
+        if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloRegionGrado();
         } 
     }
    

@@ -497,3 +497,15 @@ public class sqlPrincipal {
         return lista;
     }
 }
+
+
+// String existe = "SELECT "
+//                        + "idproducto, "
+//                        + "nombre_producto, "
+//                        + "precio_compra, "
+//                        + "precio_venta, "
+//                        + "cantidad_producto "+
+//                        "FROM producto "
+//                        +"WHERE nombre_producto "
+//                            + "LIKE '%'||"+"'"+nombre_producto+"'"+"||'%' "
+//                            + "ORDER BY idproducto, nombre_producto";
