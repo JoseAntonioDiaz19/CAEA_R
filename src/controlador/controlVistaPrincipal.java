@@ -1,5 +1,6 @@
 package controlador;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.modeloSesionUsuario;
@@ -53,6 +54,10 @@ public class controlVistaPrincipal {
         ventanaPrincipal.botonAvances.addActionListener(this::botonAvances);
         ventanaPrincipal.botonRegistrar.addActionListener(this::botonRegistrar);
         ventanaPrincipal.botonBuscar.addActionListener(this::botonBuscar);
+        ventanaPrincipal.boxCicloEscolar.addItemListener(this::boxCicloEscolar);
+        ventanaPrincipal.boxRegion.addItemListener(this::boxRegion);
+        ventanaPrincipal.boxGrado.addItemListener(this::boxGrado);
+        
     }
     
     private void close(){ 
@@ -132,13 +137,18 @@ public class controlVistaPrincipal {
    }
    
    private void botonBuscar(ActionEvent e){
+        buscarPorNocontrol();
+   }
+   
+   private void buscarPorNocontrol(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
         ArrayList <modeloTablaPrincipal>  busquedaNocontrol;
         String nocontrol = ventanaPrincipal.fieldNumerocontrol.getText();
-        busquedaNocontrol = sqlPrincipal.buscarNocontrol(nocontrol);
+        busquedaNocontrol = sqlPrincipal.buscarPorNocontrol(nocontrol);
        
-        int iteraciones;
-        iteraciones = (busquedaNocontrol.size());
+        int iteraciones =  busquedaNocontrol.size();
+       
         System.out.println("iteraciones = " + iteraciones);
         for (int i = 0; i < iteraciones; i++) {
                 ventanaPrincipal.modeloTabla.addRow(new Object[]{
@@ -154,8 +164,130 @@ public class controlVistaPrincipal {
                                     busquedaNocontrol.get(i).getEstado_actual_final()  
             });
            
-       }
-        
-   }
+       }  
+    }
    
+    private void boxCicloEscolar(ItemEvent eventItem){
+        String itemCiclo = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
+        String itemRegion = (String) ventanaPrincipal.boxGrado.getSelectedItem();
+        
+        buscarPorCicloEscolar();
+        buscarCicloRegion();
+    }
+   
+    private void buscarPorCicloEscolar(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        String cicloSeleccionado = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarPorCicloEscolar(cicloSeleccionado);
+        int iteraciones =  busqueda.size();
+
+        System.out.println("iteraciones = " + iteraciones);
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }    
+    }
+    
+    private void boxRegion(ItemEvent eventItem){
+        String itemCiclo = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
+        String itemRegion = (String) ventanaPrincipal.boxGrado.getSelectedItem();
+        buscarPorRegion();
+        buscarCicloRegion();
+    }
+    
+    private void buscarPorRegion(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        String itemSeleccionado = (String) ventanaPrincipal.boxRegion.getSelectedItem();
+        itemSeleccionado = itemSeleccionado.substring(1,itemSeleccionado.length());
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarPorRegion(itemSeleccionado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }    
+    }
+    
+    private void boxGrado(ItemEvent eventItem){
+        buscarPorGrado();
+       
+    }
+    
+    private void buscarPorGrado(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        int itemSeleccionado = Integer.parseInt((String) ventanaPrincipal.boxGrado.getSelectedItem());
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarPorGrado(itemSeleccionado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }    
+    }
+    
+    private void buscarCicloRegion(){
+        ventanaPrincipal.modeloTabla.setRowCount(0);
+        String itemCiclo = (String) ventanaPrincipal.boxCicloEscolar.getSelectedItem();
+        String itemRegion = (String) ventanaPrincipal.boxGrado.getSelectedItem();
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        
+        ArrayList <modeloTablaPrincipal>  busqueda;
+        busqueda = sqlPrincipal.buscarCicloGrado(itemCiclo, itemRegion);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                ventanaPrincipal.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getGrado(),
+                                    busqueda.get(i).getRegion(),
+                                    busqueda.get(i).getCicloescolar(),
+                                    busqueda.get(i).getSituacion(),
+                                    busqueda.get(i).getEstado(),
+                                    busqueda.get(i).getEstado_actual_final()  
+            });
+       }    
+        
+    }
 }

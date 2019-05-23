@@ -98,6 +98,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         botonSalir = new javax.swing.JButton();
         panelInferiorVacio = new javax.swing.JPanel();
 
+        setExtendedState(MAXIMIZED_BOTH);
         setPreferredSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
@@ -376,7 +377,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaPrincipal.setColumnSelectionAllowed(true);
         tablaPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaPrincipal.setGridColor(new java.awt.Color(153, 204, 255));
         tablaPrincipal.setSelectionBackground(new java.awt.Color(204, 204, 255));
@@ -530,8 +530,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_boxGradoActionPerformed
 
     private void fieldNumerocontrolFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumerocontrolFocusGained
+        if ("Numero de control".equals(fieldNumerocontrol.getText())) {
             fieldNumerocontrol.setText("");
             fieldNumerocontrol.setForeground(Color.BLACK);   
+        }
     }//GEN-LAST:event_fieldNumerocontrolFocusGained
 
     private void fieldNumerocontrolFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumerocontrolFocusLost

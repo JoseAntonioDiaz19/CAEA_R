@@ -124,7 +124,7 @@ public class sqlPrincipal {
         return lista;
     }
     
-    public ArrayList<modeloTablaPrincipal> buscarNocontrol(String nocontrol){
+    public ArrayList<modeloTablaPrincipal> buscarPorNocontrol(String nocontrol){
         ArrayList <modeloTablaPrincipal> lista = null;
         ResultSet Resultados;
         PreparedStatement sql;
@@ -133,7 +133,7 @@ public class sqlPrincipal {
         {
             con = conexion.getConexion(modeloUsuario);
             sql = con.prepareStatement("SELECT * FROM vista_principal WHERE nocontrol = ?");
-            sql.setString(1, nocontrol);
+            sql.setInt(1, Integer.parseInt(nocontrol));
             Resultados = sql.executeQuery();
             lista = new ArrayList<>();
             while(Resultados.next())
@@ -143,12 +143,197 @@ public class sqlPrincipal {
                                                     Resultados.getString("ape_materno"),
                                                     Resultados.getString("nombre"),
                                                     Resultados.getInt("grado"),
-                                                    Resultados.getString("region"),
+                                                    "0"+Resultados.getString("region"),
                                                     Resultados.getString("cicloescolar"),
                                                     Resultados.getString("situacion"),
                                                     Resultados.getString("estado"),
                                                     Resultados.getString("estado_actual_final")
-                )
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<modeloTablaPrincipal> buscarPorCicloEscolar(String cicloescolar){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE cicloescolar = ?");
+            sql.setString(1, cicloescolar);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<modeloTablaPrincipal> buscarPorRegion(String region){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE region = ?");
+            sql.setString(1, region);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<modeloTablaPrincipal> buscarPorGrado(int grado){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE grado = ?");
+            sql.setInt(1, grado);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<modeloTablaPrincipal> buscarCicloGrado(String cicloescolar, String region){
+        ArrayList <modeloTablaPrincipal> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_principal WHERE region = ? and cicloescolar = ?");
+            sql.setString(1, region);
+            sql.setString(2, cicloescolar);
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaPrincipal( Resultados.getInt("nocontrol"),
+                                                    Resultados.getString("ape_paterno"),
+                                                    Resultados.getString("ape_materno"),
+                                                    Resultados.getString("nombre"),
+                                                    Resultados.getInt("grado"),
+                                                    "0"+Resultados.getString("region"),
+                                                    Resultados.getString("cicloescolar"),
+                                                    Resultados.getString("situacion"),
+                                                    Resultados.getString("estado"),
+                                                    Resultados.getString("estado_actual_final")
+                    )
                 );
             }
         } 
