@@ -233,7 +233,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         panelDatosAlumno.add(boxSexo, gridBagConstraints);
 
         boxAño.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        boxAño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año" }));
+        boxAño.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Año", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -246,7 +246,12 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         panelDatosAlumno.add(boxAño, gridBagConstraints);
 
         boxMes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        boxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes" }));
+        boxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", " " }));
+        boxMes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                boxMesItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -358,6 +363,11 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void boxMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesItemStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_boxMesItemStateChanged
 
     /**
      * @param args the command line arguments
