@@ -64,7 +64,7 @@ public class sqlDatosAlumno {
         return modeloDatosAlumno;
     }
     
-     public ArrayList <String> situacion()
+    public ArrayList <String> situacion()
     {
         ArrayList <String> lista = null;
         ResultSet Resultados;
@@ -99,29 +99,66 @@ public class sqlDatosAlumno {
         }
         return lista;
     }
+    
+    public ArrayList <String> situacionFinal()
+    {
+        ArrayList <String> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT descripcion FROM estado_actual_final ");
+                    
+            Resultados = sql.executeQuery();
+            lista = new ArrayList();
+            while(Resultados.next())
+            {
+                lista.add(Resultados.getString("descripcion")
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
      
-    public void actualizar(modeloDatosAlumno alumno, 
+    public void actualizar(modeloDatosAlumno alumno, modeloDatosAlumno alumnoAnterior, 
                             int idregion, 
                             int idsituacion, 
-                            int idsituacionfinal) throws SQLException{
+                            int idsituacionfinal, int idgrado_alumno) throws SQLException{
 
         PreparedStatement sql;
         conexion = new conexion();
        
         try{
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT actualizar_datos_alumno(?,?,?,?,?,?,?,?,?,?,?)");
+            sql = con.prepareStatement("SELECT actualizar_datos_alumno(?,?,?,?,?,?,?,"+"'"+alumno.getFecha_nacimiento()+"'"+",?,?,?,?,?)");
             sql.setInt(1, alumno.getNocontrol());
-            sql.setInt(2, idregion);
-            sql.setString(3,alumno.getNombre());
-            sql.setString(4, alumno.getApe_paterno());
-            sql.setString(5, alumno.getApe_materno());
-            sql.setString(6, alumno.getSexo());
-            sql.setString(7, alumno.getFecha_nacimiento());
+            sql.setInt(2, alumnoAnterior.getNocontrol());
+            sql.setInt(3, idregion);
+            sql.setString(4,alumno.getNombre());
+            sql.setString(5, alumno.getApe_paterno());
+            sql.setString(6, alumno.getApe_materno());
+            sql.setString(7, alumno.getSexo());
             sql.setString(8, alumno.getCicloescolar());
             sql.setInt(9, alumno.getGrado());
             sql.setInt(10, idsituacion);
             sql.setInt(11, idsituacionfinal);
+            sql.setInt(12, idgrado_alumno);
            
             sql.execute();
         }
@@ -144,6 +181,48 @@ public class sqlDatosAlumno {
     public void setCorrectoActualizar(boolean correctoActualizar) {
         this.correctoActualizar = correctoActualizar;
     }
+    
+    public int idgrado_alumno(int nocontrol, int idgrado, String cicloescolar )
+    {
+        System.out.println("numero control: "+nocontrol);
+        System.out.println("idgrado: " + idgrado);
+        System.out.println("ciclo: "+ cicloescolar);
+        Integer idgrado_alumno = 0;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT idgrado_alumno FROM grado_alumno WHERE nocontrol = ? and idgrado = ? and idcicloescolar = ? ");
+            sql.setInt(1, nocontrol);
+            sql.setInt(2, idgrado);
+            sql.setString(3, cicloescolar);
+            Resultados = sql.executeQuery();
+            while(Resultados.next())
+            {
+                idgrado_alumno = Resultados.getInt("idgrado_alumno");
+                System.out.println("idgrado_alumno :::::= " + idgrado_alumno);
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return idgrado_alumno;
+    }
+    
+    
 }
 
         

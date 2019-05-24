@@ -509,7 +509,8 @@ public class controlVistaPrincipal {
         
         vistaDatosAlumno vistaDatosAlumno = new vistaDatosAlumno(ventanaPrincipal, true);
         controlVistaDatosAlumno controlVistaDatosAlumno = new controlVistaDatosAlumno(ventanaPrincipal, 
-                                                                                      modeloUsuario, vistaDatosAlumno);
+                                                                                      modeloUsuario, 
+                                                                                      vistaDatosAlumno, modeloDatosAlumno);
         
         //Llenar ciclos escolares
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
@@ -544,6 +545,14 @@ public class controlVistaPrincipal {
            vistaDatosAlumno.boxGrado.addItem(grados.get(i));
        }
         
+        //llenar situacion final
+        ArrayList <String>  situacionFinal;
+        situacionFinal = sqlDatosAlumno.situacionFinal();
+        int iteracionesSituacionFinal = situacionFinal.size();
+        for (int i = 0; i < iteracionesSituacionFinal; i++) {
+            vistaDatosAlumno.boxSituacionFinal.addItem(situacionFinal.get(i));
+        }
+        
         //Agregar datos de alumno
         vistaDatosAlumno.fieldNombre.setText(modeloDatosAlumno.getNombre());
         vistaDatosAlumno.fieldApe_paterno.setText(modeloDatosAlumno.getApe_paterno());
@@ -562,11 +571,8 @@ public class controlVistaPrincipal {
         vistaDatosAlumno.boxGrado.setSelectedItem(""+modeloDatosAlumno.getGrado());
         System.out.println("" + modeloDatosAlumno.getGrado());
         vistaDatosAlumno.boxSituacion.setSelectedItem(modeloDatosAlumno.getSituacion());
-        
-        if (modeloDatosAlumno.getSituacion_final().equals("ACREDITADO")) {
-            vistaDatosAlumno.checkSituacionFinal.setSelected(true);
-        }
-        
+        vistaDatosAlumno.boxSituacionFinal.setSelectedItem(modeloDatosAlumno.getSituacion_final());
+       
         vistaDatosAlumno.setVisible(true);
     }
 }

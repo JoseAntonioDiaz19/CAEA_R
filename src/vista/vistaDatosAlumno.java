@@ -115,7 +115,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         boxRegion = new javax.swing.JComboBox<>();
         boxGrado = new javax.swing.JComboBox<>();
         boxSituacion = new javax.swing.JComboBox<>();
-        checkSituacionFinal = new javax.swing.JCheckBox();
+        boxSituacionFinal = new javax.swing.JComboBox<>();
         panelBotones = new javax.swing.JPanel();
         botonActualizar = new javax.swing.JButton();
 
@@ -429,20 +429,17 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 10, 20);
         panelDatosAlumno.add(boxSituacion, gridBagConstraints);
 
-        checkSituacionFinal.setBackground(new java.awt.Color(8, 38, 67));
-        checkSituacionFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        checkSituacionFinal.setForeground(new java.awt.Color(255, 255, 255));
-        checkSituacionFinal.setText("Todos los grados acreditados");
-        checkSituacionFinal.setEnabled(false);
+        boxSituacionFinal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        boxSituacionFinal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Situacion actual/final" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 10, 20);
-        panelDatosAlumno.add(checkSituacionFinal, gridBagConstraints);
+        panelDatosAlumno.add(boxSituacionFinal, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -581,7 +578,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
     public javax.swing.JComboBox<String> boxRegion;
     public javax.swing.JComboBox<String> boxSexo;
     public javax.swing.JComboBox<String> boxSituacion;
-    public javax.swing.JCheckBox checkSituacionFinal;
+    public javax.swing.JComboBox<String> boxSituacionFinal;
     public javax.swing.JTextField fieldApe_materno;
     public javax.swing.JTextField fieldApe_paterno;
     public javax.swing.JTextField fieldNombre;

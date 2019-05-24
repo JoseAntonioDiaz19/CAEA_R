@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
-
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.modeloDatosAlumno;
 import modelo.modeloSesionUsuario;
+import modeloSQL.sqlDatosAlumno;
 import vista.vistaDatosAlumno;
 import vista.vistaPrincipal;
-
 /**
- *
  * @author Dizan
  */
 public class controlVistaDatosAlumno {
@@ -20,47 +16,67 @@ public class controlVistaDatosAlumno {
     vistaPrincipal ventanaPrincipal;
     modeloSesionUsuario modeloUsuario;
     vistaDatosAlumno vistaDatosAlumno;
+    modeloDatosAlumno modeloDatosAlumnoAnterior;
     
     controlVistaDatosAlumno(vistaPrincipal ventanaPrincipal, 
             modeloSesionUsuario modeloUsuario, 
-            vistaDatosAlumno vistaDatosAlumno) {
+            vistaDatosAlumno vistaDatosAlumno, modeloDatosAlumno modeloDatosAlumno) {
         
         this.ventanaPrincipal = ventanaPrincipal;
         this.modeloUsuario = modeloUsuario;
         this.vistaDatosAlumno = vistaDatosAlumno;
+        this.modeloDatosAlumnoAnterior = modeloDatosAlumno;
         
         vistaDatosAlumno.botonActualizar.addActionListener(this::botonActualizar);
     }
-    
+
+  
     private void botonActualizar(ActionEvent e){
-        
         String fecha;
         String año;
         String mes;
         String dia;
         
-        modeloDatosAlumno modeloDatosAlumno = new modeloDatosAlumno();
-        modeloDatosAlumno.setNocontrol(Integer.parseInt(vistaDatosAlumno.fieldNumeroControl.getText()));
-        modeloDatosAlumno.setRegion((String) vistaDatosAlumno.boxRegion.getSelectedItem());
-        modeloDatosAlumno.setNombre(vistaDatosAlumno.fieldNombre.getText());
-        modeloDatosAlumno.setApe_paterno(vistaDatosAlumno.fieldApe_paterno.getText());
-        modeloDatosAlumno.setApe_materno(vistaDatosAlumno.fieldApe_materno.getText());
-        modeloDatosAlumno.setSexo((String) vistaDatosAlumno.boxSexo.getSelectedItem());
+        modeloDatosAlumno modeloDatosAlumnoNuevo = new modeloDatosAlumno();
+        
+        modeloDatosAlumnoNuevo.setNocontrol(Integer.parseInt(vistaDatosAlumno.fieldNumeroControl.getText()));
+        modeloDatosAlumnoNuevo.setRegion((String) vistaDatosAlumno.boxRegion.getSelectedItem());
+        modeloDatosAlumnoNuevo.setNombre(vistaDatosAlumno.fieldNombre.getText());
+        modeloDatosAlumnoNuevo.setApe_paterno(vistaDatosAlumno.fieldApe_paterno.getText());
+        modeloDatosAlumnoNuevo.setApe_materno(vistaDatosAlumno.fieldApe_materno.getText());
+        modeloDatosAlumnoNuevo.setSexo((String) vistaDatosAlumno.boxSexo.getSelectedItem());
         
             año = (String) vistaDatosAlumno.boxAño.getSelectedItem();
             mes = (String) vistaDatosAlumno.boxMes.getSelectedItem();
             dia = (String) vistaDatosAlumno.boxDia.getSelectedItem();
             fecha = año+"-"+mes+"-"+dia;
        
-            modeloDatosAlumno.setFecha_nacimiento(fecha);
-        modeloDatosAlumno.setCicloescolar((String) vistaDatosAlumno.boxCicloEscolar.getSelectedItem());
-        modeloDatosAlumno.setGrado((int) vistaDatosAlumno.boxGrado.getSelectedItem());
-        modeloDatosAlumno.setSituacion((String) vistaDatosAlumno.boxSituacion.getSelectedItem());
+        modeloDatosAlumnoNuevo.setFecha_nacimiento(fecha);
+        modeloDatosAlumnoNuevo.setCicloescolar((String) vistaDatosAlumno.boxCicloEscolar.getSelectedItem());
+        modeloDatosAlumnoNuevo.setGrado(Integer.parseInt(vistaDatosAlumno.boxGrado.getSelectedItem().toString()));
+        System.out.println("Grado " + modeloDatosAlumnoNuevo.getGrado());
+        modeloDatosAlumnoNuevo.setSituacion((String) vistaDatosAlumno.boxSituacion.getSelectedItem());
+       
+        int region = Integer.parseInt(modeloDatosAlumnoNuevo.getRegion().substring(1, 3));
+        System.out.println("region = " + region);
         
-        if (vistaDatosAlumno.checkSituacionFinal.isSelected()) {
-            modeloDatosAlumno.setSituacion_final("ACREDITADO");
+        sqlDatosAlumno  sqlDatosAlumno = new sqlDatosAlumno(modeloUsuario);
+        int idgrado_alumno = sqlDatosAlumno.idgrado_alumno( modeloDatosAlumnoAnterior.getNocontrol(), 
+                                                            modeloDatosAlumnoAnterior.getGrado(), 
+                                                            modeloDatosAlumnoAnterior.getCicloescolar());
+        
+        System.out.println("idgrado_alumno = " + idgrado_alumno);
+       
+        try {
+            sqlDatosAlumno.actualizar(modeloDatosAlumnoNuevo, modeloDatosAlumnoAnterior,
+                                      region, 
+                                      vistaDatosAlumno.boxSituacion.getSelectedIndex()-1, 
+                                      vistaDatosAlumno.boxSituacionFinal.getSelectedIndex()-1,idgrado_alumno);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaDatosAlumno.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        vistaDatosAlumno.dispose();
     }
 }
