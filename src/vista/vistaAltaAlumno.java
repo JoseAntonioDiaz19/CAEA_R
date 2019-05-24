@@ -299,6 +299,11 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
 
         boxCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciclo escolar" }));
+        boxCicloEscolar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxCicloEscolarActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -484,6 +489,10 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         else
             cambioAño = false;
     }//GEN-LAST:event_boxAñoItemStateChanged
+
+    private void boxCicloEscolarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxCicloEscolarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxCicloEscolarActionPerformed
 
     /**
      * @param args the command line arguments
