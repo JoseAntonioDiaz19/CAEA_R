@@ -381,7 +381,6 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
 
         boxCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciclo escolar" }));
-        boxCicloEscolar.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
@@ -408,21 +407,18 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
 
         boxGrado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado" }));
-        boxGrado.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 10, 20);
         panelDatosAlumno.add(boxGrado, gridBagConstraints);
 
         boxSituacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         boxSituacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Situación" }));
-        boxSituacion.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
@@ -463,7 +459,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
         botonGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botonGuardar.setText("Guardar");
+        botonGuardar.setText("Actualizar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -574,19 +570,19 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonGuardar;
-    private javax.swing.JComboBox<String> boxAño;
-    private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxDia;
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JComboBox<String> boxMes;
-    private javax.swing.JComboBox<String> boxRegion;
-    private javax.swing.JComboBox<String> boxSexo;
-    private javax.swing.JComboBox<String> boxSituacion;
-    private javax.swing.JCheckBox checkSituacionFinal;
-    private javax.swing.JTextField fieldApe_materno;
-    private javax.swing.JTextField fieldApe_paterno;
-    private javax.swing.JTextField fieldNombre;
-    private javax.swing.JTextField fieldNumeroControl;
+    public javax.swing.JComboBox<String> boxAño;
+    public javax.swing.JComboBox<String> boxCicloEscolar;
+    public javax.swing.JComboBox<String> boxDia;
+    public javax.swing.JComboBox<String> boxGrado;
+    public javax.swing.JComboBox<String> boxMes;
+    public javax.swing.JComboBox<String> boxRegion;
+    public javax.swing.JComboBox<String> boxSexo;
+    public javax.swing.JComboBox<String> boxSituacion;
+    public javax.swing.JCheckBox checkSituacionFinal;
+    public javax.swing.JTextField fieldApe_materno;
+    public javax.swing.JTextField fieldApe_paterno;
+    public javax.swing.JTextField fieldNombre;
+    public javax.swing.JTextField fieldNumeroControl;
     private javax.swing.JLabel labelApe_materno;
     private javax.swing.JLabel labelApe_paterno;
     private javax.swing.JLabel labelCicloEscolar;

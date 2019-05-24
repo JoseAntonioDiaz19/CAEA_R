@@ -1,13 +1,14 @@
 package controlador;
 //import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.modeloAlumno;
 import modelo.modeloSesionUsuario;
 import modeloSQL.sqlAlumno;
+import modeloSQL.sqlPrincipal;
 import vista.vistaAltaAlumno;
 import vista.vistaSesionUsuario;
 /**
@@ -32,6 +33,9 @@ public class controlVistaAltaAlumno {
         this.vistaAltaAlumno = vistaAltaAlumno;
         this.modeloUsuario = modeloUsuario;
         vistaAltaAlumno.botonGuardar.addActionListener(this::botonGuardar);
+        llenarCicloEscolar();
+        llenarRegion();
+        llenarGrado();
     }
     
     private void botonGuardar(ActionEvent e){
@@ -59,4 +63,33 @@ public class controlVistaAltaAlumno {
         }
     }
     
+    private void llenarCicloEscolar(){
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <String> ciclosEscolares;
+        ciclosEscolares = sqlPrincipal.ciclosEscolares();
+        int iteraciones = ciclosEscolares.size();
+        for (int i = 0; i < iteraciones; i++) {
+            vistaAltaAlumno.boxCicloEscolar.addItem(ciclosEscolares.get(i));
+        } 
+    }
+    
+    private void llenarRegion(){
+       sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+       ArrayList <String> regiones;
+       regiones = sqlPrincipal.regiones();
+       int iteraciones = regiones.size();
+       for (int i = 0; i < iteraciones; i++) {
+           vistaAltaAlumno.boxRegion.addItem(regiones.get(i));
+       }
+    }
+    
+    private void llenarGrado(){
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <String>  grados;
+        grados = sqlPrincipal.grados();
+        int iteraciones = grados.size();
+        for (int i = 0; i < iteraciones; i++) {
+           vistaAltaAlumno.boxGrado.addItem(grados.get(i));
+       }
+    }
 }

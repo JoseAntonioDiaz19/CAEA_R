@@ -3,12 +3,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.modeloDatosAlumno;
 import modelo.modeloSesionUsuario;
 import modelo.modeloTablaPrincipal;
+import modeloSQL.sqlDatosAlumno;
 import modeloSQL.sqlPrincipal;
 import vista.vistaAltaAlumno;
 import vista.vistaAltaUsuario;
 import vista.vistaAvances;
+import vista.vistaDatosAlumno;
 import vista.vistaPrincipal;
 import vista.vistaReportes;
 import vista.vistaSesionUsuario;
@@ -490,10 +493,79 @@ public class controlVistaPrincipal {
     }
     
     private void itemEditar(ActionEvent e){
+        String fecha;
+        String año;
+        String mes;
+        String dia;
         
         int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
-        String nombre = String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 3));
-        JOptionPane.showMessageDialog(null, "Menu editar: "+nombre);
+        String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
+        int nocontrol = Integer.parseInt(stringNocontrol);
         
+        modeloDatosAlumno modeloDatosAlumno;
+        sqlDatosAlumno sqlDatosAlumno = new sqlDatosAlumno(modeloUsuario);
+        modeloDatosAlumno = sqlDatosAlumno.datosAlumno(nocontrol);
+        
+        vistaDatosAlumno vistaDatosAlumno = new vistaDatosAlumno(ventanaPrincipal, true);
+        controlVistaDatosAlumno controlVistaDatosAlumno = new controlVistaDatosAlumno(ventanaPrincipal, 
+                                                                                      modeloUsuario);
+        
+        //Llenar ciclos escolares
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <String> ciclosEscolares;
+        ciclosEscolares = sqlPrincipal.ciclosEscolares();
+        int iteracionesCiclos = ciclosEscolares.size();
+        for (int i = 0; i < iteracionesCiclos; i++) {
+            vistaDatosAlumno.boxCicloEscolar.addItem(ciclosEscolares.get(i));
+        } 
+        
+        //llenar regiones
+        ArrayList <String> regiones;
+        regiones = sqlPrincipal.regiones();
+        int iteracionesRegiones = regiones.size();
+        for (int i = 0; i < iteracionesRegiones; i++) {
+           vistaDatosAlumno.boxRegion.addItem(regiones.get(i));
+        }
+        
+        //Llenar situaciones
+        ArrayList <String>  situacion;
+        situacion = sqlDatosAlumno.situacion();
+        int iteracionesSituacion = situacion.size();
+        for (int i = 0; i < iteracionesSituacion; i++) {
+            vistaDatosAlumno.boxSituacion.addItem(situacion.get(i));
+        }
+        
+        //Llenar grados
+        ArrayList <String>  grados;
+        grados = sqlPrincipal.grados();
+        int iteraciones = grados.size();
+        for (int i = 0; i < iteraciones; i++) {
+           vistaDatosAlumno.boxGrado.addItem(grados.get(i));
+       }
+        
+        //Agregar datos de alumno
+        vistaDatosAlumno.fieldNombre.setText(modeloDatosAlumno.getNombre());
+        vistaDatosAlumno.fieldApe_paterno.setText(modeloDatosAlumno.getApe_paterno());
+        vistaDatosAlumno.fieldApe_materno.setText(modeloDatosAlumno.getApe_materno());
+        vistaDatosAlumno.boxSexo.setSelectedItem(modeloDatosAlumno.getSexo());
+            fecha = modeloDatosAlumno.getFecha_nacimiento();
+            año =  fecha.substring(0, 4);
+            mes = fecha.substring(5, 7);
+            dia = fecha.substring(8, 10);
+        vistaDatosAlumno.boxAño.setSelectedItem(año);
+        vistaDatosAlumno.boxMes.setSelectedItem(mes);
+        vistaDatosAlumno.boxDia.setSelectedItem(dia);
+        vistaDatosAlumno.fieldNumeroControl.setText("" + modeloDatosAlumno.getNocontrol());
+        vistaDatosAlumno.boxCicloEscolar.setSelectedItem(modeloDatosAlumno.getCicloescolar());
+        vistaDatosAlumno.boxRegion.setSelectedItem(modeloDatosAlumno.getRegion());
+        vistaDatosAlumno.boxGrado.setSelectedItem(""+modeloDatosAlumno.getGrado());
+        System.out.println("" + modeloDatosAlumno.getGrado());
+        vistaDatosAlumno.boxSituacion.setSelectedItem(modeloDatosAlumno.getSituacion());
+        
+        if (modeloDatosAlumno.getSituacion_final().equals("ACREDITADO")) {
+            vistaDatosAlumno.checkSituacionFinal.setSelected(true);
+        }
+        
+        vistaDatosAlumno.setVisible(true);
     }
 }

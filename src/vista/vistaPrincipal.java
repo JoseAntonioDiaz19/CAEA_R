@@ -19,7 +19,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
  
     public DefaultTableModel modeloTabla;
     public JPopupMenu popup = new JPopupMenu();
-    public JMenuItem itemEditar = new JMenuItem("Editar");
+    public JMenuItem itemEditar = new JMenuItem("Editar datos");
+    public JMenuItem itemAvances = new JMenuItem("Registrar Avances");
+    public JMenuItem itemReinscribir = new JMenuItem("Reinscribir");
     
     /**
      * Creates new form interfaz_Principal
@@ -38,6 +40,8 @@ public class vistaPrincipal extends javax.swing.JFrame {
     private void popupMenuTabla(){
        
         popup.add(itemEditar);
+        popup.add(itemAvances);
+        popup.add(itemReinscribir);
         tablaPrincipal.setComponentPopupMenu(popup);
     }
     
@@ -112,7 +116,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelInferiorVacio = new javax.swing.JPanel();
 
         setExtendedState(MAXIMIZED_BOTH);
-        setPreferredSize(new java.awt.Dimension(1300, 720));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -372,26 +375,15 @@ public class vistaPrincipal extends javax.swing.JFrame {
         tablaPrincipal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tablaPrincipal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "No. Control", "A. Paterno", "A. Materno", "Nombre", "Grado", "Región", "Ciclo escolar", "Situación", "Estado", "Estado Actual/Final"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
