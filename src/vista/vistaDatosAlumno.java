@@ -458,7 +458,9 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         panelBotones.setToolTipText("");
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
+        botonGuardar.setBackground(new java.awt.Color(8, 38, 67));
         botonGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
         botonGuardar.setText("Actualizar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;

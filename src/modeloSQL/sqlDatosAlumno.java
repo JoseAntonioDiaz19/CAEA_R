@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modeloSQL;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.modeloDatosAlumno;
 import modelo.modeloSesionUsuario;
-import modelo.modeloTablaPrincipal;
-
 /**
  *
  * @author Dizan
@@ -105,5 +97,33 @@ public class sqlDatosAlumno {
             }
         }
         return lista;
+    }
+     
+    public void actualizar(modeloDatosAlumno alumno) throws SQLException{
+       
+        PreparedStatement sql = null;
+        
+//        String actualizar = "SELECT actualizar_alumno("+
+//                        nocontrol+","+
+//                        "'"+idregion+"'"+","+
+//                        "'"+nombre+"'"+","+
+//                        "'"+ape_paterno+"'"+","+
+//                        "'"+ape_materno+"'"+","+
+//                        "'"+sexo +"'"+","+
+//                        "'"+fecha_nacimiento+"'"+","+
+//                        "'"+cicloescolar+"'"+","+
+//                        idgrado+","+
+//                        idsituacion+")";
+//        conexion = new Conexion();
+//        try{
+//            con = conexion.getConexion(sesionVista);
+//            sql = con.prepareStatement(actualizar);
+//            sql.execute();
+//        }
+//        catch (final SQLException e){
+//            setCorrectoActualizar(false);
+//            System.err.print(e.getMessage());
+//            throw e;
+//        }  
     }
 }

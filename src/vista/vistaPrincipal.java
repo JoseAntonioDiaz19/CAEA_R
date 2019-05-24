@@ -19,9 +19,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
  
     public DefaultTableModel modeloTabla;
     public JPopupMenu popup = new JPopupMenu();
-    public JMenuItem itemEditar = new JMenuItem("Editar datos");
-    public JMenuItem itemAvances = new JMenuItem("Registrar Avances");
-    public JMenuItem itemReinscribir = new JMenuItem("Reinscribir");
+    public JMenuItem itemEditar = new JMenuItem("Editar datos",new ImageIcon(getClass().getResource("/img/actualizar16x16.png")));
+    public JMenuItem itemAvances = new JMenuItem("Registrar Avances",new ImageIcon(getClass().getResource("/img/avances16x16.png")));
+    public JMenuItem itemReinscribir = new JMenuItem("Reinscribir",new ImageIcon(getClass().getResource("/img/refres16x16.png")));
     
     /**
      * Creates new form interfaz_Principal
