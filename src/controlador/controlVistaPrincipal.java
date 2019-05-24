@@ -493,6 +493,7 @@ public class controlVistaPrincipal {
     }
     
     private void itemEditar(ActionEvent e){
+        
         String fecha;
         String año;
         String mes;
@@ -508,7 +509,7 @@ public class controlVistaPrincipal {
         
         vistaDatosAlumno vistaDatosAlumno = new vistaDatosAlumno(ventanaPrincipal, true);
         controlVistaDatosAlumno controlVistaDatosAlumno = new controlVistaDatosAlumno(ventanaPrincipal, 
-                                                                                      modeloUsuario);
+                                                                                      modeloUsuario, vistaDatosAlumno);
         
         //Llenar ciclos escolares
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);

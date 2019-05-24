@@ -117,10 +117,9 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         boxSituacion = new javax.swing.JComboBox<>();
         checkSituacionFinal = new javax.swing.JCheckBox();
         panelBotones = new javax.swing.JPanel();
-        botonGuardar = new javax.swing.JButton();
+        botonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 592));
         setSize(new java.awt.Dimension(500, 600));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
@@ -458,16 +457,18 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         panelBotones.setToolTipText("");
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
-        botonGuardar.setBackground(new java.awt.Color(8, 38, 67));
-        botonGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
-        botonGuardar.setText("Actualizar");
+        botonActualizar.setBackground(new java.awt.Color(8, 38, 67));
+        botonActualizar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        botonActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
+        botonActualizar.setText("Actualizar");
+        botonActualizar.setBorder(null);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelBotones.add(botonGuardar, gridBagConstraints);
+        panelBotones.add(botonActualizar, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -571,7 +572,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonGuardar;
+    public javax.swing.JButton botonActualizar;
     public javax.swing.JComboBox<String> boxAño;
     public javax.swing.JComboBox<String> boxCicloEscolar;
     public javax.swing.JComboBox<String> boxDia;

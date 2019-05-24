@@ -14,6 +14,7 @@ public class sqlDatosAlumno {
     Connection con;
     conexion conexion;
     modeloSesionUsuario modeloUsuario;
+    private boolean correctoActualizar;
     
     public sqlDatosAlumno(modeloSesionUsuario modeloUsuario) {
         this.modeloUsuario = modeloUsuario;
@@ -99,31 +100,61 @@ public class sqlDatosAlumno {
         return lista;
     }
      
-    public void actualizar(modeloDatosAlumno alumno) throws SQLException{
+    public void actualizar(modeloDatosAlumno alumno, 
+                            int idregion, 
+                            int idsituacion, 
+                            int idsituacionfinal) throws SQLException{
+
+        PreparedStatement sql;
+        conexion = new conexion();
        
-        PreparedStatement sql = null;
-        
-//        String actualizar = "SELECT actualizar_alumno("+
-//                        nocontrol+","+
-//                        "'"+idregion+"'"+","+
-//                        "'"+nombre+"'"+","+
-//                        "'"+ape_paterno+"'"+","+
-//                        "'"+ape_materno+"'"+","+
-//                        "'"+sexo +"'"+","+
-//                        "'"+fecha_nacimiento+"'"+","+
-//                        "'"+cicloescolar+"'"+","+
-//                        idgrado+","+
-//                        idsituacion+")";
-//        conexion = new Conexion();
-//        try{
-//            con = conexion.getConexion(sesionVista);
-//            sql = con.prepareStatement(actualizar);
-//            sql.execute();
-//        }
-//        catch (final SQLException e){
-//            setCorrectoActualizar(false);
-//            System.err.print(e.getMessage());
-//            throw e;
-//        }  
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT actualizar_datos_alumno(?,?,?,?,?,?,?,?,?,?,?)");
+            sql.setInt(1, alumno.getNocontrol());
+            sql.setInt(2, idregion);
+            sql.setString(3,alumno.getNombre());
+            sql.setString(4, alumno.getApe_paterno());
+            sql.setString(5, alumno.getApe_materno());
+            sql.setString(6, alumno.getSexo());
+            sql.setString(7, alumno.getFecha_nacimiento());
+            sql.setString(8, alumno.getCicloescolar());
+            sql.setInt(9, alumno.getGrado());
+            sql.setInt(10, idsituacion);
+            sql.setInt(11, idsituacionfinal);
+           
+            sql.execute();
+        }
+        catch (final SQLException e){
+            setCorrectoActualizar(false);
+            System.err.print(e.getMessage());
+            throw e;
+        }  
+    }
+    /**
+     * @return the correctoActualizar
+     */
+    public boolean isCorrectoActualizar() {
+        return correctoActualizar;
+    }
+
+    /**
+     * @param correctoActualizar the correctoActualizar to set
+     */
+    public void setCorrectoActualizar(boolean correctoActualizar) {
+        this.correctoActualizar = correctoActualizar;
     }
 }
+
+        
+//            upnocontrol INT, 
+//            upidregion INT, 
+//            upnombre VARCHAR(30), 
+//            upape_paterno VARCHAR(30), 
+//            upape_materno VARCHAR (30),  
+//            upsexo CHAR(1),
+//            upfecha_nacimiento DATE,
+//            upcicloescolar VARCHAR(9),  
+//            upidgrado INT, 
+//            upidsituacion INT, 
+//            upsituacionfinal INT
