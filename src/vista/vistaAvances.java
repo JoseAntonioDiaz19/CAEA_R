@@ -5,6 +5,8 @@
  */
 package vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author Dizan
@@ -29,9 +31,7 @@ public class vistaAvances extends javax.swing.JDialog {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        grupoEtapasT1 = new javax.swing.ButtonGroup();
-        grupoEtapasT2 = new javax.swing.ButtonGroup();
-        grupoEtapasT3 = new javax.swing.ButtonGroup();
+        grupoEtapas = new javax.swing.ButtonGroup();
         panelPrincipal = new javax.swing.JPanel();
         panelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
@@ -43,46 +43,31 @@ public class vistaAvances extends javax.swing.JDialog {
         boxCicloEscolar = new javax.swing.JComboBox<>();
         boxGrado = new javax.swing.JComboBox<>();
         botonBuscar = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         panelAvances = new javax.swing.JPanel();
         labelTituloT1 = new javax.swing.JLabel();
-        checkEtapa1T1 = new javax.swing.JCheckBox();
-        checkEtapa2T1 = new javax.swing.JCheckBox();
-        checkEtapa3T1 = new javax.swing.JCheckBox();
-        checkEtapa4T1 = new javax.swing.JCheckBox();
-        checkEtapa5T1 = new javax.swing.JCheckBox();
-        checkEtapa6T1 = new javax.swing.JCheckBox();
-        checkEtapa7T1 = new javax.swing.JCheckBox();
-        labelTituloT2 = new javax.swing.JLabel();
-        checkEtapa1T2 = new javax.swing.JCheckBox();
-        checkEtapa2T2 = new javax.swing.JCheckBox();
-        checkEtapa3T2 = new javax.swing.JCheckBox();
-        checkEtapa4T2 = new javax.swing.JCheckBox();
-        checkEtapa5T2 = new javax.swing.JCheckBox();
-        checkEtapa6T2 = new javax.swing.JCheckBox();
-        checkEtapa7T2 = new javax.swing.JCheckBox();
-        labelTituloT3 = new javax.swing.JLabel();
-        checkEtapa1T3 = new javax.swing.JCheckBox();
-        checkEtapa2T3 = new javax.swing.JCheckBox();
-        checkEtapa3T3 = new javax.swing.JCheckBox();
-        checkEtapa4T3 = new javax.swing.JCheckBox();
-        checkEtapa5T3 = new javax.swing.JCheckBox();
-        checkEtapa6T3 = new javax.swing.JCheckBox();
-        checkEtapa7T3 = new javax.swing.JCheckBox();
+        checkEtapa1 = new javax.swing.JCheckBox();
+        checkEtapa2 = new javax.swing.JCheckBox();
+        checkEtapa3 = new javax.swing.JCheckBox();
+        checkEtapa4 = new javax.swing.JCheckBox();
+        checkEtapa5 = new javax.swing.JCheckBox();
+        checkEtapa6 = new javax.swing.JCheckBox();
+        checkEtapa7 = new javax.swing.JCheckBox();
         labelTituloEtapas = new javax.swing.JLabel();
-        textEtapa1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        textEtapa2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        textEtapa3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        textEtapa4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
-        textEtapa5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
-        textEtapa6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
-        textEtapa7 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
+        stextEtapa1 = new javax.swing.JScrollPane();
+        textEtapa1 = new javax.swing.JTextPane();
+        stextEtapa2 = new javax.swing.JScrollPane();
+        textEtapa2 = new javax.swing.JTextPane();
+        stextEtapa3 = new javax.swing.JScrollPane();
+        textEtapa3 = new javax.swing.JTextPane();
+        stextEtapa4 = new javax.swing.JScrollPane();
+        textEtapa4 = new javax.swing.JTextPane();
+        stextEtapa5 = new javax.swing.JScrollPane();
+        textEtapa5 = new javax.swing.JTextPane();
+        stextEtapa6 = new javax.swing.JScrollPane();
+        textEtapa6 = new javax.swing.JTextPane();
+        stextEtapa7 = new javax.swing.JScrollPane();
+        textEtapa7 = new javax.swing.JTextPane();
         panelBotones = new javax.swing.JPanel();
         botonGuardar = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
@@ -106,6 +91,7 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         panelPrincipal.add(panelTitulo, gridBagConstraints);
 
@@ -113,7 +99,16 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBusqueda.setLayout(new java.awt.GridBagLayout());
 
         fieldApe_paterno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fieldApe_paterno.setText("Apellido paterno");
+        fieldApe_paterno.setForeground(new java.awt.Color(153, 153, 153));
+        fieldApe_paterno.setText("Apellido Paterno");
+        fieldApe_paterno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldApe_paternoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldApe_paternoFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -125,7 +120,16 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBusqueda.add(fieldApe_paterno, gridBagConstraints);
 
         fieldApe_materno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fieldApe_materno.setText("Apellido materno");
+        fieldApe_materno.setForeground(new java.awt.Color(153, 153, 153));
+        fieldApe_materno.setText("Apellido Materno");
+        fieldApe_materno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldApe_maternoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldApe_maternoFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -138,10 +142,20 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBusqueda.add(fieldApe_materno, gridBagConstraints);
 
         fieldNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fieldNombre.setForeground(new java.awt.Color(153, 153, 153));
         fieldNombre.setText("Nombre");
+        fieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldNombreFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -149,7 +163,16 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBusqueda.add(fieldNombre, gridBagConstraints);
 
         fieldNumeroControl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fieldNumeroControl.setForeground(new java.awt.Color(153, 153, 153));
         fieldNumeroControl.setText("Numero de control");
+        fieldNumeroControl.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldNumeroControlFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldNumeroControlFocusLost(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -173,7 +196,7 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBusqueda.add(boxCicloEscolar, gridBagConstraints);
 
         boxGrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado" }));
+        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado", "1", "2", "3", "4", "5", "6" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -192,15 +215,24 @@ public class vistaAvances extends javax.swing.JDialog {
         botonBuscar.setBorder(null);
         botonBuscar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        panelBusqueda.add(botonBuscar, gridBagConstraints);
+
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre", "1", "2", "3" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        panelBusqueda.add(botonBuscar, gridBagConstraints);
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weighty = 1.0;
+        panelBusqueda.add(jComboBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -215,10 +247,10 @@ public class vistaAvances extends javax.swing.JDialog {
         panelAvances.setLayout(new java.awt.GridBagLayout());
 
         labelTituloT1.setBackground(new java.awt.Color(255, 255, 255));
-        labelTituloT1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        labelTituloT1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         labelTituloT1.setForeground(new java.awt.Color(255, 255, 255));
         labelTituloT1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTituloT1.setText("T1");
+        labelTituloT1.setText("Trimestre");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -228,243 +260,108 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelAvances.add(labelTituloT1, gridBagConstraints);
 
-        checkEtapa1T1.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT1.add(checkEtapa1T1);
+        checkEtapa1.setBackground(new java.awt.Color(0, 87, 126));
+        grupoEtapas.add(checkEtapa1);
+        checkEtapa1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa1.setForeground(new java.awt.Color(153, 204, 255));
+        checkEtapa1.setText("Etapa 1");
+        checkEtapa1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        checkEtapa1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        checkEtapa1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkEtapa1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa1T1, gridBagConstraints);
+        panelAvances.add(checkEtapa1, gridBagConstraints);
 
-        checkEtapa2T1.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT1.add(checkEtapa2T1);
+        checkEtapa2.setBackground(new java.awt.Color(0, 122, 145));
+        grupoEtapas.add(checkEtapa2);
+        checkEtapa2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa2.setText("Etapa 2");
+        checkEtapa2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa2T1, gridBagConstraints);
+        panelAvances.add(checkEtapa2, gridBagConstraints);
 
-        checkEtapa3T1.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT1.add(checkEtapa3T1);
+        checkEtapa3.setBackground(new java.awt.Color(0, 87, 126));
+        grupoEtapas.add(checkEtapa3);
+        checkEtapa3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa3.setForeground(new java.awt.Color(153, 204, 255));
+        checkEtapa3.setText("Etapa 3");
+        checkEtapa3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa3T1, gridBagConstraints);
+        panelAvances.add(checkEtapa3, gridBagConstraints);
 
-        checkEtapa4T1.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT1.add(checkEtapa4T1);
+        checkEtapa4.setBackground(new java.awt.Color(0, 122, 145));
+        grupoEtapas.add(checkEtapa4);
+        checkEtapa4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa4.setText("Etapa 4");
+        checkEtapa4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa4T1, gridBagConstraints);
+        panelAvances.add(checkEtapa4, gridBagConstraints);
 
-        checkEtapa5T1.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT1.add(checkEtapa5T1);
+        checkEtapa5.setBackground(new java.awt.Color(0, 87, 126));
+        grupoEtapas.add(checkEtapa5);
+        checkEtapa5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa5.setForeground(new java.awt.Color(153, 204, 255));
+        checkEtapa5.setText("Etapa 5");
+        checkEtapa5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa5T1, gridBagConstraints);
+        panelAvances.add(checkEtapa5, gridBagConstraints);
 
-        checkEtapa6T1.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT1.add(checkEtapa6T1);
+        checkEtapa6.setBackground(new java.awt.Color(0, 122, 145));
+        grupoEtapas.add(checkEtapa6);
+        checkEtapa6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa6.setText("Etapa 6");
+        checkEtapa6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa6T1, gridBagConstraints);
+        panelAvances.add(checkEtapa6, gridBagConstraints);
 
-        checkEtapa7T1.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT1.add(checkEtapa7T1);
+        checkEtapa7.setBackground(new java.awt.Color(0, 87, 126));
+        grupoEtapas.add(checkEtapa7);
+        checkEtapa7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        checkEtapa7.setForeground(new java.awt.Color(153, 204, 255));
+        checkEtapa7.setText("Etapa 7");
+        checkEtapa7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa7T1, gridBagConstraints);
+        panelAvances.add(checkEtapa7, gridBagConstraints);
 
-        labelTituloT2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        labelTituloT2.setForeground(new java.awt.Color(255, 255, 255));
-        labelTituloT2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTituloT2.setText("T2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        panelAvances.add(labelTituloT2, gridBagConstraints);
-
-        checkEtapa1T2.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT2.add(checkEtapa1T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa1T2, gridBagConstraints);
-
-        checkEtapa2T2.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT2.add(checkEtapa2T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa2T2, gridBagConstraints);
-
-        checkEtapa3T2.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT2.add(checkEtapa3T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa3T2, gridBagConstraints);
-
-        checkEtapa4T2.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT2.add(checkEtapa4T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa4T2, gridBagConstraints);
-
-        checkEtapa5T2.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT2.add(checkEtapa5T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa5T2, gridBagConstraints);
-
-        checkEtapa6T2.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT2.add(checkEtapa6T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa6T2, gridBagConstraints);
-
-        checkEtapa7T2.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT2.add(checkEtapa7T2);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa7T2, gridBagConstraints);
-
-        labelTituloT3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        labelTituloT3.setForeground(new java.awt.Color(255, 255, 255));
-        labelTituloT3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTituloT3.setText("T3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
-        panelAvances.add(labelTituloT3, gridBagConstraints);
-
-        checkEtapa1T3.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT3.add(checkEtapa1T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa1T3, gridBagConstraints);
-
-        checkEtapa2T3.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT3.add(checkEtapa2T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa2T3, gridBagConstraints);
-
-        checkEtapa3T3.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT3.add(checkEtapa3T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa3T3, gridBagConstraints);
-
-        checkEtapa4T3.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT3.add(checkEtapa4T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa4T3, gridBagConstraints);
-
-        checkEtapa5T3.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT3.add(checkEtapa5T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa5T3, gridBagConstraints);
-
-        checkEtapa6T3.setBackground(new java.awt.Color(0, 122, 145));
-        grupoEtapasT3.add(checkEtapa6T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa6T3, gridBagConstraints);
-
-        checkEtapa7T3.setBackground(new java.awt.Color(0, 87, 126));
-        grupoEtapasT3.add(checkEtapa7T3);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 10;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(checkEtapa7T3, gridBagConstraints);
-
-        labelTituloEtapas.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        labelTituloEtapas.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         labelTituloEtapas.setForeground(new java.awt.Color(255, 255, 255));
         labelTituloEtapas.setText("Etapas");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -473,158 +370,113 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 0);
         panelAvances.add(labelTituloEtapas, gridBagConstraints);
 
-        textEtapa1.setBorder(null);
-        textEtapa1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        stextEtapa1.setBorder(null);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(0, 87, 126));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(153, 204, 255));
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Hace trazos que no son letras. Usa algunas letras que conoce, hace garabatos.");
-        jTextArea1.setBorder(null);
-        textEtapa1.setViewportView(jTextArea1);
+        textEtapa1.setBackground(new java.awt.Color(0, 87, 126));
+        textEtapa1.setBorder(null);
+        textEtapa1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa1.setForeground(new java.awt.Color(153, 204, 255));
+        textEtapa1.setText("Hace trazos que no son letras. Usa algunas letras que conoce, hace garabatos.");
+        textEtapa1.setDisabledTextColor(new java.awt.Color(153, 153, 255));
+        textEtapa1.setFocusable(false);
+        stextEtapa1.setViewportView(textEtapa1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa1, gridBagConstraints);
+        panelAvances.add(stextEtapa1, gridBagConstraints);
 
-        textEtapa2.setBorder(null);
-        textEtapa2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        stextEtapa2.setBorder(null);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(0, 122, 145));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea2.setLineWrap(true);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("Llena la mitad del renglón o todo el renglón de la hoja con muchas letras que conoce.");
-        textEtapa2.setViewportView(jTextArea2);
+        textEtapa2.setBackground(new java.awt.Color(0, 122, 145));
+        textEtapa2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa2.setText("Llena la mitad del renglón o todo el renglón de la hoja con muchas letras que conoce.");
+        stextEtapa2.setViewportView(textEtapa2);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa2, gridBagConstraints);
+        panelAvances.add(stextEtapa2, gridBagConstraints);
+
+        stextEtapa3.setBorder(null);
 
         textEtapa3.setBackground(new java.awt.Color(0, 87, 126));
         textEtapa3.setBorder(null);
-        textEtapa3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa3.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(0, 87, 126));
-        jTextArea3.setColumns(20);
-        jTextArea3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea3.setForeground(new java.awt.Color(153, 204, 255));
-        jTextArea3.setLineWrap(true);
-        jTextArea3.setRows(5);
-        jTextArea3.setText("Siempre usa la misma cantidad de letras y las mismas letras (dos, tres, cuatro) para escribir palabras distintas.");
-        textEtapa3.setViewportView(jTextArea3);
+        textEtapa3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa3.setForeground(new java.awt.Color(153, 204, 255));
+        textEtapa3.setText("Siempre usa la misma cantidad de letras y las mismas letras (dos, tres, cuatro) para escribir palabras distintas.");
+        textEtapa3.setDisabledTextColor(new java.awt.Color(153, 153, 255));
+        textEtapa3.setFocusable(false);
+        stextEtapa3.setViewportView(textEtapa3);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa3, gridBagConstraints);
+        panelAvances.add(stextEtapa3, gridBagConstraints);
 
-        textEtapa4.setBorder(null);
-        textEtapa4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        stextEtapa4.setBorder(null);
 
-        jTextArea4.setEditable(false);
-        jTextArea4.setBackground(new java.awt.Color(0, 122, 145));
-        jTextArea4.setColumns(20);
-        jTextArea4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea4.setLineWrap(true);
-        jTextArea4.setRows(5);
-        jTextArea4.setText("Cambia la cantidad de letras y escribe letras distintas para cada palabra.");
-        textEtapa4.setViewportView(jTextArea4);
+        textEtapa4.setBackground(new java.awt.Color(0, 122, 145));
+        textEtapa4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa4.setText("Cambia la cantidad de letras y escribe letras distintas para cada palabra.");
+        stextEtapa4.setViewportView(textEtapa4);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa4, gridBagConstraints);
+        panelAvances.add(stextEtapa4, gridBagConstraints);
 
+        stextEtapa5.setBorder(null);
+
+        textEtapa5.setBackground(new java.awt.Color(0, 87, 126));
         textEtapa5.setBorder(null);
-        textEtapa5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa5.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea5.setEditable(false);
-        jTextArea5.setBackground(new java.awt.Color(0, 87, 126));
-        jTextArea5.setColumns(20);
-        jTextArea5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea5.setForeground(new java.awt.Color(153, 204, 255));
-        jTextArea5.setLineWrap(true);
-        jTextArea5.setRows(5);
-        jTextArea5.setText("Usa una letra para cada silaba de la palabra que quiere escribir y esta no corresponde, por ejemplo al escribir pato, el niño escribe HD, es decir, dos silabas, dos letras.");
-        textEtapa5.setViewportView(jTextArea5);
+        textEtapa5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa5.setForeground(new java.awt.Color(153, 204, 255));
+        textEtapa5.setText("Usa una letra para cada silaba de la palabra que quiere escribir y esta no corresponde, por ejemplo al escribir pato, el niño escribe HD, es decir, dos silabas, dos letras.");
+        textEtapa5.setDisabledTextColor(new java.awt.Color(153, 153, 255));
+        textEtapa5.setFocusable(false);
+        stextEtapa5.setViewportView(textEtapa5);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa5, gridBagConstraints);
+        panelAvances.add(stextEtapa5, gridBagConstraints);
 
-        textEtapa6.setBorder(null);
-        textEtapa6.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa6.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        stextEtapa6.setBorder(null);
 
-        jTextArea6.setEditable(false);
-        jTextArea6.setBackground(new java.awt.Color(0, 122, 145));
-        jTextArea6.setColumns(20);
-        jTextArea6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea6.setLineWrap(true);
-        jTextArea6.setRows(5);
-        jTextArea6.setText("Ya lo hace con letras que corresponden a la palabra que quiere escribir por ejemplo, cuando escribe gato, escribe \"GAO\".");
-        textEtapa6.setViewportView(jTextArea6);
+        textEtapa6.setBackground(new java.awt.Color(0, 122, 145));
+        textEtapa6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa6.setText("Ya lo hace con letras que corresponden a la palabra que quiere escribir por ejemplo, cuando escribe gato, escribe \"GAO\".");
+        stextEtapa6.setViewportView(textEtapa6);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa6, gridBagConstraints);
+        panelAvances.add(stextEtapa6, gridBagConstraints);
 
+        stextEtapa7.setBorder(null);
+
+        textEtapa7.setBackground(new java.awt.Color(0, 87, 126));
         textEtapa7.setBorder(null);
-        textEtapa7.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        textEtapa7.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-
-        jTextArea7.setEditable(false);
-        jTextArea7.setBackground(new java.awt.Color(0, 87, 126));
-        jTextArea7.setColumns(20);
-        jTextArea7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextArea7.setForeground(new java.awt.Color(153, 204, 255));
-        jTextArea7.setLineWrap(true);
-        jTextArea7.setRows(5);
-        jTextArea7.setText("Ya lo hace convencionalmente, es decir, ya sabe escribir aunque en ocasiones tiene dificultades con letras como J,C,S,V o B.");
-        textEtapa7.setViewportView(jTextArea7);
+        textEtapa7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        textEtapa7.setForeground(new java.awt.Color(153, 204, 255));
+        textEtapa7.setText("Ya lo hace convencionalmente, es decir, ya sabe escribir aunque en ocasiones tiene dificultades con letras como J,C,S,V o B.");
+        textEtapa7.setDisabledTextColor(new java.awt.Color(153, 153, 255));
+        textEtapa7.setFocusable(false);
+        stextEtapa7.setViewportView(textEtapa7);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        panelAvances.add(textEtapa7, gridBagConstraints);
+        panelAvances.add(stextEtapa7, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -685,6 +537,74 @@ public class vistaAvances extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void checkEtapa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkEtapa1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkEtapa1ActionPerformed
+
+    private void fieldNumeroControlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumeroControlFocusGained
+        // TODO add your handling code here:
+        if ("Numero de control".equals(fieldNumeroControl.getText())) {
+            fieldNumeroControl.setText("");
+            fieldNumeroControl.setForeground(Color.BLACK);   
+        }
+    }//GEN-LAST:event_fieldNumeroControlFocusGained
+
+    private void fieldNumeroControlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumeroControlFocusLost
+        // TODO add your handling code here:
+        if (fieldNumeroControl.getText().isEmpty()) {
+            fieldNumeroControl.setText("Numero de control");
+             fieldNumeroControl.setForeground(new Color(153, 153,153));
+        }
+    }//GEN-LAST:event_fieldNumeroControlFocusLost
+
+    private void fieldApe_paternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_paternoFocusGained
+        // TODO add your handling code here:
+        if ("Apellido Paterno".equals(fieldApe_paterno.getText())) {
+                fieldApe_paterno.setText("");
+                fieldApe_paterno.setForeground(Color.BLACK); 
+        }
+    }//GEN-LAST:event_fieldApe_paternoFocusGained
+
+    private void fieldApe_paternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_paternoFocusLost
+        // TODO add your handling code here:
+        if (fieldApe_paterno.getText().isEmpty()) {
+            fieldApe_paterno.setText("Apellido Paterno");
+            fieldApe_paterno.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_fieldApe_paternoFocusLost
+
+    private void fieldApe_maternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_maternoFocusGained
+        // TODO add your handling code here:
+        if ("Apellido Materno".equals(fieldApe_materno.getText())) {
+                fieldApe_materno.setText("");
+                fieldApe_materno.setForeground(Color.BLACK);  
+            } 
+    }//GEN-LAST:event_fieldApe_maternoFocusGained
+
+    private void fieldApe_maternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_maternoFocusLost
+        // TODO add your handling code here:
+         if (fieldApe_materno.getText().isEmpty()) {
+            fieldApe_materno.setText("Apellido Materno");
+            fieldApe_materno.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_fieldApe_maternoFocusLost
+
+    private void fieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusGained
+        // TODO add your handling code here:
+         if ("Nombre".equals(fieldNombre.getText())) {
+                fieldNombre.setText("");
+                fieldNombre.setForeground(Color.BLACK);  
+            }
+    }//GEN-LAST:event_fieldNombreFocusGained
+
+    private void fieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusLost
+        // TODO add your handling code here:
+        if (fieldNombre.getText().isEmpty()) {
+            fieldNombre.setText("Nombre");
+            fieldNombre.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_fieldNombreFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -728,62 +648,45 @@ public class vistaAvances extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonActualizar;
-    private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonGuardar;
-    private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JCheckBox checkEtapa1T1;
-    private javax.swing.JCheckBox checkEtapa1T2;
-    private javax.swing.JCheckBox checkEtapa1T3;
-    private javax.swing.JCheckBox checkEtapa2T1;
-    private javax.swing.JCheckBox checkEtapa2T2;
-    private javax.swing.JCheckBox checkEtapa2T3;
-    private javax.swing.JCheckBox checkEtapa3T1;
-    private javax.swing.JCheckBox checkEtapa3T2;
-    private javax.swing.JCheckBox checkEtapa3T3;
-    private javax.swing.JCheckBox checkEtapa4T1;
-    private javax.swing.JCheckBox checkEtapa4T2;
-    private javax.swing.JCheckBox checkEtapa4T3;
-    private javax.swing.JCheckBox checkEtapa5T1;
-    private javax.swing.JCheckBox checkEtapa5T2;
-    private javax.swing.JCheckBox checkEtapa5T3;
-    private javax.swing.JCheckBox checkEtapa6T1;
-    private javax.swing.JCheckBox checkEtapa6T2;
-    private javax.swing.JCheckBox checkEtapa6T3;
-    private javax.swing.JCheckBox checkEtapa7T1;
-    private javax.swing.JCheckBox checkEtapa7T2;
-    private javax.swing.JCheckBox checkEtapa7T3;
-    private javax.swing.JTextField fieldApe_materno;
-    private javax.swing.JTextField fieldApe_paterno;
-    private javax.swing.JTextField fieldNombre;
-    private javax.swing.JTextField fieldNumeroControl;
-    private javax.swing.ButtonGroup grupoEtapasT1;
-    private javax.swing.ButtonGroup grupoEtapasT2;
-    private javax.swing.ButtonGroup grupoEtapasT3;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
+    public javax.swing.JButton botonActualizar;
+    public javax.swing.JButton botonBuscar;
+    public javax.swing.JButton botonGuardar;
+    public javax.swing.JComboBox<String> boxCicloEscolar;
+    public javax.swing.JComboBox<String> boxGrado;
+    public javax.swing.JCheckBox checkEtapa1;
+    public javax.swing.JCheckBox checkEtapa2;
+    public javax.swing.JCheckBox checkEtapa3;
+    public javax.swing.JCheckBox checkEtapa4;
+    public javax.swing.JCheckBox checkEtapa5;
+    public javax.swing.JCheckBox checkEtapa6;
+    public javax.swing.JCheckBox checkEtapa7;
+    public javax.swing.JTextField fieldApe_materno;
+    public javax.swing.JTextField fieldApe_paterno;
+    public javax.swing.JTextField fieldNombre;
+    public javax.swing.JTextField fieldNumeroControl;
+    private javax.swing.ButtonGroup grupoEtapas;
+    public javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTituloEtapas;
     private javax.swing.JLabel labelTituloT1;
-    private javax.swing.JLabel labelTituloT2;
-    private javax.swing.JLabel labelTituloT3;
     private javax.swing.JPanel panelAvances;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelBusqueda;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTitulo;
-    private javax.swing.JScrollPane textEtapa1;
-    private javax.swing.JScrollPane textEtapa2;
-    private javax.swing.JScrollPane textEtapa3;
-    private javax.swing.JScrollPane textEtapa4;
-    private javax.swing.JScrollPane textEtapa5;
-    private javax.swing.JScrollPane textEtapa6;
-    private javax.swing.JScrollPane textEtapa7;
+    private javax.swing.JScrollPane stextEtapa1;
+    private javax.swing.JScrollPane stextEtapa2;
+    private javax.swing.JScrollPane stextEtapa3;
+    private javax.swing.JScrollPane stextEtapa4;
+    private javax.swing.JScrollPane stextEtapa5;
+    private javax.swing.JScrollPane stextEtapa6;
+    private javax.swing.JScrollPane stextEtapa7;
+    private javax.swing.JTextPane textEtapa1;
+    private javax.swing.JTextPane textEtapa2;
+    private javax.swing.JTextPane textEtapa3;
+    private javax.swing.JTextPane textEtapa4;
+    private javax.swing.JTextPane textEtapa5;
+    private javax.swing.JTextPane textEtapa6;
+    private javax.swing.JTextPane textEtapa7;
     // End of variables declaration//GEN-END:variables
 }

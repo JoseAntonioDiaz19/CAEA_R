@@ -6,6 +6,7 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -440,7 +441,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelPrincipal.add(panelTabla, gridBagConstraints);
 
         panelMenu.setBackground(new java.awt.Color(0, 87, 126));
-        panelMenu.setMaximumSize(new java.awt.Dimension(70, 0));
+        panelMenu.setMaximumSize(new java.awt.Dimension(7, 0));
         panelMenu.setMinimumSize(new java.awt.Dimension(10, 500));
         panelMenu.setPreferredSize(new java.awt.Dimension(0, 0));
         panelMenu.setLayout(new java.awt.GridBagLayout());
@@ -449,10 +450,18 @@ public class vistaPrincipal extends javax.swing.JFrame {
         botonExpandir.setToolTipText("");
         botonExpandir.setBorder(null);
         botonExpandir.setFocusPainted(false);
+        botonExpandir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonExpandirActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 15;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 2, 10, 2);
         panelMenu.add(botonExpandir, gridBagConstraints);
 
         botonAvances.setBackground(new java.awt.Color(0, 87, 126));
@@ -464,8 +473,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 70;
         gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 2, 10, 2);
         panelMenu.add(botonAvances, gridBagConstraints);
 
@@ -478,8 +488,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 70;
         gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 2, 10, 2);
         panelMenu.add(botonReportes, gridBagConstraints);
 
@@ -492,8 +503,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 70;
         gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 2, 10, 0);
         panelMenu.add(botonUsuarios, gridBagConstraints);
 
@@ -506,8 +518,9 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipadx = 70;
         gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 2, 0, 2);
         panelMenu.add(botonSalir, gridBagConstraints);
 
@@ -546,6 +559,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
             fieldNumerocontrol.setText("");
             fieldNumerocontrol.setForeground(Color.BLACK);   
         }
+        boxCicloEscolar.setSelectedIndex(0);
+        boxGrado.setSelectedIndex(0);
+        boxRegion.setSelectedIndex(0);
+        fieldApeMaterno.setText("Apellido Materno");
+        fieldApePaterno.setText("Apellido Paterno");
+        fieldNombre.setText("Nombre");
     }//GEN-LAST:event_fieldNumerocontrolFocusGained
 
     private void fieldNumerocontrolFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumerocontrolFocusLost
@@ -553,21 +572,40 @@ public class vistaPrincipal extends javax.swing.JFrame {
             fieldNumerocontrol.setText("Numero de control");
              fieldNumerocontrol.setForeground(new Color(153, 153,153));
         }
+       
     }//GEN-LAST:event_fieldNumerocontrolFocusLost
 
     private void fieldApePaternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApePaternoFocusGained
-            fieldApePaterno.setText("");
-            fieldApePaterno.setForeground(Color.BLACK);  
+            if ("Apellido Paterno".equals(fieldApePaterno.getText())) {
+                fieldApePaterno.setText("");
+                fieldApePaterno.setForeground(Color.BLACK); 
+            }
+            boxCicloEscolar.setSelectedIndex(0);
+            boxGrado.setSelectedIndex(0);
+            boxRegion.setSelectedIndex(0);
+            fieldNumerocontrol.setText("Numero de control");
     }//GEN-LAST:event_fieldApePaternoFocusGained
 
     private void fieldApeMaternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApeMaternoFocusGained
-            fieldApeMaterno.setText("");
-            fieldApeMaterno.setForeground(Color.BLACK);  
+            if ("Apellido Materno".equals(fieldApeMaterno.getText())) {
+                fieldApeMaterno.setText("");
+                fieldApeMaterno.setForeground(Color.BLACK);  
+            } 
+            boxCicloEscolar.setSelectedIndex(0);
+            boxGrado.setSelectedIndex(0);
+            boxRegion.setSelectedIndex(0);
+            fieldNumerocontrol.setText("Numero de control");
     }//GEN-LAST:event_fieldApeMaternoFocusGained
 
     private void fieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusGained
-            fieldNombre.setText("");
-            fieldNombre.setForeground(Color.BLACK);  
+            if ("Nombre".equals(fieldNombre.getText())) {
+                fieldNombre.setText("");
+                fieldNombre.setForeground(Color.BLACK);  
+            }
+            boxCicloEscolar.setSelectedIndex(0);
+            boxGrado.setSelectedIndex(0);
+            boxRegion.setSelectedIndex(0);
+            fieldNumerocontrol.setText("Numero de control");
     }//GEN-LAST:event_fieldNombreFocusGained
 
     private void fieldApePaternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApePaternoFocusLost
@@ -590,6 +628,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
             fieldNombre.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_fieldNombreFocusLost
+
+    private void botonExpandirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExpandirActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_botonExpandirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -633,7 +676,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     public javax.swing.JButton botonAvances;
     public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonCerrarSesion;
-    private javax.swing.JButton botonExpandir;
+    public javax.swing.JButton botonExpandir;
     public javax.swing.JButton botonRegistrar;
     public javax.swing.JButton botonReportes;
     public javax.swing.JButton botonSalir;

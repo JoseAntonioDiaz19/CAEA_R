@@ -13,7 +13,6 @@ import modeloSQL.sqlPrincipal;
 import vista.vistaAltaAlumno;
 import vista.vistaSesionUsuario;
 /**
- *
  * @author Dizan
  */
 public class controlVistaAltaAlumno {
@@ -50,8 +49,6 @@ public class controlVistaAltaAlumno {
         
         modeloAlumno.setNumeroControl(Integer.valueOf(vistaAltaAlumno.fieldNumeroControl.getText()));
         
-        
-        
         modeloAlumno.setIdRegion( Integer.parseInt(substring(vistaAltaAlumno.boxRegion.getSelectedItem().toString(), 0,3))
         );
         modeloAlumno.setNombre(vistaAltaAlumno.fieldNombre.getText());
@@ -67,6 +64,8 @@ public class controlVistaAltaAlumno {
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaAltaAlumno.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        vistaAltaAlumno.dispose();
     }
     
     private void llenarCicloEscolar(){
@@ -74,9 +73,7 @@ public class controlVistaAltaAlumno {
         ArrayList <String> ciclosEscolares;
         ciclosEscolares = sqlPrincipal.ciclosEscolares();
         int iteraciones = ciclosEscolares.size();
-        for (int i = 0; i < iteraciones; i++) {
-            vistaAltaAlumno.boxCicloEscolar.addItem(ciclosEscolares.get(i));
-        } 
+        vistaAltaAlumno.boxCicloEscolar.addItem(ciclosEscolares.get(iteraciones - 1));
     }
     
     private void llenarRegion(){

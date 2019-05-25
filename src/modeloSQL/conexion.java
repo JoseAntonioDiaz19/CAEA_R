@@ -19,7 +19,7 @@ public class conexion{
     modeloSesionUsuario modeloSesionUsuario;
   
     public Connection getConexion(vistaSesionUsuario sesionVista){        
-         usuario = sesionVista.fieldUsuario.getText();
+        usuario = sesionVista.fieldUsuario.getText();
         String contraseña = new String (sesionVista.contraseña.getPassword());
         password = contraseña;
         

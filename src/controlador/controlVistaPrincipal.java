@@ -1,4 +1,5 @@
 package controlador;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import vista.vistaAltaUsuario;
 import vista.vistaAvances;
 import vista.vistaDatosAlumno;
 import vista.vistaPrincipal;
+import vista.vistaReinscripcion;
 import vista.vistaReportes;
 import vista.vistaSesionUsuario;
 /**
@@ -59,7 +61,9 @@ public class controlVistaPrincipal {
         ventanaPrincipal.boxCicloEscolar.addItemListener(this::boxCicloEscolar);
         ventanaPrincipal.boxRegion.addItemListener(this::boxRegion);
         ventanaPrincipal.boxGrado.addItemListener(this::boxGrado);
-       ventanaPrincipal.itemEditar.addActionListener(this::itemEditar);
+        ventanaPrincipal.itemEditar.addActionListener(this::itemEditar);
+        ventanaPrincipal.itemAvances.addActionListener(this::itemAvances);
+        ventanaPrincipal.itemReinscribir.addActionListener(this::itemReinscribir);
         
     }
     
@@ -501,11 +505,13 @@ public class controlVistaPrincipal {
         
         int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
         String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
+        String cicloEscolar =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 6));
+        System.out.println("cicloEscolar = " + cicloEscolar);
         int nocontrol = Integer.parseInt(stringNocontrol);
         
         modeloDatosAlumno modeloDatosAlumno;
         sqlDatosAlumno sqlDatosAlumno = new sqlDatosAlumno(modeloUsuario);
-        modeloDatosAlumno = sqlDatosAlumno.datosAlumno(nocontrol);
+        modeloDatosAlumno = sqlDatosAlumno.datosAlumno(nocontrol, cicloEscolar);
         
         vistaDatosAlumno vistaDatosAlumno = new vistaDatosAlumno(ventanaPrincipal, true);
         controlVistaDatosAlumno controlVistaDatosAlumno = new controlVistaDatosAlumno(ventanaPrincipal, 
@@ -514,12 +520,10 @@ public class controlVistaPrincipal {
         
         //Llenar ciclos escolares
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
-        ArrayList <String> ciclosEscolares;
-        ciclosEscolares = sqlPrincipal.ciclosEscolares();
-        int iteracionesCiclos = ciclosEscolares.size();
-        for (int i = 0; i < iteracionesCiclos; i++) {
-            vistaDatosAlumno.boxCicloEscolar.addItem(ciclosEscolares.get(i));
-        } 
+        
+        //ciclo escolar seleccionado
+        vistaDatosAlumno.boxCicloEscolar.addItem(cicloEscolar);
+         
         
         //llenar regiones
         ArrayList <String> regiones;
@@ -574,5 +578,71 @@ public class controlVistaPrincipal {
         vistaDatosAlumno.boxSituacionFinal.setSelectedItem(modeloDatosAlumno.getSituacion_final());
        
         vistaDatosAlumno.setVisible(true);
+    }
+    
+    private void itemAvances(ActionEvent e){
+        vistaAvances vistaAvancesMenuTabla = new vistaAvances(ventanaPrincipal, true);
+        controlVistaAvances controlVistaAvances = new controlVistaAvances(vistaAvancesMenuTabla, modeloUsuario, ventanaPrincipal);
+       
+        int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
+        String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
+        String ape_paterno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 1));
+        String ape_materno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 2));
+        String nombre =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 3));
+        String stringGrado =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 4));
+        String cicloEscolar =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 6));
+        System.out.println("cicloEscolar = " + cicloEscolar);
+        int nocontrol = Integer.parseInt(stringNocontrol);
+        int grado = Integer.parseInt(stringGrado);
+        
+        //Mostrar datos en la ventana
+        vistaAvancesMenuTabla.fieldApe_paterno.setText(ape_paterno);
+        vistaAvancesMenuTabla.fieldApe_materno.setText(ape_materno);
+        vistaAvancesMenuTabla.fieldNombre.setText(nombre);
+        vistaAvancesMenuTabla.fieldNumeroControl.setText(stringNocontrol);
+        vistaAvancesMenuTabla.boxCicloEscolar.addItem(cicloEscolar);
+        vistaAvancesMenuTabla.boxCicloEscolar.setSelectedItem(cicloEscolar);
+        vistaAvancesMenuTabla.boxGrado.addItem(stringGrado);
+        vistaAvancesMenuTabla.boxGrado.setSelectedItem(stringGrado);
+        //Colores del texto en los fields
+        vistaAvancesMenuTabla.fieldApe_paterno.setForeground(Color.BLACK); 
+        vistaAvancesMenuTabla.fieldApe_materno.setForeground(Color.BLACK); 
+        vistaAvancesMenuTabla.fieldNombre.setForeground(Color.BLACK);
+        vistaAvancesMenuTabla.fieldNumeroControl.setForeground(Color.BLACK);
+        
+        vistaAvancesMenuTabla.setVisible(true);
+         
+    }
+    
+    private void itemReinscribir(ActionEvent e){
+        vistaReinscripcion vistaReinscripcion = new vistaReinscripcion(ventanaPrincipal, true);
+        controlVistaReinscripcion controlVistaReinscripcion = new controlVistaReinscripcion(vistaReinscripcion, modeloUsuario, ventanaPrincipal);
+        
+        int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
+        String ape_paterno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 1));
+        String ape_materno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 2));
+        String nombre =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 3));
+        String stringGrado =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 4));
+        int grado = Integer.parseInt(stringGrado);
+        
+        vistaReinscripcion.jLabel1.setText("Nombre: "+ape_paterno+" "+ape_materno+" "+nombre);
+        
+        //llenar ciclo nuevo
+        sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
+        ArrayList <String> ciclosEscolares;
+        ciclosEscolares = sqlPrincipal.ciclosEscolares();
+        int iteraciones = ciclosEscolares.size();
+        vistaReinscripcion.boxCicloEscolar.addItem(ciclosEscolares.get(iteraciones - 1));
+        vistaReinscripcion.boxCicloEscolar.setSelectedItem(ciclosEscolares.get(iteraciones - 1));
+        
+        //llenar grados
+        ArrayList <String>  grados;
+        grados = sqlPrincipal.grados();
+        int iteracionesGrados = grados.size();
+        for (int i = grado - 1; i < iteracionesGrados; i++) {
+           vistaReinscripcion.boxGrado.addItem(grados.get(i));
+       }
+        
+        vistaReinscripcion.setVisible(true);
     }
 }

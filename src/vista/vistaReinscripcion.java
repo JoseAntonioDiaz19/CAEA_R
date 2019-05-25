@@ -33,6 +33,7 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         panelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         panelOpciones = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         labelCicloEscolar = new javax.swing.JLabel();
         labelGrado = new javax.swing.JLabel();
         boxCicloEscolar = new javax.swing.JComboBox<>();
@@ -75,12 +76,23 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         panelOpciones.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelOpciones.setLayout(new java.awt.GridBagLayout());
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Nombre: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 10, 5, 10);
+        panelOpciones.add(jLabel1, gridBagConstraints);
+
         labelCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelCicloEscolar.setForeground(new java.awt.Color(255, 255, 255));
         labelCicloEscolar.setText("Ciclo escolar");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
@@ -92,7 +104,7 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         labelGrado.setText("Grado");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
@@ -103,7 +115,7 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciclo escolar" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -115,7 +127,7 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -156,6 +168,7 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         getContentPane().add(panelPrincipal);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -201,9 +214,10 @@ public class vistaReinscripcion extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JButton jButton1;
+    public javax.swing.JComboBox<String> boxCicloEscolar;
+    public javax.swing.JComboBox<String> boxGrado;
+    public javax.swing.JButton jButton1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelCicloEscolar;
     private javax.swing.JLabel labelGrado;
     private javax.swing.JLabel labelTitulo;

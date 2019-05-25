@@ -20,7 +20,7 @@ public class sqlDatosAlumno {
         this.modeloUsuario = modeloUsuario;
     }
     
-    public modeloDatosAlumno datosAlumno(int nocontrol){
+    public modeloDatosAlumno datosAlumno(int nocontrol, String cicloescolar){
         modeloDatosAlumno modeloDatosAlumno = new modeloDatosAlumno();
         ResultSet Resultados;
         PreparedStatement sql;
@@ -28,11 +28,11 @@ public class sqlDatosAlumno {
         try 
         {
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT * FROM vista_datos_alumno WHERE nocontrol = ?");
+            sql = con.prepareStatement("SELECT * FROM vista_datos_alumno WHERE nocontrol = ? and cicloescolar = ?");
             sql.setInt(1, nocontrol);
+            sql.setString(2, cicloescolar);
             Resultados = sql.executeQuery();
             while(Resultados.next()){
-                
                 modeloDatosAlumno.setNombre(Resultados.getString("nombre"));
                 modeloDatosAlumno.setApe_paterno(Resultados.getString("ape_paterno"));
                 modeloDatosAlumno.setApe_materno(Resultados.getString("ape_materno"));
