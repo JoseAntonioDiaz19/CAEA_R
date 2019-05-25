@@ -1,5 +1,9 @@
 package controlador;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.modeloAvances;
 import modelo.modeloSesionUsuario;
 import modeloSQL.sqlAvances;
@@ -25,6 +29,7 @@ public class controlVistaAvances {
        this.ventanaPrincipal = ventanaPrincipal;
        this.modeloAvances = modeloAvances;
        vistaAvances.boxTrimestre.addActionListener(this::boxTrimestre);
+       vistaAvances.boxGrado.addActionListener(this::boxGrado);
        vistaAvances.botonGuardar.addActionListener(this::botonGuardar);
     }
     
@@ -43,7 +48,14 @@ public class controlVistaAvances {
                                                                 modeloAvances.getIdcicloescolar());
         System.out.println("idgrado_alumno = " + idgrado_alumno);
         
-        int etapa = sqlAvances.obtenerEtapa(idgrado_alumno, Integer.parseInt(itemTrimestre));
+        int etapa = 0;
+        
+        try {
+            etapa = sqlAvances.obtenerEtapa(idgrado_alumno, Integer.parseInt(itemTrimestre));
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaAvances.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         System.out.println("busqueda Etapa: " + etapa);
        
         if ("1".equals(itemTrimestre)) {
@@ -144,13 +156,23 @@ public class controlVistaAvances {
         String checkSeleccionado = vistaAvances.grupoEtapas.getSelection().getActionCommand();
         int etapaSeleccionada = Integer.parseInt(checkSeleccionado.substring(6, 7));
         
-        modeloAvances.setTrimestre(Integer.parseInt(itemTrimestre));
+        int trimestre = 0;
+        
+        try{
+            trimestre = Integer.parseInt(itemTrimestre); 
+	}catch(NumberFormatException ex){
+            vistaAvances.labelMensaje.setText("Selecciona el trimestre");
+            vistaAvances.labelMensaje.setForeground(new Color(204,51,0));
+    	}
+        
+        modeloAvances.setTrimestre(trimestre);
         modeloAvances.setIdetapa(etapaSeleccionada);
+       
         //Buscar idgrado_alumno
         int idgrado_alumno = sqlAvances.obtenerIdgrado_alumno(modeloAvances.getNocontrol(), 
                 modeloAvances.getIdgrado(), modeloAvances.getIdcicloescolar());
         modeloAvances.setIdgrado_alumno(idgrado_alumno);
-      
+
         System.out.println("Nocontrol: "+ modeloAvances.getNocontrol());
         System.out.println("ApellidoPaterno: "+modeloAvances.getApe_paterno());
         System.out.println("ApellidoMatenro: "+ modeloAvances.getApe_materno());
@@ -160,5 +182,35 @@ public class controlVistaAvances {
         System.out.println("itemTrimestre = " + modeloAvances.getTrimestre());
         System.out.println("etapaSeleccionada = " + etapaSeleccionada);
         System.out.println("idgrado_alumno: " + modeloAvances.getIdgrado_alumno());
+        
+        //Consultar si ya existe un registro de idetapa en el trimestre seleccionado
+        //si la consulta retorna un 0 no existe el registro y > 0 si existe
+        int existeTrimestre = 0;
+        try {
+            existeTrimestre = sqlAvances.existeAvanceTrimestre(idgrado_alumno);
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaAvances.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Insertar en la tabla avance
+        if (trimestre == 0) {
+            try {
+                sqlAvances.insertarAvance(idgrado_alumno, etapaSeleccionada, Integer.parseInt(itemTrimestre));
+                vistaAvances.labelMensaje.setText("¡Avance guardado correctamente!");
+                vistaAvances.labelMensaje.setForeground(new Color(0,204,102));
+            } catch (SQLException ex) {
+                Logger.getLogger(controlVistaAvances.class.getName()).log(Level.SEVERE, null, ex);
+                vistaAvances.labelMensaje.setText("Algo salió mal");
+                vistaAvances.labelMensaje.setForeground(new Color(204,51,0));
+            }  
+        }
+        else{
+            vistaAvances.labelMensaje.setText("Ya existe un registro en el trimestre seleccionado, proceda a actualizar");
+            vistaAvances.labelMensaje.setForeground(new Color(204,51,0));
+        }
+    }
+    
+    private void boxGrado(ActionEvent e){
+       
     }
 }

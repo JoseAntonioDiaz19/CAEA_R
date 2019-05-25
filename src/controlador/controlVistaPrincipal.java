@@ -583,6 +583,8 @@ public class controlVistaPrincipal {
     
     private void itemAvances(ActionEvent e){
         vistaAvances vistaAvancesMenuTabla = new vistaAvances(ventanaPrincipal, true);
+        sqlPrincipal sqlPrincipal=new sqlPrincipal(modeloUsuario);
+        
        
         int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
         String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
@@ -597,12 +599,18 @@ public class controlVistaPrincipal {
         
         //Mostrar datos en la ventana
         vistaAvancesMenuTabla.fieldApe_paterno.setText(ape_paterno);
+        vistaAvancesMenuTabla.fieldApe_paterno.setEditable(false);
         vistaAvancesMenuTabla.fieldApe_materno.setText(ape_materno);
+        vistaAvancesMenuTabla.fieldApe_materno.setEditable(false);
         vistaAvancesMenuTabla.fieldNombre.setText(nombre);
+        vistaAvancesMenuTabla.fieldNombre.setEditable(false);
         vistaAvancesMenuTabla.fieldNumeroControl.setText(stringNocontrol);
+        vistaAvancesMenuTabla.fieldNumeroControl.setEditable(false);
         vistaAvancesMenuTabla.boxCicloEscolar.addItem(cicloEscolar);
+        vistaAvancesMenuTabla.boxCicloEscolar.setEnabled(false);
         vistaAvancesMenuTabla.boxCicloEscolar.setSelectedItem(cicloEscolar);
         vistaAvancesMenuTabla.boxGrado.addItem(stringGrado);
+        vistaAvancesMenuTabla.boxGrado.setEnabled(false);
         vistaAvancesMenuTabla.boxGrado.setSelectedItem(stringGrado);
         //Colores del texto en los fields
         vistaAvancesMenuTabla.fieldApe_paterno.setForeground(Color.BLACK); 

@@ -82,10 +82,12 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBotones = new javax.swing.JPanel();
         botonGuardar = new javax.swing.JButton();
         botonActualizar = new javax.swing.JButton();
+        labelMensaje = new javax.swing.JLabel();
+        panelVacioBotones = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 580));
-        setPreferredSize(new java.awt.Dimension(800, 580));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -208,7 +210,7 @@ public class vistaAvances extends javax.swing.JDialog {
         panelBusqueda.add(boxCicloEscolar, gridBagConstraints);
 
         boxGrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado", "1", "2", "3", "4", "5", "6" }));
+        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -513,10 +515,12 @@ public class vistaAvances extends javax.swing.JDialog {
         botonGuardar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 40);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 80);
         panelBotones.add(botonGuardar, gridBagConstraints);
 
         botonActualizar.setBackground(new java.awt.Color(8, 38, 67));
@@ -527,12 +531,32 @@ public class vistaAvances extends javax.swing.JDialog {
         botonActualizar.setBorder(null);
         botonActualizar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 40, 0, 0);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 80, 0, 0);
         panelBotones.add(botonActualizar, gridBagConstraints);
+
+        labelMensaje.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelMensaje.setForeground(new java.awt.Color(204, 51, 0));
+        labelMensaje.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        panelBotones.add(labelMensaje, gridBagConstraints);
+
+        panelVacioBotones.setBackground(new java.awt.Color(8, 38, 67));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        panelBotones.add(panelVacioBotones, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -679,6 +703,7 @@ public class vistaAvances extends javax.swing.JDialog {
     public javax.swing.JTextField fieldNombre;
     public javax.swing.JTextField fieldNumeroControl;
     public javax.swing.ButtonGroup grupoEtapas;
+    public javax.swing.JLabel labelMensaje;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTituloEtapas;
     public javax.swing.JLabel labelTituloT1;
@@ -687,6 +712,7 @@ public class vistaAvances extends javax.swing.JDialog {
     private javax.swing.JPanel panelBusqueda;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTitulo;
+    private javax.swing.JPanel panelVacioBotones;
     private javax.swing.JScrollPane stextEtapa1;
     private javax.swing.JScrollPane stextEtapa2;
     private javax.swing.JScrollPane stextEtapa3;

@@ -1,5 +1,4 @@
 package controlador;
-//import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
