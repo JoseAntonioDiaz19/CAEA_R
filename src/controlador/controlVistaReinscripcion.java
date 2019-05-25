@@ -1,6 +1,7 @@
 
 package controlador;
 
+import modelo.modeloAvances;
 import modelo.modeloSesionUsuario;
 import vista.vistaPrincipal;
 import vista.vistaReinscripcion;
@@ -24,5 +25,4 @@ public class controlVistaReinscripcion {
         this.ventanaPrincipal = ventanaPrincipal;
         
     }
-    
 }

@@ -19,6 +19,17 @@ public class vistaAvances extends javax.swing.JDialog {
     public vistaAvances(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        botonGrupo();
+    }
+    
+    private void botonGrupo(){
+        checkEtapa1.setActionCommand("Etapa 1");
+        checkEtapa2.setActionCommand("Etapa 2");
+        checkEtapa3.setActionCommand("Etapa 3");
+        checkEtapa4.setActionCommand("Etapa 4");
+        checkEtapa5.setActionCommand("Etapa 5");
+        checkEtapa6.setActionCommand("Etapa 6");
+        checkEtapa7.setActionCommand("Etapa 7");
     }
 
     /**
@@ -43,7 +54,7 @@ public class vistaAvances extends javax.swing.JDialog {
         boxCicloEscolar = new javax.swing.JComboBox<>();
         boxGrado = new javax.swing.JComboBox<>();
         botonBuscar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        boxTrimestre = new javax.swing.JComboBox<>();
         panelAvances = new javax.swing.JPanel();
         labelTituloT1 = new javax.swing.JLabel();
         checkEtapa1 = new javax.swing.JCheckBox();
@@ -73,7 +84,8 @@ public class vistaAvances extends javax.swing.JDialog {
         botonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 580));
+        setPreferredSize(new java.awt.Dimension(800, 580));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -223,8 +235,8 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
         panelBusqueda.add(botonBuscar, gridBagConstraints);
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre", "1", "2", "3" }));
+        boxTrimestre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxTrimestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre", "1", "2", "3" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -232,7 +244,7 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
-        panelBusqueda.add(jComboBox1, gridBagConstraints);
+        panelBusqueda.add(boxTrimestre, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -264,6 +276,7 @@ public class vistaAvances extends javax.swing.JDialog {
         grupoEtapas.add(checkEtapa1);
         checkEtapa1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         checkEtapa1.setForeground(new java.awt.Color(153, 204, 255));
+        checkEtapa1.setSelected(true);
         checkEtapa1.setText("Etapa 1");
         checkEtapa1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkEtapa1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -653,6 +666,7 @@ public class vistaAvances extends javax.swing.JDialog {
     public javax.swing.JButton botonGuardar;
     public javax.swing.JComboBox<String> boxCicloEscolar;
     public javax.swing.JComboBox<String> boxGrado;
+    public javax.swing.JComboBox<String> boxTrimestre;
     public javax.swing.JCheckBox checkEtapa1;
     public javax.swing.JCheckBox checkEtapa2;
     public javax.swing.JCheckBox checkEtapa3;
@@ -664,11 +678,10 @@ public class vistaAvances extends javax.swing.JDialog {
     public javax.swing.JTextField fieldApe_paterno;
     public javax.swing.JTextField fieldNombre;
     public javax.swing.JTextField fieldNumeroControl;
-    private javax.swing.ButtonGroup grupoEtapas;
-    public javax.swing.JComboBox<String> jComboBox1;
+    public javax.swing.ButtonGroup grupoEtapas;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTituloEtapas;
-    private javax.swing.JLabel labelTituloT1;
+    public javax.swing.JLabel labelTituloT1;
     private javax.swing.JPanel panelAvances;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelBusqueda;

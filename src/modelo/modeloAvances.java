@@ -18,14 +18,14 @@ public class modeloAvances {
     }
 
     public modeloAvances(int idgrado_alumno, 
-                        int nocontrol, 
-                        String nombre, 
-                        String ape_paterno, 
-                        String ape_materno, 
-                        int idgrado, 
-                        String idcicloescolar, 
-                        int idetapa, 
-                        int trimestre) {
+                         int nocontrol, 
+                         String nombre, 
+                         String ape_paterno, 
+                         String ape_materno, 
+                         int idgrado, 
+                         String idcicloescolar, 
+                         int idetapa, 
+                         int trimestre) {
         
         this.idgrado_alumno = idgrado_alumno;
         this.nocontrol = nocontrol;

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.modeloAvances;
 import modelo.modeloDatosAlumno;
 import modelo.modeloSesionUsuario;
 import modelo.modeloTablaPrincipal;
@@ -582,7 +583,6 @@ public class controlVistaPrincipal {
     
     private void itemAvances(ActionEvent e){
         vistaAvances vistaAvancesMenuTabla = new vistaAvances(ventanaPrincipal, true);
-        controlVistaAvances controlVistaAvances = new controlVistaAvances(vistaAvancesMenuTabla, modeloUsuario, ventanaPrincipal);
        
         int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
         String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
@@ -610,20 +610,33 @@ public class controlVistaPrincipal {
         vistaAvancesMenuTabla.fieldNombre.setForeground(Color.BLACK);
         vistaAvancesMenuTabla.fieldNumeroControl.setForeground(Color.BLACK);
         
+        modeloAvances modeloAvances = new modeloAvances();
+        modeloAvances.setNocontrol(nocontrol);
+        modeloAvances.setApe_paterno(ape_paterno);
+        modeloAvances.setApe_materno(ape_materno);
+        modeloAvances.setNombre(nombre);
+        modeloAvances.setIdcicloescolar(cicloEscolar);
+        modeloAvances.setIdgrado(grado);
+        
+        
+        controlVistaAvances controlVistaAvances = new controlVistaAvances(vistaAvancesMenuTabla, modeloUsuario, ventanaPrincipal,modeloAvances);
         vistaAvancesMenuTabla.setVisible(true);
          
     }
     
     private void itemReinscribir(ActionEvent e){
         vistaReinscripcion vistaReinscripcion = new vistaReinscripcion(ventanaPrincipal, true);
-        controlVistaReinscripcion controlVistaReinscripcion = new controlVistaReinscripcion(vistaReinscripcion, modeloUsuario, ventanaPrincipal);
+        
         
         int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
+        String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
         String ape_paterno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 1));
         String ape_materno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 2));
         String nombre =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 3));
         String stringGrado =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 4));
+        String cicloEscolar =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 6));
         int grado = Integer.parseInt(stringGrado);
+        int nocontrol = Integer.parseInt(stringNocontrol);
         
         vistaReinscripcion.jLabel1.setText("Nombre: "+ape_paterno+" "+ape_materno+" "+nombre);
         
@@ -641,8 +654,9 @@ public class controlVistaPrincipal {
         int iteracionesGrados = grados.size();
         for (int i = grado - 1; i < iteracionesGrados; i++) {
            vistaReinscripcion.boxGrado.addItem(grados.get(i));
-       }
+        }
         
+        controlVistaReinscripcion controlVistaReinscripcion = new controlVistaReinscripcion(vistaReinscripcion, modeloUsuario, ventanaPrincipal);
         vistaReinscripcion.setVisible(true);
     }
 }

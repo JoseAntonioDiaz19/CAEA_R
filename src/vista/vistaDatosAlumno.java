@@ -120,6 +120,8 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
         botonActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(500, 600));
+        setPreferredSize(new java.awt.Dimension(550, 650));
         setSize(new java.awt.Dimension(500, 600));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
