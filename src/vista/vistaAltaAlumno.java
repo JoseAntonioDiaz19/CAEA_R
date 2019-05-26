@@ -446,7 +446,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
     private void boxMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesItemStateChanged
 
             String seleccion = (String) boxMes.getSelectedItem();
-        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("06") || seleccion.equals("10") || seleccion.equals("12")) {
+        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("8") || seleccion.equals("10") || seleccion.equals("12")) {
              mes31();
             //Abril, Junio, Septiembre y Noviembre.
         }
