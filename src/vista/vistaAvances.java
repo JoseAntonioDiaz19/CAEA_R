@@ -53,7 +53,6 @@ public class vistaAvances extends javax.swing.JDialog {
         fieldNumeroControl = new javax.swing.JTextField();
         boxCicloEscolar = new javax.swing.JComboBox<>();
         boxGrado = new javax.swing.JComboBox<>();
-        botonBuscar = new javax.swing.JButton();
         boxTrimestre = new javax.swing.JComboBox<>();
         panelAvances = new javax.swing.JPanel();
         labelTituloT1 = new javax.swing.JLabel();
@@ -221,22 +220,6 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
         panelBusqueda.add(boxGrado, gridBagConstraints);
 
-        botonBuscar.setBackground(new java.awt.Color(8, 38, 67));
-        botonBuscar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
-        botonBuscar.setText("Buscar");
-        botonBuscar.setBorder(null);
-        botonBuscar.setFocusPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        panelBusqueda.add(botonBuscar, gridBagConstraints);
-
         boxTrimestre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         boxTrimestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre", "1", "2", "3" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -278,7 +261,6 @@ public class vistaAvances extends javax.swing.JDialog {
         grupoEtapas.add(checkEtapa1);
         checkEtapa1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         checkEtapa1.setForeground(new java.awt.Color(153, 204, 255));
-        checkEtapa1.setSelected(true);
         checkEtapa1.setText("Etapa 1");
         checkEtapa1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkEtapa1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -520,7 +502,7 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 80);
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 80);
         panelBotones.add(botonGuardar, gridBagConstraints);
 
         botonActualizar.setBackground(new java.awt.Color(8, 38, 67));
@@ -537,7 +519,7 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 80, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 80, 0, 50);
         panelBotones.add(botonActualizar, gridBagConstraints);
 
         labelMensaje.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -555,7 +537,7 @@ public class vistaAvances extends javax.swing.JDialog {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.5;
         panelBotones.add(panelVacioBotones, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -686,7 +668,6 @@ public class vistaAvances extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonActualizar;
-    public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonGuardar;
     public javax.swing.JComboBox<String> boxCicloEscolar;
     public javax.swing.JComboBox<String> boxGrado;

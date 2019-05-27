@@ -31,6 +31,7 @@ public class controlVistaAvances {
        vistaAvances.boxTrimestre.addActionListener(this::boxTrimestre);
        vistaAvances.boxGrado.addActionListener(this::boxGrado);
        vistaAvances.botonGuardar.addActionListener(this::botonGuardar);
+       vistaAvances.botonActualizar.addActionListener(this::botonActualizar);
     }
     
     private void boxTrimestre(ActionEvent e){
@@ -49,7 +50,6 @@ public class controlVistaAvances {
         System.out.println("idgrado_alumno = " + idgrado_alumno);
         
         int etapa = 0;
-        
         try {
             etapa = sqlAvances.obtenerEtapa(idgrado_alumno, Integer.parseInt(itemTrimestre));
         } catch (SQLException ex) {
@@ -157,7 +157,6 @@ public class controlVistaAvances {
         int etapaSeleccionada = Integer.parseInt(checkSeleccionado.substring(6, 7));
         
         int trimestre = 0;
-        
         try{
             trimestre = Integer.parseInt(itemTrimestre); 
 	}catch(NumberFormatException ex){
@@ -187,13 +186,13 @@ public class controlVistaAvances {
         //si la consulta retorna un 0 no existe el registro y > 0 si existe
         int existeTrimestre = 0;
         try {
-            existeTrimestre = sqlAvances.existeAvanceTrimestre(idgrado_alumno);
+            existeTrimestre = sqlAvances.existeAvanceTrimestre(idgrado_alumno, trimestre);
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaAvances.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //Insertar en la tabla avance
-        if (trimestre == 0) {
+        if (existeTrimestre == 0) {
             try {
                 sqlAvances.insertarAvance(idgrado_alumno, etapaSeleccionada, Integer.parseInt(itemTrimestre));
                 vistaAvances.labelMensaje.setText("¡Avance guardado correctamente!");
@@ -211,6 +210,35 @@ public class controlVistaAvances {
     }
     
     private void boxGrado(ActionEvent e){
+   
+    }
+    
+    private void botonActualizar(ActionEvent e){
+        
+        sqlAvances sqlAvances = new sqlAvances(modeloUsuario);
+        
+        String itemTrimestre = (String) vistaAvances.boxTrimestre.getSelectedItem();
+        String checkSeleccionado = vistaAvances.grupoEtapas.getSelection().getActionCommand();
+        int etapaSeleccionada = Integer.parseInt(checkSeleccionado.substring(6, 7));
+        
+        int trimestre = 0;
+        try{
+            trimestre = Integer.parseInt(itemTrimestre); 
+	}catch(NumberFormatException ex){
+            vistaAvances.labelMensaje.setText("Selecciona el trimestre");
+            vistaAvances.labelMensaje.setForeground(new Color(204,51,0));
+    	}
        
+        int idgrado_alumno = sqlAvances.obtenerIdgrado_alumno(modeloAvances.getNocontrol(), 
+                modeloAvances.getIdgrado(), modeloAvances.getIdcicloescolar());
+       
+        try {
+            sqlAvances.actualizar(etapaSeleccionada, idgrado_alumno, trimestre);
+            vistaAvances.labelMensaje.setText("¡Avance actualizado correctamente!");
+            vistaAvances.labelMensaje.setForeground(new Color(0,204,102));
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaAvances.class.getName()).log(Level.SEVERE, null, ex);
+            vistaAvances.labelMensaje.setText("¡Algo salío mal!");
+        }
     }
 }

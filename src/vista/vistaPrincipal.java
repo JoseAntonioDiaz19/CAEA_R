@@ -59,7 +59,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         String pathAvances = "/img/avances32x32.png";  
         URL urlAvances = this.getClass().getResource(pathAvances);  
         ImageIcon imgAvances = new ImageIcon(urlAvances);  
-        botonAvances.setIcon(imgAvances); 
+        botonAdminCiclosEscolares.setIcon(imgAvances); 
         
         String pathReportes = "/img/informe32x32.png";  
         URL urlReportes = this.getClass().getResource(pathReportes);  
@@ -110,7 +110,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         tablaPrincipal = new javax.swing.JTable();
         panelMenu = new javax.swing.JPanel();
         botonExpandir = new javax.swing.JButton();
-        botonAvances = new javax.swing.JButton();
+        botonAdminCiclosEscolares = new javax.swing.JButton();
         botonReportes = new javax.swing.JButton();
         botonUsuarios = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
@@ -464,11 +464,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 2, 10, 2);
         panelMenu.add(botonExpandir, gridBagConstraints);
 
-        botonAvances.setBackground(new java.awt.Color(0, 87, 126));
-        botonAvances.setBorder(null);
-        botonAvances.setFocusPainted(false);
-        botonAvances.setMaximumSize(new java.awt.Dimension(74, 22));
-        botonAvances.setMinimumSize(new java.awt.Dimension(74, 22));
+        botonAdminCiclosEscolares.setBackground(new java.awt.Color(0, 87, 126));
+        botonAdminCiclosEscolares.setBorder(null);
+        botonAdminCiclosEscolares.setFocusPainted(false);
+        botonAdminCiclosEscolares.setMaximumSize(new java.awt.Dimension(74, 22));
+        botonAdminCiclosEscolares.setMinimumSize(new java.awt.Dimension(74, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -477,7 +477,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipady = 20;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 2, 10, 2);
-        panelMenu.add(botonAvances, gridBagConstraints);
+        panelMenu.add(botonAdminCiclosEscolares, gridBagConstraints);
 
         botonReportes.setBackground(new java.awt.Color(0, 87, 126));
         botonReportes.setBorder(null);
@@ -673,7 +673,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton botonAvances;
+    private javax.swing.JButton botonAdminCiclosEscolares;
     public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonCerrarSesion;
     public javax.swing.JButton botonExpandir;

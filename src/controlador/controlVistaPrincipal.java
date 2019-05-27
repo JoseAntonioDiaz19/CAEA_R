@@ -6,18 +6,13 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.modeloAvances;
 import modelo.modeloDatosAlumno;
+import modelo.modeloGrado_Alumno;
 import modelo.modeloSesionUsuario;
 import modelo.modeloTablaPrincipal;
 import modeloSQL.sqlDatosAlumno;
 import modeloSQL.sqlPrincipal;
-import vista.vistaAltaAlumno;
-import vista.vistaAltaUsuario;
-import vista.vistaAvances;
-import vista.vistaDatosAlumno;
-import vista.vistaPrincipal;
-import vista.vistaReinscripcion;
-import vista.vistaReportes;
-import vista.vistaSesionUsuario;
+import vista.*;
+
 /**
  * @author Dizan
  */
@@ -56,7 +51,6 @@ public class controlVistaPrincipal {
         ventanaPrincipal.botonReportes.addActionListener(this::botonReportes);
         ventanaPrincipal.botonSalir.addActionListener(this::botonSalir);
         ventanaPrincipal.botonUsuarios.addActionListener(this::botonUsuarios);
-        ventanaPrincipal.botonAvances.addActionListener(this::botonAvances);
         ventanaPrincipal.botonRegistrar.addActionListener(this::botonRegistrar);
         ventanaPrincipal.botonBuscar.addActionListener(this::botonBuscar);
         ventanaPrincipal.boxCicloEscolar.addItemListener(this::boxCicloEscolar);
@@ -101,11 +95,6 @@ public class controlVistaPrincipal {
     public void botonUsuarios(ActionEvent e){
         vistaAltaUsuario = new vistaAltaUsuario(ventanaPrincipal, true);
         vistaAltaUsuario.setVisible(true);
-    }
-    
-    public void botonAvances(ActionEvent e){
-        vistaAvances = new vistaAvances(ventanaPrincipal, true);
-        vistaAvances.setVisible(true);
     }
     
     public void botonRegistrar (ActionEvent e){
@@ -635,19 +624,17 @@ public class controlVistaPrincipal {
     private void itemReinscribir(ActionEvent e){
         vistaReinscripcion vistaReinscripcion = new vistaReinscripcion(ventanaPrincipal, true);
         
-        
         int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
         String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
         String ape_paterno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 1));
         String ape_materno =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 2));
         String nombre =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 3));
         String stringGrado =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 4));
-        String cicloEscolar =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 6));
         int grado = Integer.parseInt(stringGrado);
         int nocontrol = Integer.parseInt(stringNocontrol);
-        
+
         vistaReinscripcion.jLabel1.setText("Nombre: "+ape_paterno+" "+ape_materno+" "+nombre);
-        
+       
         //llenar ciclo nuevo
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
         ArrayList <String> ciclosEscolares;
@@ -664,7 +651,16 @@ public class controlVistaPrincipal {
            vistaReinscripcion.boxGrado.addItem(grados.get(i));
         }
         
-        controlVistaReinscripcion controlVistaReinscripcion = new controlVistaReinscripcion(vistaReinscripcion, modeloUsuario, ventanaPrincipal);
+        //Datos modelo grado_alumno
+        modeloGrado_Alumno modeloGrado_Alumno = new modeloGrado_Alumno();
+        modeloGrado_Alumno.setNocontrol(nocontrol);
+        modeloGrado_Alumno.setIdsituacion(1);
+        modeloGrado_Alumno.setIdestado(2);
+        modeloGrado_Alumno.setIdestado_actual_final(0);
+        
+        controlVistaReinscripcion controlVistaReinscripcion = new controlVistaReinscripcion(vistaReinscripcion, 
+                modeloUsuario, ventanaPrincipal, modeloGrado_Alumno);
+        
         vistaReinscripcion.setVisible(true);
     }
 }

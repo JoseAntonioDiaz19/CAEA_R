@@ -14,7 +14,6 @@ public class sqlAvances {
     modeloSesionUsuario modeloUsuario;
     private boolean correctoInsertar;
 
-
     public sqlAvances(modeloSesionUsuario modeloUsuario) {
         this.modeloUsuario = modeloUsuario;
     }
@@ -114,7 +113,7 @@ public class sqlAvances {
         this.correctoInsertar = correctoInsertar;
     }
     
-    public int existeAvanceTrimestre(int idgrado_alumno) throws SQLException{
+    public int existeAvanceTrimestre(int idgrado_alumno, int trimestre) throws SQLException{
         int existeTrimestre = 0;
         ResultSet Resultados;
         PreparedStatement sql;
@@ -123,6 +122,7 @@ public class sqlAvances {
             con = conexion.getConexion(modeloUsuario);
             sql = con.prepareStatement("SELECT trimestre FROM avance WHERE idgrado_alumno = ? and trimestre = ?");
             sql.setInt(1, idgrado_alumno);
+            sql.setInt(2, trimestre);
             Resultados = sql.executeQuery();
             while(Resultados.next()){
                 existeTrimestre = Resultados.getInt(1);
@@ -142,6 +142,35 @@ public class sqlAvances {
             }
         }
         return existeTrimestre;
+        
+    }
+    
+    public void actualizar(int idetapa, int idgrado_alumno, int trimestre) throws SQLException{
+        
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("UPDATE avance SET idetapa = ? WHERE idgrado_alumno = ? and trimestre = ?");
+            sql.setInt(1, idetapa);
+            sql.setInt(2, idgrado_alumno);
+            sql.setInt(3, trimestre);
+            sql.execute();
+        } 
+        catch (SQLException e){
+            System.err.print(e.getMessage());
+            throw e; 
+        }
+        finally {
+            try{
+                con.close();
+            } 
+            catch (SQLException e) {
+                System.err.print(e.getMessage());
+                throw e; 
+            }
+        }
         
     }
 }
