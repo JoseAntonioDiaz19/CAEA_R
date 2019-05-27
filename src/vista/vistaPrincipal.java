@@ -383,7 +383,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -396,36 +396,36 @@ public class vistaPrincipal extends javax.swing.JFrame {
         scrollTablaPrincipal.setViewportView(tablaPrincipal);
         tablaPrincipal.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tablaPrincipal.getColumnModel().getColumnCount() > 0) {
-            tablaPrincipal.getColumnModel().getColumn(0).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(0).setMinWidth(50);
             tablaPrincipal.getColumnModel().getColumn(0).setPreferredWidth(100);
             tablaPrincipal.getColumnModel().getColumn(0).setMaxWidth(150);
-            tablaPrincipal.getColumnModel().getColumn(1).setMinWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(1).setMinWidth(100);
             tablaPrincipal.getColumnModel().getColumn(1).setPreferredWidth(150);
             tablaPrincipal.getColumnModel().getColumn(1).setMaxWidth(200);
-            tablaPrincipal.getColumnModel().getColumn(2).setMinWidth(150);
+            tablaPrincipal.getColumnModel().getColumn(2).setMinWidth(100);
             tablaPrincipal.getColumnModel().getColumn(2).setPreferredWidth(150);
             tablaPrincipal.getColumnModel().getColumn(2).setMaxWidth(200);
-            tablaPrincipal.getColumnModel().getColumn(3).setMinWidth(150);
-            tablaPrincipal.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(3).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(3).setPreferredWidth(150);
             tablaPrincipal.getColumnModel().getColumn(3).setMaxWidth(200);
-            tablaPrincipal.getColumnModel().getColumn(4).setMinWidth(50);
+            tablaPrincipal.getColumnModel().getColumn(4).setMinWidth(40);
             tablaPrincipal.getColumnModel().getColumn(4).setPreferredWidth(50);
             tablaPrincipal.getColumnModel().getColumn(4).setMaxWidth(50);
-            tablaPrincipal.getColumnModel().getColumn(5).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(5).setMinWidth(80);
             tablaPrincipal.getColumnModel().getColumn(5).setPreferredWidth(100);
             tablaPrincipal.getColumnModel().getColumn(5).setMaxWidth(150);
-            tablaPrincipal.getColumnModel().getColumn(6).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(6).setMinWidth(80);
             tablaPrincipal.getColumnModel().getColumn(6).setPreferredWidth(100);
             tablaPrincipal.getColumnModel().getColumn(6).setMaxWidth(150);
-            tablaPrincipal.getColumnModel().getColumn(7).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(7).setMinWidth(80);
             tablaPrincipal.getColumnModel().getColumn(7).setPreferredWidth(100);
-            tablaPrincipal.getColumnModel().getColumn(7).setMaxWidth(150);
-            tablaPrincipal.getColumnModel().getColumn(8).setMinWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(7).setMaxWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(8).setMinWidth(80);
             tablaPrincipal.getColumnModel().getColumn(8).setPreferredWidth(50);
-            tablaPrincipal.getColumnModel().getColumn(8).setMaxWidth(120);
-            tablaPrincipal.getColumnModel().getColumn(9).setMinWidth(110);
+            tablaPrincipal.getColumnModel().getColumn(8).setMaxWidth(100);
+            tablaPrincipal.getColumnModel().getColumn(9).setMinWidth(120);
             tablaPrincipal.getColumnModel().getColumn(9).setPreferredWidth(110);
-            tablaPrincipal.getColumnModel().getColumn(9).setMaxWidth(120);
+            tablaPrincipal.getColumnModel().getColumn(9).setMaxWidth(150);
         }
 
         panelTabla.add(scrollTablaPrincipal);
@@ -673,7 +673,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAdminCiclosEscolares;
+    public javax.swing.JButton botonAdminCiclosEscolares;
     public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonCerrarSesion;
     public javax.swing.JButton botonExpandir;

@@ -1,9 +1,11 @@
 package modeloSQL;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modelo.modeloGrado_Alumno;
 import modelo.modeloSesionUsuario;
 /**
  *
@@ -47,8 +49,26 @@ public class sqlReinscribir {
         return fechaActual;
     }
     
-    public void reinscribir(){
+    public void reinscribir(modeloGrado_Alumno modeloGrado_Alumno) throws SQLException{
+        CallableStatement sql;
+        conexion = new conexion();
+        PreparedStatement psql;
         
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            psql=con.prepareStatement("INSERT INTO grado_alumno(nocontrol,idgrado,idsituacion,idcicloescolar,idestado,idestado_actual_final) VALUES (?,?,?,?,?,?)");
+            
+            psql.setInt(1, modeloGrado_Alumno.getNocontrol());
+            psql.setInt(2, modeloGrado_Alumno.getIdgrado());
+            psql.setInt(3, modeloGrado_Alumno.getIdsituacion());
+            psql.setString(4, modeloGrado_Alumno.getIdcicloescolar());
+            psql.setInt(5, modeloGrado_Alumno.getIdestado());
+            psql.setInt(6, modeloGrado_Alumno.getIdestado_actual_final());
+            psql.execute();    
+        }catch (final SQLException e){
+            System.err.print(e.getMessage()); 
+            throw e; 
+        }
     }
     
     public int existe(int nocontrol, String nuevoCicloescolar) throws SQLException{

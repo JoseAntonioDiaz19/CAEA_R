@@ -63,8 +63,20 @@ public class controlVistaReinscripcion {
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaReinscripcion.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         if (existe == 0) {
             //Reinscribir
+            try {
+                int confirmacion = JOptionPane.showConfirmDialog(null, "Seleccione SI si esta seguro(a)");
+                if (confirmacion == JOptionPane.YES_OPTION) {
+                    sqlReinscribir.reinscribir(modeloGrado_Alumno);
+                    JOptionPane.showMessageDialog(null, "La reinscripción se ha completado correctamente");
+                }else{
+                    vistaReinscripcion.dispose();
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(controlVistaReinscripcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         }else{
             //Aviso de que el alumno ya se encuentra inscrito/reinscrito en el sistema
