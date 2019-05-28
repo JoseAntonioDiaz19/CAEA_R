@@ -1,29 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vista;
+import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
-
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author AxiosGaming
  */
 public class vistaAltaUsuario extends javax.swing.JDialog {
 
-    /**
-     * Creates new form vistaAltaUsuario
-     */
+    public DefaultTableModel modeloTabla;
+    
+    public JPopupMenu popup = new JPopupMenu();
+    public JMenuItem itemSeleccionar = new JMenuItem("Editar datos",new ImageIcon(getClass().getResource("/img/actualizar16x16.png")));
+    public JMenuItem itemEliminar = new JMenuItem("Eliminar usuario",new ImageIcon(getClass().getResource("/img/user_remove16x16.png")));
+    
     public vistaAltaUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         this.setLocationRelativeTo(null);
         initComponents();
-        JTextField [] tfs ={txtnocontrolusuario,txtnombreusuario,txtapellidopaterno,txtapellidomaternousuario,txtnombredeusuario,txtcontraseñausuario};
+        JTextField [] tfs ={txtnocontrolusuario,txtnombre,txtapellidopaterno,txtapellidomaternousuario,txtnombreUser,txtcontraseñausuario};
+        scrollUsuarios.getViewport().setBackground(new Color(8,38,67));
+        modeloTabla = (DefaultTableModel) tablaUsuarios.getModel() ;
         HintText(tfs);
-        
+        popupMenuTabla();
+    }
+    
+    private void popupMenuTabla(){
+        popup.add(itemSeleccionar);
+        popup.add(itemEliminar);
+        tablaUsuarios.setComponentPopupMenu(popup);
     }
     
     private void HintText(JTextField [] tfs)
@@ -61,13 +71,13 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
                 {
                 if(jtf.equals(txtnocontrolusuario) && jtf.getText().equals("")){
                     jtf.setText(("Numero de Control*"));
-                } if(jtf.equals(txtnombreusuario) && jtf.getText().equals("")){
+                } if(jtf.equals(txtnombre) && jtf.getText().equals("")){
                     jtf.setText(("Nombre*"));
                 }  if(jtf.equals(txtapellidopaterno) && jtf.getText().equals("")){
                     jtf.setText(("Apellido Paterno*"));
                 } if(jtf.equals(txtapellidomaternousuario) && jtf.getText().equals("")){
                     jtf.setText(("Apellido Materno*"));
-                }   if(jtf.equals(txtnombredeusuario) && jtf.getText().equals("")){
+                }   if(jtf.equals(txtnombreUser) && jtf.getText().equals("")){
                     jtf.setText(("Usuario*"));
                 }    if(jtf.equals(txtcontraseñausuario) && jtf.getText().equals("")){
                     jtf.setText(("Contraseña*"));
@@ -92,25 +102,25 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         labelTitulo = new javax.swing.JLabel();
         panelDatos = new javax.swing.JPanel();
         txtnocontrolusuario = new javax.swing.JTextField();
-        txtnombreusuario = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
         txtapellidopaterno = new javax.swing.JTextField();
         txtapellidomaternousuario = new javax.swing.JTextField();
         cbxfiguraeducativa = new javax.swing.JComboBox<>();
         cbxsexo = new javax.swing.JComboBox<>();
-        txtnombredeusuario = new javax.swing.JTextField();
+        txtnombreUser = new javax.swing.JTextField();
         txtcontraseñausuario = new javax.swing.JTextField();
         btnbuscarusuario = new javax.swing.JButton();
         btnagregarusuario = new javax.swing.JButton();
         btnactualizarusuario = new javax.swing.JButton();
-        btneliminarusuario = new javax.swing.JButton();
         labelVigencia = new javax.swing.JLabel();
         jDateChooserVigencia = new com.toedter.calendar.JDateChooser();
         panelTabla = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollUsuarios = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(600, 400));
+        setPreferredSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -150,25 +160,24 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
+        gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(txtnocontrolusuario, gridBagConstraints);
 
-        txtnombreusuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtnombreusuario.setText("Nombre*");
+        txtnombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtnombre.setText("Nombre*");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(txtnombreusuario, gridBagConstraints);
+        panelDatos.add(txtnombre, gridBagConstraints);
 
         txtapellidopaterno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtapellidopaterno.setText("Apellido Paterno*");
@@ -176,9 +185,8 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(txtapellidopaterno, gridBagConstraints);
@@ -189,56 +197,53 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(txtapellidomaternousuario, gridBagConstraints);
 
         cbxfiguraeducativa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbxfiguraeducativa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Figura Educativa-" }));
+        cbxfiguraeducativa.setPreferredSize(new java.awt.Dimension(65, 21));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         panelDatos.add(cbxfiguraeducativa, gridBagConstraints);
 
         cbxsexo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbxsexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-sexo-" }));
+        cbxsexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Sexo-", "H", "M" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
         panelDatos.add(cbxsexo, gridBagConstraints);
 
-        txtnombredeusuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtnombredeusuario.setText("Usuario*");
-        txtnombredeusuario.addActionListener(new java.awt.event.ActionListener() {
+        txtnombreUser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtnombreUser.setText("Usuario*");
+        txtnombreUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombredeusuarioActionPerformed(evt);
+                txtnombreUserActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
-        panelDatos.add(txtnombredeusuario, gridBagConstraints);
+        panelDatos.add(txtnombreUser, gridBagConstraints);
 
         txtcontraseñausuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtcontraseñausuario.setText("Contraseña*");
@@ -246,7 +251,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 50;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
@@ -257,13 +261,13 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnbuscarusuario.setForeground(new java.awt.Color(255, 255, 255));
         btnbuscarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnbuscarusuario.setText("Buscar");
+        btnbuscarusuario.setBorder(null);
         btnbuscarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btnbuscarusuario, gridBagConstraints);
@@ -272,13 +276,13 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnagregarusuario.setForeground(new java.awt.Color(255, 255, 255));
         btnagregarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnagregarusuario.setText("Guardar");
+        btnagregarusuario.setBorder(null);
         btnagregarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btnagregarusuario, gridBagConstraints);
@@ -287,28 +291,16 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnactualizarusuario.setForeground(new java.awt.Color(255, 255, 255));
         btnactualizarusuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
         btnactualizarusuario.setText("Actualizar");
+        btnactualizarusuario.setBorder(null);
         btnactualizarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btnactualizarusuario, gridBagConstraints);
-
-        btneliminarusuario.setText("Eliminar");
-        btneliminarusuario.setFocusPainted(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 15;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(btneliminarusuario, gridBagConstraints);
 
         labelVigencia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelVigencia.setForeground(new java.awt.Color(255, 255, 255));
@@ -345,26 +337,28 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         panelTabla.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelTabla.setLayout(new java.awt.GridLayout(1, 0));
 
-        tablaUsuarios.setBackground(new java.awt.Color(8, 38, 67));
+        scrollUsuarios.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
         tablaUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "No. Control", "Figura educativa", "A. paterno", "A. materno", "Nombre", "Usuario", "Contraseña", "Vigencia"
+                "No. Control", "Figura educativa", "A. paterno", "A. materno", "Nombre", "Sexo", "Usuario", "Contraseña", "Vigencia"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true, true
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaUsuarios);
+        tablaUsuarios.setGridColor(new java.awt.Color(153, 204, 255));
+        scrollUsuarios.setViewportView(tablaUsuarios);
 
-        panelTabla.add(jScrollPane1);
+        panelTabla.add(scrollUsuarios);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -381,9 +375,9 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnombredeusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombredeusuarioActionPerformed
+    private void txtnombreUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombredeusuarioActionPerformed
+    }//GEN-LAST:event_txtnombreUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,26 +422,25 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnactualizarusuario;
-    private javax.swing.JButton btnagregarusuario;
-    private javax.swing.JButton btnbuscarusuario;
-    private javax.swing.JButton btneliminarusuario;
-    private javax.swing.JComboBox<String> cbxfiguraeducativa;
-    private javax.swing.JComboBox<String> cbxsexo;
-    private com.toedter.calendar.JDateChooser jDateChooserVigencia;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JButton btnactualizarusuario;
+    public javax.swing.JButton btnagregarusuario;
+    public javax.swing.JButton btnbuscarusuario;
+    public javax.swing.JComboBox<String> cbxfiguraeducativa;
+    public javax.swing.JComboBox<String> cbxsexo;
+    public com.toedter.calendar.JDateChooser jDateChooserVigencia;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelVigencia;
     private javax.swing.JPanel panelDatos;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTabla;
     private javax.swing.JPanel panelTitulo;
-    private javax.swing.JTable tablaUsuarios;
-    private javax.swing.JTextField txtapellidomaternousuario;
-    private javax.swing.JTextField txtapellidopaterno;
-    private javax.swing.JTextField txtcontraseñausuario;
-    private javax.swing.JTextField txtnocontrolusuario;
-    private javax.swing.JTextField txtnombredeusuario;
-    private javax.swing.JTextField txtnombreusuario;
+    private javax.swing.JScrollPane scrollUsuarios;
+    public javax.swing.JTable tablaUsuarios;
+    public javax.swing.JTextField txtapellidomaternousuario;
+    public javax.swing.JTextField txtapellidopaterno;
+    public javax.swing.JTextField txtcontraseñausuario;
+    public javax.swing.JTextField txtnocontrolusuario;
+    public javax.swing.JTextField txtnombre;
+    public javax.swing.JTextField txtnombreUser;
     // End of variables declaration//GEN-END:variables
 }

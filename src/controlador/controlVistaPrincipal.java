@@ -94,6 +94,7 @@ public class controlVistaPrincipal {
     
     public void botonUsuarios(ActionEvent e){
         vistaAltaUsuario = new vistaAltaUsuario(ventanaPrincipal, true);
+        controlVistaUsuarios controlVistaUsuarios = new controlVistaUsuarios(vistaAltaUsuario, modeloUsuario);
         vistaAltaUsuario.setVisible(true);
     }
     
