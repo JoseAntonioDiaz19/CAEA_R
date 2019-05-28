@@ -413,4 +413,134 @@ public class sqlUsuario {
         }
         return lista;
     }
+    
+    
+    public boolean existeNombreUsuario(String nameUser){
+        String nombreUsuario;
+        boolean Noexiste = true;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT usuario FROM usuario WHERE usuario = ?");
+            sql.setString(1, nameUser);
+            Resultados = sql.executeQuery();
+            while(Resultados.next())
+            {
+                nombreUsuario = Resultados.getString(1);
+                Noexiste = false;
+                System.out.println("Usuario :::::= " + nombreUsuario);
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return Noexiste;
+    }
+    
+    public boolean existeIdUsuario(int idusuario){
+       int idUsuario;
+        boolean Noexiste = true;//Si 
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT idusuario FROM usuario WHERE idusuario = ?");
+            sql.setInt(1, idusuario);
+            Resultados = sql.executeQuery();
+            while(Resultados.next())
+            {
+                idUsuario = Resultados.getInt(1);
+                Noexiste = false;
+                System.out.println("Usuario :::::= " + idUsuario);
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return Noexiste;
+    }
+    
+    public String obtenerFechaActual() throws SQLException{
+        String fechaActual = "";
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT current_date");
+            Resultados = sql.executeQuery();
+            while(Resultados.next()){
+                fechaActual = Resultados.getString(1);
+            }
+        } 
+        catch (SQLException e){
+            System.err.print(e.getMessage());
+            throw e; 
+        }
+        finally {
+            try{
+                con.close();
+            } 
+            catch (SQLException e) {
+                System.err.print(e.getMessage());
+                throw e; 
+            }
+        }
+        return fechaActual;
+    }
+    
+    public void actualizarDatosUsuario(modeloUsuario modeloAltaUsuario, int idfiguraeducativa) throws SQLException{
+        PreparedStatement sql;
+        conexion = new conexion();
+        int idusuario = modeloAltaUsuario.getIdusuario();
+        System.out.println("SQLidUsuario: "+ modeloAltaUsuario.getIdusuario() );
+        System.out.println(""+modeloAltaUsuario.getNombre());
+         
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            
+            sql = con.prepareStatement("UPDATE usuario SET idusuario = ?, idfigura_educativa = ?, "
+                                        + "nombre = ?, ape_paterno = ?, ape_materno = ?, "
+                                        + "sexo ='"+ modeloUsuario.getSexo()+"' Where idusuario = ?" );
+           
+            sql.setInt(1, idusuario);
+            sql.setInt(2, idfiguraeducativa);
+            sql.setString(3,modeloAltaUsuario.getNombre());
+            sql.setString(4, modeloAltaUsuario.getApe_paterno());
+            sql.setString(5, modeloAltaUsuario.getApe_materno());
+            sql.setInt(6,idusuario);
+            sql.executeUpdate();
+        }
+        catch (final SQLException e){
+            System.err.print(e.getMessage());
+            throw e;
+        }  
+    }
 }

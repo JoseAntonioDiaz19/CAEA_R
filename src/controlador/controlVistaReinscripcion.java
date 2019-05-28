@@ -39,7 +39,7 @@ public class controlVistaReinscripcion {
         sqlReinscribir sqlReinscribir = new sqlReinscribir(modeloUsuario);
         
         try {
-            Date fechaActual = sqlReinscribir.obtenerFechaActual();
+            String fechaActual = sqlReinscribir.obtenerFechaActual();
             System.out.println("fechaActual = " + fechaActual);
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaReinscripcion.class.getName()).log(Level.SEVERE, null, ex);

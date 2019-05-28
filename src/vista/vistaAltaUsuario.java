@@ -23,7 +23,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         super(parent, modal);
         this.setLocationRelativeTo(null);
         initComponents();
-        JTextField [] tfs ={txtnocontrolusuario,txtnombre,txtapellidopaterno,txtapellidomaternousuario,txtnombreUser,txtcontraseñausuario};
+        JTextField [] tfs ={fieldIdUsuario,txtnombre,txtapellidopaterno,txtapellidomaternousuario,txtnombreUser,txtcontraseñausuario};
         scrollUsuarios.getViewport().setBackground(new Color(8,38,67));
         modeloTabla = (DefaultTableModel) tablaUsuarios.getModel() ;
         HintText(tfs);
@@ -69,7 +69,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
                 @Override
                 public void focusLost(FocusEvent fe) 
                 {
-                if(jtf.equals(txtnocontrolusuario) && jtf.getText().equals("")){
+                if(jtf.equals(fieldIdUsuario) && jtf.getText().equals("")){
                     jtf.setText(("Numero de Control*"));
                 } if(jtf.equals(txtnombre) && jtf.getText().equals("")){
                     jtf.setText(("Nombre*"));
@@ -101,7 +101,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         panelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         panelDatos = new javax.swing.JPanel();
-        txtnocontrolusuario = new javax.swing.JTextField();
+        fieldIdUsuario = new javax.swing.JTextField();
         txtnombre = new javax.swing.JTextField();
         txtapellidopaterno = new javax.swing.JTextField();
         txtapellidomaternousuario = new javax.swing.JTextField();
@@ -120,7 +120,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -154,8 +153,8 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         panelDatos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelDatos.setLayout(new java.awt.GridBagLayout());
 
-        txtnocontrolusuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtnocontrolusuario.setText("Numero de Control*");
+        fieldIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fieldIdUsuario.setText("Numero de Control*");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -165,7 +164,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(txtnocontrolusuario, gridBagConstraints);
+        panelDatos.add(fieldIdUsuario, gridBagConstraints);
 
         txtnombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtnombre.setText("Nombre*");
@@ -427,6 +426,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     public javax.swing.JButton btnbuscarusuario;
     public javax.swing.JComboBox<String> cbxfiguraeducativa;
     public javax.swing.JComboBox<String> cbxsexo;
+    public javax.swing.JTextField fieldIdUsuario;
     public com.toedter.calendar.JDateChooser jDateChooserVigencia;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelVigencia;
@@ -439,7 +439,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     public javax.swing.JTextField txtapellidomaternousuario;
     public javax.swing.JTextField txtapellidopaterno;
     public javax.swing.JTextField txtcontraseñausuario;
-    public javax.swing.JTextField txtnocontrolusuario;
     public javax.swing.JTextField txtnombre;
     public javax.swing.JTextField txtnombreUser;
     // End of variables declaration//GEN-END:variables

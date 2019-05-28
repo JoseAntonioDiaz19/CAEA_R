@@ -20,8 +20,8 @@ public class sqlReinscribir {
         this.modeloUsuario = modeloUsuario;
     }
    
-    public Date obtenerFechaActual() throws SQLException{
-        Date fechaActual = null;
+    public String obtenerFechaActual() throws SQLException{
+        String fechaActual = "";
         ResultSet Resultados;
         PreparedStatement sql;
         conexion = new conexion();
@@ -30,7 +30,7 @@ public class sqlReinscribir {
             sql = con.prepareStatement("SELECT current_date");
             Resultados = sql.executeQuery();
             while(Resultados.next()){
-                fechaActual = Resultados.getDate(1);
+                fechaActual = Resultados.getString(1);
             }
         } 
         catch (SQLException e){
