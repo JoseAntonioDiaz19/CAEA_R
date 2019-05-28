@@ -29,7 +29,10 @@ public class sqlUsuario {
         PreparedStatement psql;
         try{
             con = conexion.getConexion(modeloUsuario);
-            psql=con.prepareStatement("SELECT alta_usuario (?,?,?,?,?,?,?,?)");
+            psql=con.prepareStatement("INSERT INTO usuario (idusuario, idfigura_educativa, nombre, "
+                                    + "ape_paterno, ape_materno, sexo, usuario, password, vigencia) "
+                                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, '"+modeloAltaUsuario.getVigencia()+"');");
+            
             psql.setInt(1, modeloAltaUsuario.getIdusuario());
             psql.setInt(2, modeloAltaUsuario.getFigura_educativa());
             psql.setString(3, modeloAltaUsuario.getNombre());

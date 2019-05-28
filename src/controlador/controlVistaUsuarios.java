@@ -28,8 +28,8 @@ public class controlVistaUsuarios {
         vistaAltaUsuario.btnactualizarusuario.addActionListener(this::btnactualizarusuario);
         vistaAltaUsuario.btnagregarusuario.addActionListener(this::btnagregarusuario);
         vistaAltaUsuario.btnbuscarusuario.addActionListener(this::btnbuscarusuario);
-      
-        
+        vistaAltaUsuario.itemSeleccionar.addActionListener(this::itemSeleccionar);
+        vistaAltaUsuario.itemEliminar.addActionListener(this::itemEliminar);
         llenarDatosInterfaz();
     }
     
@@ -166,6 +166,7 @@ public class controlVistaUsuarios {
             }
             vistaAltaUsuario.jDateChooserVigencia.setEnabled(false);
             llenarTablaCapacitadorTutor();
+            vistaAltaUsuario.itemEliminar.setEnabled(false);
         }
         
         if (idfiguraConectada == 2) {
@@ -305,5 +306,38 @@ public class controlVistaUsuarios {
                                     busqueda.get(i).getVigencia(),
             });
        }    
+    }
+    
+    private void itemSeleccionar(ActionEvent e){
+        sqlUsuario sqlUsuario=new sqlUsuario(modeloUsuario);
+        int filaseleccionada = vistaAltaUsuario.tablaUsuarios.getSelectedRow();
+        String stringNocontrol =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 0));
+        int idusuario = Integer.parseInt(stringNocontrol);
+        String figura_educativa =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 1));
+             int idfigura_educativa = sqlUsuario.idfiguraeducativa(figura_educativa);
+        String ape_paterno =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 2));
+        String ape_materno =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 3));
+        String nombre =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 4));
+        String sexo =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 5));
+        String usuario =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 6));
+        String contraseña =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 7));
+        String vigencia =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 8));
+        
+        
+        vistaAltaUsuario.txtnocontrolusuario.setText(stringNocontrol);
+        vistaAltaUsuario.cbxfiguraeducativa.setSelectedItem(idfigura_educativa+" "+figura_educativa);
+        vistaAltaUsuario.txtapellidopaterno.setText(ape_paterno);
+        vistaAltaUsuario.txtapellidomaternousuario.setText(ape_materno);
+        vistaAltaUsuario.txtnombre.setText(nombre);
+        vistaAltaUsuario.cbxsexo.setSelectedItem(sexo);
+        vistaAltaUsuario.txtnombreUser.setText(usuario);
+        vistaAltaUsuario.txtcontraseñausuario.setText(contraseña);
+        vistaAltaUsuario.jDateChooserVigencia.setDateFormatString(vigencia);
+          
+    }
+    
+    private void itemEliminar(ActionEvent e){
+        
+        
     }
 }
