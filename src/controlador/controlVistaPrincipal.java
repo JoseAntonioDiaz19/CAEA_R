@@ -2,17 +2,20 @@ package controlador;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.modeloAvances;
 import modelo.modeloDatosAlumno;
 import modelo.modeloGrado_Alumno;
 import modelo.modeloSesionUsuario;
 import modelo.modeloTablaPrincipal;
+import modeloSQL.sqlCiclosEscolares;
 import modeloSQL.sqlDatosAlumno;
 import modeloSQL.sqlPrincipal;
 import vista.*;
-
 /**
  * @author Dizan
  */
@@ -53,6 +56,8 @@ public class controlVistaPrincipal {
         ventanaPrincipal.botonUsuarios.addActionListener(this::botonUsuarios);
         ventanaPrincipal.botonRegistrar.addActionListener(this::botonRegistrar);
         ventanaPrincipal.botonBuscar.addActionListener(this::botonBuscar);
+        ventanaPrincipal.botonAdminCiclosEscolares.addActionListener(this::botonAdminCiclosEscolares);
+        
         ventanaPrincipal.boxCicloEscolar.addItemListener(this::boxCicloEscolar);
         ventanaPrincipal.boxRegion.addItemListener(this::boxRegion);
         ventanaPrincipal.boxGrado.addItemListener(this::boxGrado);
@@ -663,5 +668,23 @@ public class controlVistaPrincipal {
                 modeloUsuario, ventanaPrincipal, modeloGrado_Alumno);
         
         vistaReinscripcion.setVisible(true);
+    }
+    
+    private void botonAdminCiclosEscolares (ActionEvent e){
+        sqlCiclosEscolares sqlCiclosEscolares = new sqlCiclosEscolares(modeloUsuario);
+        vistaCiclosEscolares vistaCiclosEscolares = new vistaCiclosEscolares(ventanaPrincipal, true);
+       
+        String añoActual = "XXXX";
+        try {
+            añoActual = sqlCiclosEscolares.obtenerAñoActual();
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        vistaCiclosEscolares.boxAñoInicio.setSelectedItem(añoActual);
+        vistaCiclosEscolares.boxAñoFin.setSelectedItem(añoActual);
+        
+        controlVistaCiclosEscolares controlVistaCiclosEscolares = new controlVistaCiclosEscolares(vistaCiclosEscolares, modeloUsuario);
+        vistaCiclosEscolares.setVisible(true); 
     }
 }

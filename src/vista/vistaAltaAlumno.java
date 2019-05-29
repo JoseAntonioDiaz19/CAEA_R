@@ -6,8 +6,7 @@ package vista;
  */
 public class vistaAltaAlumno extends javax.swing.JDialog {
 
-    boolean esBisiesto = false; 
-
+    boolean esBisiesto = false;
     boolean cambioAño = false;
 
     /**
@@ -445,7 +444,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
 
     private void boxMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesItemStateChanged
 
-            String seleccion = (String) boxMes.getSelectedItem();
+        String seleccion = (String) boxMes.getSelectedItem();
         if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("8") || seleccion.equals("10") || seleccion.equals("12")) {
              mes31();
             //Abril, Junio, Septiembre y Noviembre.

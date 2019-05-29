@@ -5,6 +5,8 @@
  */
 package vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author Dizan
@@ -47,7 +49,8 @@ public class vistaReportes extends javax.swing.JDialog {
         botonGenerarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(420, 380));
+        setPreferredSize(new java.awt.Dimension(430, 400));
+        setResizable(false);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -166,7 +169,7 @@ public class vistaReportes extends javax.swing.JDialog {
         panelOpciones.add(boxRegion, gridBagConstraints);
 
         boxTrimestre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxTrimestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre" }));
+        boxTrimestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre", "1", "2", "3" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -178,7 +181,7 @@ public class vistaReportes extends javax.swing.JDialog {
         panelOpciones.add(boxTrimestre, gridBagConstraints);
 
         boxGrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado" }));
+        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado", "1", "2", "3", "4", "5", "6" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -192,6 +195,14 @@ public class vistaReportes extends javax.swing.JDialog {
         fieldNumeroControl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldNumeroControl.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         fieldNumeroControl.setText("Número de control");
+        fieldNumeroControl.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldNumeroControlFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldNumeroControlFocusLost(evt);
+            }
+        });
         fieldNumeroControl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldNumeroControlActionPerformed(evt);
@@ -219,8 +230,12 @@ public class vistaReportes extends javax.swing.JDialog {
         panelBotones.setBackground(new java.awt.Color(8, 38, 67));
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
+        botonGenerarReporte.setBackground(new java.awt.Color(8, 38, 67));
         botonGenerarReporte.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonGenerarReporte.setForeground(new java.awt.Color(255, 255, 255));
+        botonGenerarReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/report.png"))); // NOI18N
         botonGenerarReporte.setText("Generar");
+        botonGenerarReporte.setBorder(null);
         botonGenerarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGenerarReporteActionPerformed(evt);
@@ -255,6 +270,22 @@ public class vistaReportes extends javax.swing.JDialog {
     private void botonGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarReporteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGenerarReporteActionPerformed
+
+    private void fieldNumeroControlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumeroControlFocusGained
+        // TODO add your handling code here:
+        if ("Número de control".equals(fieldNumeroControl.getText())) {
+            fieldNumeroControl.setText("");
+            fieldNumeroControl.setForeground(Color.BLACK);  
+        }
+    }//GEN-LAST:event_fieldNumeroControlFocusGained
+
+    private void fieldNumeroControlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumeroControlFocusLost
+        // TODO add your handling code here:
+        if (fieldNumeroControl.getText().isEmpty()) {
+            fieldNumeroControl.setText("Número de control");
+             fieldNumeroControl.setForeground(new Color(153, 153,153));
+        }
+    }//GEN-LAST:event_fieldNumeroControlFocusLost
 
     /**
      * @param args the command line arguments

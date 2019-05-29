@@ -8,7 +8,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
     /**
      * Creates new form vistaAltaAlumno
      */
-     boolean esBisiesto = false; 
+    boolean esBisiesto = false; 
 
     boolean cambioAño = false;
 
@@ -486,7 +486,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
 
     private void boxAñoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxAñoItemStateChanged
         // TODO add your handling code here:
-         cambioAño = true;
+        cambioAño = true;
         String añobisiesto = (String) boxAño.getSelectedItem();
         if (!añobisiesto.equals("Año")) {
             if ((añobisiesto.equals("2000"))
@@ -511,7 +511,7 @@ public class vistaDatosAlumno extends javax.swing.JDialog {
 
     private void boxMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesItemStateChanged
         // TODO add your handling code here:
-         String seleccion = (String) boxMes.getSelectedItem();
+        String seleccion = (String) boxMes.getSelectedItem();
         if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("8") || seleccion.equals("10") || seleccion.equals("12"))  {
              mes31();
             //Abril, Junio, Septiembre y Noviembre.

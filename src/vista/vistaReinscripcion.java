@@ -149,10 +149,12 @@ public class vistaReinscripcion extends javax.swing.JDialog {
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/refres16x16.png"))); // NOI18N
         jButton1.setText("Reinscribir");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         panelBotones.add(jButton1, gridBagConstraints);

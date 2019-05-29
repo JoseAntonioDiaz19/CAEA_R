@@ -71,6 +71,7 @@ public class controlVistaReinscripcion {
                 if (confirmacion == JOptionPane.YES_OPTION) {
                     sqlReinscribir.reinscribir(modeloGrado_Alumno);
                     JOptionPane.showMessageDialog(null, "La reinscripción se ha completado correctamente");
+                    vistaReinscripcion.dispose();
                 }else{
                     vistaReinscripcion.dispose();
                 }

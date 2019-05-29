@@ -56,21 +56,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         ImageIcon imgMenu = new ImageIcon(urlMenu);  
         botonExpandir.setIcon(imgMenu);
         
-        String pathAvances = "/img/avances32x32.png";  
-        URL urlAvances = this.getClass().getResource(pathAvances);  
-        ImageIcon imgAvances = new ImageIcon(urlAvances);  
-        botonAdminCiclosEscolares.setIcon(imgAvances); 
-        
-        String pathReportes = "/img/informe32x32.png";  
-        URL urlReportes = this.getClass().getResource(pathReportes);  
-        ImageIcon imgReportes = new ImageIcon(urlReportes);  
-        botonReportes.setIcon(imgReportes); 
-        
-        String pathUsuario = "/img/usuarios32x32.png";  
-        URL urlUsuario = this.getClass().getResource(pathUsuario);  
-        ImageIcon imgUsuario = new ImageIcon(urlUsuario);  
-        botonUsuarios.setIcon(imgUsuario);
-        
         String pathSalir = "/img/salir32x32.png";  
         URL urlSalir = this.getClass().getResource(pathSalir);  
         ImageIcon imgSalir= new ImageIcon(urlSalir);  
@@ -229,6 +214,11 @@ public class vistaPrincipal extends javax.swing.JFrame {
                 fieldNumerocontrolFocusLost(evt);
             }
         });
+        fieldNumerocontrol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNumerocontrolActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -318,11 +308,13 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelBotones.setBackground(new java.awt.Color(8, 38, 67));
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
-        botonBuscar.setBackground(new java.awt.Color(153, 0, 51));
+        botonBuscar.setBackground(new java.awt.Color(8, 38, 67));
         botonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         botonBuscar.setText("Buscar");
         botonBuscar.setAlignmentX(0.5F);
+        botonBuscar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -330,14 +322,16 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 20);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 40);
         panelBotones.add(botonBuscar, gridBagConstraints);
 
-        botonRegistrar.setBackground(new java.awt.Color(153, 0, 51));
+        botonRegistrar.setBackground(new java.awt.Color(8, 38, 67));
         botonRegistrar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        botonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/añadir.png"))); // NOI18N
         botonRegistrar.setText("Registrar");
         botonRegistrar.setAlignmentX(0.5F);
+        botonRegistrar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -345,7 +339,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 0);
         panelBotones.add(botonRegistrar, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -465,6 +459,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelMenu.add(botonExpandir, gridBagConstraints);
 
         botonAdminCiclosEscolares.setBackground(new java.awt.Color(0, 87, 126));
+        botonAdminCiclosEscolares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/folder_add32x32.png"))); // NOI18N
         botonAdminCiclosEscolares.setBorder(null);
         botonAdminCiclosEscolares.setFocusPainted(false);
         botonAdminCiclosEscolares.setMaximumSize(new java.awt.Dimension(74, 22));
@@ -480,6 +475,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelMenu.add(botonAdminCiclosEscolares, gridBagConstraints);
 
         botonReportes.setBackground(new java.awt.Color(0, 87, 126));
+        botonReportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/report.png"))); // NOI18N
         botonReportes.setBorder(null);
         botonReportes.setFocusPainted(false);
         botonReportes.setMaximumSize(new java.awt.Dimension(74, 22));
@@ -495,6 +491,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelMenu.add(botonReportes, gridBagConstraints);
 
         botonUsuarios.setBackground(new java.awt.Color(0, 87, 126));
+        botonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_add32x32.png"))); // NOI18N
         botonUsuarios.setBorder(null);
         botonUsuarios.setFocusPainted(false);
         botonUsuarios.setMaximumSize(new java.awt.Dimension(74, 22));
@@ -633,6 +630,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_botonExpandirActionPerformed
+
+    private void fieldNumerocontrolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNumerocontrolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNumerocontrolActionPerformed
 
     /**
      * @param args the command line arguments
