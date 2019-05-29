@@ -97,6 +97,13 @@ public class controlVistaSesionUsuario {
         ventanaPrincipal.fieldNombreUsuario.setText(modeloUsuario.getApe_paterno()+" "
                                                   + modeloUsuario.getApe_materno()+" "
                                                   + modeloUsuario.getNombre());
+        if (modeloUsuario.getIdfigura_educativa() < 4) {
+            ventanaPrincipal.botonAdminCiclosEscolares.setEnabled(false);
+        }
+        
+        if (modeloUsuario.getIdfigura_educativa() <= 3) {
+            ventanaPrincipal.itemEliminar.setEnabled(false);
+        }
         
         controlVistaPrincipal ctrlPrincipalVista = new controlVistaPrincipal(ventanaPrincipal, modeloUsuario);
         ventanaPrincipal.setVisible(true);

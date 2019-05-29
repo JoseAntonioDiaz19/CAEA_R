@@ -1,9 +1,11 @@
 package controlador;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import static jdk.nashorn.internal.objects.NativeString.substring;
 import modelo.modeloAlumno;
 import modelo.modeloSesionUsuario;
@@ -45,9 +47,7 @@ public class controlVistaAltaAlumno {
         mes= String.valueOf(vistaAltaAlumno.boxMes.getSelectedItem());
         dia= String.valueOf(vistaAltaAlumno.boxDia.getSelectedItem()); 
         Fecha= año+'-'+mes+'-'+dia;
-        
         modeloAlumno.setNumeroControl(Integer.valueOf(vistaAltaAlumno.fieldNumeroControl.getText()));
-        
         modeloAlumno.setIdRegion( Integer.parseInt(substring(vistaAltaAlumno.boxRegion.getSelectedItem().toString(), 0,3))
         );
         modeloAlumno.setNombre(vistaAltaAlumno.fieldNombre.getText());
@@ -58,13 +58,21 @@ public class controlVistaAltaAlumno {
         modeloAlumno.setCicloEscolar(String.valueOf(vistaAltaAlumno.boxCicloEscolar.getSelectedItem()));
         modeloAlumno.setGrado(Integer.parseInt(vistaAltaAlumno.boxGrado.getSelectedItem().toString()));
         
-        try {
-            sqlAlumno.insertarAlta(modeloAlumno);
-        } catch (SQLException ex) {
-            Logger.getLogger(controlVistaAltaAlumno.class.getName()).log(Level.SEVERE, null, ex);
+        boolean NoexisteNocontrol = sqlAlumno.existeNocontrolAlumno(modeloAlumno.getNumeroControl());
+        if (NoexisteNocontrol) {
+            try {
+                sqlAlumno.insertarAlta(modeloAlumno);
+                JOptionPane.showMessageDialog(vistaAltaAlumno, "La operación se realizó correctamente");
+                vistaAltaAlumno.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(controlVistaAltaAlumno.class.getName()).log(Level.SEVERE, null, ex);
+                vistaAltaAlumno.labelMensaje.setText("Revise si los datos capturados son correctos");
+                vistaAltaAlumno.labelMensaje.setForeground(new Color(204,51,0));
+            }
+        }else{
+            vistaAltaAlumno.labelMensaje.setText("El número control ya existe");
+            vistaAltaAlumno.labelMensaje.setForeground(new Color(204,51,0));
         }
-        
-        vistaAltaAlumno.dispose();
     }
     
     private void llenarCicloEscolar(){

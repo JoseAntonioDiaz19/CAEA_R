@@ -53,6 +53,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         boxGrado = new javax.swing.JComboBox<>();
         panelBotones = new javax.swing.JPanel();
         botonGuardar = new javax.swing.JButton();
+        labelMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(550, 600));
@@ -353,14 +354,25 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
         panelBotones.setToolTipText("");
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
+        botonGuardar.setBackground(new java.awt.Color(8, 38, 67));
         botonGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        botonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         botonGuardar.setText("Guardar");
+        botonGuardar.setBorder(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipady = 10;
+        panelBotones.add(botonGuardar, gridBagConstraints);
+
+        labelMensaje.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        panelBotones.add(botonGuardar, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        panelBotones.add(labelMensaje, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -553,6 +565,7 @@ public class vistaAltaAlumno extends javax.swing.JDialog {
     private javax.swing.JLabel labelCicloEscolar;
     private javax.swing.JLabel labelFechaNacimiento;
     private javax.swing.JLabel labelGrado;
+    public javax.swing.JLabel labelMensaje;
     private javax.swing.JLabel labelNombre;
     private javax.swing.JLabel labelNumeroControl;
     private javax.swing.JLabel labelRegion;

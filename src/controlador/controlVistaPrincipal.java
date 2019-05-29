@@ -12,6 +12,7 @@ import modelo.modeloDatosAlumno;
 import modelo.modeloGrado_Alumno;
 import modelo.modeloSesionUsuario;
 import modelo.modeloTablaPrincipal;
+import modeloSQL.sqlAlumno;
 import modeloSQL.sqlCiclosEscolares;
 import modeloSQL.sqlDatosAlumno;
 import modeloSQL.sqlPrincipal;
@@ -64,7 +65,7 @@ public class controlVistaPrincipal {
         ventanaPrincipal.itemEditar.addActionListener(this::itemEditar);
         ventanaPrincipal.itemAvances.addActionListener(this::itemAvances);
         ventanaPrincipal.itemReinscribir.addActionListener(this::itemReinscribir);
-        
+        ventanaPrincipal.itemEliminar.addActionListener(this::itemEliminar);
     }
     
     private void close(){ 
@@ -100,6 +101,10 @@ public class controlVistaPrincipal {
     public void botonUsuarios(ActionEvent e){
         vistaAltaUsuario = new vistaAltaUsuario(ventanaPrincipal, true);
         controlVistaUsuarios controlVistaUsuarios = new controlVistaUsuarios(vistaAltaUsuario, modeloUsuario);
+        
+        if (modeloUsuario.getIdfigura_educativa() == 1) {
+            vistaAltaUsuario.btnagregarusuario.setEnabled(false);
+        }
         vistaAltaUsuario.setVisible(true);
     }
     
@@ -686,5 +691,37 @@ public class controlVistaPrincipal {
         
         controlVistaCiclosEscolares controlVistaCiclosEscolares = new controlVistaCiclosEscolares(vistaCiclosEscolares, modeloUsuario);
         vistaCiclosEscolares.setVisible(true); 
+    }
+    
+    private void itemEliminar(ActionEvent e){
+        sqlAlumno sqlAlumno = new sqlAlumno(modeloUsuario);
+        
+        int filaseleccionada = ventanaPrincipal.tablaPrincipal.getSelectedRow();
+        String stringNocontrol =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 0));
+        int nocontrol = Integer.parseInt(stringNocontrol);
+        String cicloEscolar =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 6));
+        String stringGrado =  String.valueOf(ventanaPrincipal.modeloTabla.getValueAt(filaseleccionada, 4));
+        int grado = Integer.parseInt(stringGrado);
+        
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Realmente desea eliminar este alumno?");
+        
+        if (respuesta == JOptionPane.YES_OPTION) {
+            
+            try {
+                sqlAlumno.eliminarGradoAlumno(nocontrol, grado, cicloEscolar);
+                JOptionPane.showMessageDialog(null, "Eliminando...");
+            } catch (SQLException ex) {
+                Logger.getLogger(controlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "No se puede eliminar a un alumno que ya tiene avances capturados");
+            }
+            
+            try {
+                sqlAlumno.eliminarAlumno(nocontrol);
+                JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente");
+            } catch (SQLException ex) {
+                Logger.getLogger(controlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, "Se ha producido un error al intentar eliminar");
+            }
+        }
     }
 }

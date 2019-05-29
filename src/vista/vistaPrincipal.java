@@ -6,7 +6,6 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -23,11 +22,10 @@ public class vistaPrincipal extends javax.swing.JFrame {
     public JMenuItem itemEditar = new JMenuItem("Editar datos",new ImageIcon(getClass().getResource("/img/actualizar16x16.png")));
     public JMenuItem itemAvances = new JMenuItem("Registrar Avances",new ImageIcon(getClass().getResource("/img/avances16x16.png")));
     public JMenuItem itemReinscribir = new JMenuItem("Reinscribir",new ImageIcon(getClass().getResource("/img/refres16x16.png")));
-    
+    public JMenuItem itemEliminar = new JMenuItem("Eliminar",new ImageIcon(getClass().getResource("/img/eliminarAlumno16x16.png")));
     /**
      * Creates new form interfaz_Principal
      */
-    
     //cambios realizados
   int xx,xy;
     public vistaPrincipal() {
@@ -43,6 +41,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         popup.add(itemEditar);
         popup.add(itemAvances);
         popup.add(itemReinscribir);
+        popup.add(itemEliminar);
         tablaPrincipal.setComponentPopupMenu(popup);
     }
     

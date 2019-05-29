@@ -2,7 +2,9 @@ package modeloSQL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import modelo.modeloAlumno;
 import modelo.modeloSesionUsuario;
 /**
@@ -60,6 +62,73 @@ public class sqlAlumno {
      */
     public void setCorrectoInsertar(boolean correctoInsertar) {
         this.correctoInsertar = correctoInsertar;
+    }
+    
+    
+    public boolean existeNocontrolAlumno(int numerocontrol){
+       int nocontrol;
+        boolean Noexiste = true;//Si 
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT nocontrol FROM alumno WHERE nocontrol = ?");
+            sql.setInt(1, numerocontrol);
+            Resultados = sql.executeQuery();
+            while(Resultados.next())
+            {
+                nocontrol = Resultados.getInt(1);
+                Noexiste = false;
+                System.out.println("nocontrol :::::= " + nocontrol);
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return Noexiste;
+    }
+    
+    public void eliminarAlumno(int nocontrol) throws SQLException{
+        conexion = new conexion();
+        Statement statement;
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            statement = con.createStatement();
+            statement.execute("DELETE FROM alumno WHERE nocontrol = " + nocontrol) ;
+            
+        }catch (final SQLException e){
+            System.err.print(e.getMessage()); 
+            throw e; 
+        }
+    }
+    
+    public void eliminarGradoAlumno(int nocontrol, int grado, String cicloescolar) throws SQLException{
+        conexion = new conexion();
+        Statement statement;
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            statement = con.createStatement();
+            statement.execute("DELETE FROM grado_alumno WHERE nocontrol = "
+                    +nocontrol+" and idcicloescolar = "
+                    +"'"+cicloescolar+"'"+" and idgrado = "+grado) ;
+            
+        }catch (final SQLException e){
+            System.err.print(e.getMessage()); 
+            throw e; 
+        }
     }
         
 }

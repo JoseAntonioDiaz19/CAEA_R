@@ -255,7 +255,7 @@ public class controlVistaUsuarios {
         System.out.println("idfiguraConectada = " + idfiguraConectada);
         
         if (idfiguraConectada == 1) {
-            for (int i = 0; i < iteraciones - 5 ; i++) { 
+            for (int i = 0; i < iteraciones - 4 ; i++) { 
                 vistaAltaUsuario.boxFigura_educativa.addItem(lista.get(i));
             }
             vistaAltaUsuario.jDateChooserVigencia.setEnabled(false);
