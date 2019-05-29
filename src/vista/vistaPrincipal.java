@@ -49,7 +49,6 @@ public class vistaPrincipal extends javax.swing.JFrame {
         scrollTablaPrincipal.getViewport().setBackground(new Color(8,38,67));
         
         //Iconos del panel menu
-        
         String pathMenu = "/img/menu.png";  
         URL urlMenu = this.getClass().getResource(pathMenu);  
         ImageIcon imgMenu = new ImageIcon(urlMenu);  

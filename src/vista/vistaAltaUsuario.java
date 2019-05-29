@@ -161,6 +161,11 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
                 fieldIdUsuarioFocusGained(evt);
             }
         });
+        fieldIdUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldIdUsuarioActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -177,6 +182,11 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         fieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fieldNombreFocusGained(evt);
+            }
+        });
+        fieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNombreActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -401,25 +411,33 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
 
     private void fieldIdUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldIdUsuarioFocusGained
         // TODO add your handling code here:
-        fieldApe_materno.setText("Apellido Materno");
-        fieldApe_paterno.setText("Apellido Paterno");
-        fieldNombre.setText("Nombre");
+//        fieldApe_materno.setText("Apellido Materno");
+//        fieldApe_paterno.setText("Apellido Paterno");
+//        fieldNombre.setText("Nombre");
     }//GEN-LAST:event_fieldIdUsuarioFocusGained
 
     private void fieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusGained
         // TODO add your handling code here:
-        fieldIdUsuario.setText("Numero de Control");
+//        fieldIdUsuario.setText("Numero de Control");
     }//GEN-LAST:event_fieldNombreFocusGained
 
     private void fieldApe_paternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_paternoFocusGained
         // TODO add your handling code here:
-        fieldIdUsuario.setText("Numero de Control");
+//        fieldIdUsuario.setText("Numero de Control");
     }//GEN-LAST:event_fieldApe_paternoFocusGained
 
     private void fieldApe_maternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_maternoFocusGained
         // TODO add your handling code here:
-        fieldIdUsuario.setText("Numero de Control");
+//        fieldIdUsuario.setText("Numero de Control");
     }//GEN-LAST:event_fieldApe_maternoFocusGained
+
+    private void fieldIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldIdUsuarioActionPerformed
+
+    private void fieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNombreActionPerformed
 
     /**
      * @param args the command line arguments
