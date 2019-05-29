@@ -38,18 +38,18 @@ public class controlVistaUsuarios {
         sqlUsuario sqlUsuario = new sqlUsuario(modeloUsuario);
         modeloAltaUsuario2 = new modeloUsuario();
         
-        String stringFiguraEducativa = String.valueOf(vistaAltaUsuario.cbxfiguraeducativa.getSelectedItem());
+        String stringFiguraEducativa = String.valueOf(vistaAltaUsuario.boxFigura_educativa.getSelectedItem());
         String rol = stringFiguraEducativa.substring(2, stringFiguraEducativa.length());
         System.out.println("rol = " + rol);
         //Buscar idfigura_educativa
-        int idfiguraEducativa = Integer.parseInt(String.valueOf(vistaAltaUsuario.cbxfiguraeducativa.getSelectedIndex()));
+        int idfiguraEducativa = Integer.parseInt(String.valueOf(vistaAltaUsuario.boxFigura_educativa.getSelectedIndex()));
         System.out.println("idfiguraEducativa = " + idfiguraEducativa);
         modeloAltaUsuario2.setFigura_educativa(idfiguraEducativa);
         modeloAltaUsuario2.setIdusuario(Integer.parseInt(vistaAltaUsuario.fieldIdUsuario.getText()));
-        modeloAltaUsuario2.setApe_paterno(vistaAltaUsuario.txtapellidopaterno.getText());
-        modeloAltaUsuario2.setApe_materno(vistaAltaUsuario.txtapellidomaternousuario.getText());
-        modeloAltaUsuario2.setNombre(vistaAltaUsuario.txtnombre.getText());
-        modeloAltaUsuario2.setSexo(String.valueOf(vistaAltaUsuario.cbxsexo.getSelectedItem()));
+        modeloAltaUsuario2.setApe_paterno(vistaAltaUsuario.fieldApe_paterno.getText());
+        modeloAltaUsuario2.setApe_materno(vistaAltaUsuario.fieldApe_materno.getText());
+        modeloAltaUsuario2.setNombre(vistaAltaUsuario.fieldNombre.getText());
+        modeloAltaUsuario2.setSexo(String.valueOf(vistaAltaUsuario.boxSexo.getSelectedItem()));
         modeloAltaUsuario2.setUsuario(vistaAltaUsuario.txtnombreUser.getText());
         modeloAltaUsuario2.setContraseña(vistaAltaUsuario.txtcontraseñausuario.getText());
         
@@ -163,19 +163,19 @@ public class controlVistaUsuarios {
         vistaAltaUsuario.txtnombreUser.setEnabled(true);
         vistaAltaUsuario.txtcontraseñausuario.setEnabled(true);
         vistaAltaUsuario.jDateChooserVigencia.setEnabled(true);
-        String stringFiguraEducativa = String.valueOf(vistaAltaUsuario.cbxfiguraeducativa.getSelectedItem());
+        String stringFiguraEducativa = String.valueOf(vistaAltaUsuario.boxFigura_educativa.getSelectedItem());
         String rol = stringFiguraEducativa.substring(2, stringFiguraEducativa.length());
         System.out.println("rol = " + rol);
         //Buscar idfigura_educativa
-        int idfiguraEducativa = Integer.parseInt(String.valueOf(vistaAltaUsuario.cbxfiguraeducativa.getSelectedIndex()));
+        int idfiguraEducativa = Integer.parseInt(String.valueOf(vistaAltaUsuario.boxFigura_educativa.getSelectedIndex()));
         System.out.println("idfiguraEducativa = " + idfiguraEducativa);
         modeloAltaUsuario.setFigura_educativa(idfiguraEducativa);
         modeloAltaUsuario.setIdusuario(Integer.parseInt(vistaAltaUsuario.fieldIdUsuario.getText()));
         System.out.println("idUsuario: "+ modeloAltaUsuario.getIdusuario() );
-        modeloAltaUsuario.setApe_paterno(vistaAltaUsuario.txtapellidopaterno.getText());
-        modeloAltaUsuario.setApe_materno(vistaAltaUsuario.txtapellidomaternousuario.getText());
-        modeloAltaUsuario.setNombre(vistaAltaUsuario.txtnombre.getText());
-        modeloAltaUsuario.setSexo(String.valueOf(vistaAltaUsuario.cbxsexo.getSelectedItem()));
+        modeloAltaUsuario.setApe_paterno(vistaAltaUsuario.fieldApe_paterno.getText());
+        modeloAltaUsuario.setApe_materno(vistaAltaUsuario.fieldApe_materno.getText());
+        modeloAltaUsuario.setNombre(vistaAltaUsuario.fieldNombre.getText());
+        modeloAltaUsuario.setSexo(String.valueOf(vistaAltaUsuario.boxSexo.getSelectedItem()));
         modeloAltaUsuario.setUsuario(vistaAltaUsuario.txtnombreUser.getText());
         modeloAltaUsuario.setContraseña(vistaAltaUsuario.txtcontraseñausuario.getText());
             
@@ -187,12 +187,57 @@ public class controlVistaUsuarios {
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al actualizar");
-        }  
-             
+        }   
     }
     
     private void btnbuscarusuario(ActionEvent e){
+        System.out.println("Boton buscar usuario");
+        String idusuario =  vistaAltaUsuario.fieldIdUsuario.getText();
+        String ape_paterno = vistaAltaUsuario.fieldApe_paterno.getText();
+        System.out.println("ape_paterno = " + ape_paterno);
+        String ape_materno = vistaAltaUsuario.fieldApe_materno.getText();
+        System.out.println("ape_materno = " + ape_materno);
+        String nombre = vistaAltaUsuario.fieldNombre.getText();
+        System.out.println("nombre = " + nombre);
         
+        if (!"Numero de Control".equals(idusuario)) {
+            System.out.println("Primer if");
+             buscarPorNocontrol();
+        }
+        
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                !"Apellido Materno".equals(ape_materno) &&
+                    !"Nombre".equals(nombre) && "Numero de Control".equals(idusuario)) {
+            System.out.println("Segundo if");
+            buscarApellidosNombre();
+        }
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                "Apellido Materno".equals(ape_materno) &&
+                    "Nombre".equals(nombre) && "Numero de Control".equals(idusuario)) {
+            System.out.println("Tercer if");
+            JOptionPane.showMessageDialog(null, "¿Escriba el apellido materno y el nombre");
+        }
+        
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                !"Apellido Materno".equals(ape_materno) &&
+                    "Nombre".equals(nombre) && "Numero de Control".equals(idusuario)) {
+            System.out.println("Cuarto if");
+            JOptionPane.showMessageDialog(null, "¿Escriba el nombre");
+        }
+        
+        if (!"Apellido Paterno".equals(ape_paterno) && 
+                "Apellido Materno".equals(ape_materno) &&
+                    !"Nombre".equals(nombre) && "Numero de Control".equals(idusuario)) {
+            System.out.println("Quinto if");
+            JOptionPane.showMessageDialog(null, "¿Escriba el apellido materno");
+        }
+        
+        if ("Apellido Paterno".equals(ape_paterno) && 
+                !"Apellido Materno".equals(ape_materno) &&
+                    !"Nombre".equals(nombre) && "Numero de Control".equals(idusuario)) {
+            System.out.println("Sexto if");
+            JOptionPane.showMessageDialog(null, "¿Escriba el apellido paterno");
+        }
     }
     
     private void btneliminarusuario(ActionEvent e){
@@ -211,7 +256,7 @@ public class controlVistaUsuarios {
         
         if (idfiguraConectada == 1) {
             for (int i = 0; i < iteraciones - 5 ; i++) { 
-                vistaAltaUsuario.cbxfiguraeducativa.addItem(lista.get(i));
+                vistaAltaUsuario.boxFigura_educativa.addItem(lista.get(i));
             }
             vistaAltaUsuario.jDateChooserVigencia.setEnabled(false);
             llenarTablaCapacitadorTutor();
@@ -221,27 +266,27 @@ public class controlVistaUsuarios {
         if (idfiguraConectada == 2) {
           
             for (int i = 0; i < iteraciones - 4 ; i++) { 
-                vistaAltaUsuario.cbxfiguraeducativa.addItem(lista.get(i));
+                vistaAltaUsuario.boxFigura_educativa.addItem(lista.get(i));
             }
             llenarTablaAsistenteEducativo();
         }
         
         if (idfiguraConectada == 3) {
             for (int i = 0; i < iteraciones - 3 ; i++) { 
-                vistaAltaUsuario.cbxfiguraeducativa.addItem(lista.get(i));
+                vistaAltaUsuario.boxFigura_educativa.addItem(lista.get(i));
             }
             llenarTablaCoordinadorAcademicoDeSeguimiento();
         }
         
         if (idfiguraConectada == 4) {
             for (int i = 0; i < iteraciones - 2 ; i++) { 
-                vistaAltaUsuario.cbxfiguraeducativa.addItem(lista.get(i));
+                vistaAltaUsuario.boxFigura_educativa.addItem(lista.get(i));
             }
             llenarTablaCoordinadorAcademico();
         }
         if (idfiguraConectada == 5) {
             for (int i = 0; i < iteraciones; i++) { 
-                vistaAltaUsuario.cbxfiguraeducativa.addItem(lista.get(i));
+                vistaAltaUsuario.boxFigura_educativa.addItem(lista.get(i));
             }
             llenarTablaAdministrador();
         } 
@@ -374,11 +419,11 @@ public class controlVistaUsuarios {
         
         
         vistaAltaUsuario.fieldIdUsuario.setText(stringNocontrol);
-        vistaAltaUsuario.cbxfiguraeducativa.setSelectedItem(idfigura_educativa+" "+figura_educativa);
-        vistaAltaUsuario.txtapellidopaterno.setText(ape_paterno);
-        vistaAltaUsuario.txtapellidomaternousuario.setText(ape_materno);
-        vistaAltaUsuario.txtnombre.setText(nombre);
-        vistaAltaUsuario.cbxsexo.setSelectedItem(sexo);
+        vistaAltaUsuario.boxFigura_educativa.setSelectedItem(idfigura_educativa+" "+figura_educativa);
+        vistaAltaUsuario.fieldApe_paterno.setText(ape_paterno);
+        vistaAltaUsuario.fieldApe_materno.setText(ape_materno);
+        vistaAltaUsuario.fieldNombre.setText(nombre);
+        vistaAltaUsuario.boxSexo.setSelectedItem(sexo);
         vistaAltaUsuario.txtnombreUser.setEnabled(false);
         vistaAltaUsuario.txtcontraseñausuario.setEnabled(false);
         vistaAltaUsuario.jDateChooserVigencia.setEnabled(false);
@@ -386,6 +431,86 @@ public class controlVistaUsuarios {
     }
     
     private void itemEliminar(ActionEvent e){
+        sqlUsuario sqlUsuario=new sqlUsuario(modeloUsuario);
+        int filaseleccionada = vistaAltaUsuario.tablaUsuarios.getSelectedRow();
+        String usuario =  String.valueOf(vistaAltaUsuario.tablaUsuarios.getValueAt(filaseleccionada, 6));
+        System.out.println("usuario = " + usuario);
         
+        try {
+            sqlUsuario.borrarUsuario(usuario);
+            JOptionPane.showMessageDialog(null, "Borrando usuario...");
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            sqlUsuario.borrarUsuarioDeTabla(usuario);
+            JOptionPane.showMessageDialog(null, "Usuario borrado correctamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void buscarPorNocontrol(){
+        vistaAltaUsuario.modeloTabla.setRowCount(0);
+        String idusuario =  vistaAltaUsuario.fieldIdUsuario.getText();
+        String ape_paterno = vistaAltaUsuario.fieldApe_paterno.getText();
+        System.out.println("ape_paterno = " + ape_paterno);
+        String ape_materno = vistaAltaUsuario.fieldApe_materno.getText();
+        System.out.println("ape_materno = " + ape_materno);
+        String nombre = vistaAltaUsuario.fieldNombre.getText();
+        System.out.println("nombre = " + nombre);
+        
+        sqlUsuario sqlUsuario = new sqlUsuario(modeloUsuario);
+        ArrayList <modeloTablaUsuarios>  busqueda;
+        busqueda = sqlUsuario.tablaBuscarNocontrol(Integer.parseInt(idusuario) );
+        int iteraciones =  busqueda.size();
+        System.out.println("iteraciones = " + iteraciones);
+        
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAltaUsuario.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getFigura_educativa(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getSexo(),
+                                    busqueda.get(i).getUsuario(),
+                                    busqueda.get(i).getContraseña(),
+                                    busqueda.get(i).getVigencia()
+            });
+       }     
+    }
+     
+    public void buscarApellidosNombre(){
+        vistaAltaUsuario.modeloTabla.setRowCount(0);
+        String idusuario =  vistaAltaUsuario.fieldIdUsuario.getText();
+        String ape_paterno = vistaAltaUsuario.fieldApe_paterno.getText();
+        System.out.println("ape_paterno = " + ape_paterno);
+        String ape_materno = vistaAltaUsuario.fieldApe_materno.getText();
+        System.out.println("ape_materno = " + ape_materno);
+        String nombre = vistaAltaUsuario.fieldNombre.getText();
+        System.out.println("nombre = " + nombre);
+        
+        sqlUsuario sqlUsuario = new sqlUsuario(modeloUsuario);
+        ArrayList <modeloTablaUsuarios>  busqueda;
+        busqueda = sqlUsuario.tablaBuscarNombreApellidos(nombre, ape_paterno, ape_materno );
+        int iteraciones =  busqueda.size();
+        System.out.println("iteraciones = " + iteraciones);
+        
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAltaUsuario.modeloTabla.addRow(new Object[]{
+                                    busqueda.get(i).getNocontrol(),
+                                    busqueda.get(i).getFigura_educativa(),
+                                    busqueda.get(i).getApe_paterno(),
+                                    busqueda.get(i).getApe_materno(),
+                                    busqueda.get(i).getNombre(),
+                                    busqueda.get(i).getSexo(),
+                                    busqueda.get(i).getUsuario(),
+                                    busqueda.get(i).getContraseña(),
+                                    busqueda.get(i).getVigencia()
+            });
+       }     
     }
 }

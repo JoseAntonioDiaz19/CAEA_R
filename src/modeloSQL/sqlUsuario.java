@@ -196,7 +196,7 @@ public class sqlUsuario {
         try 
         {
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT * FROM vista_usuarios");
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios ORDER BY idusuario");
             Resultados = sql.executeQuery();
             lista = new ArrayList<>();
             while(Resultados.next())
@@ -241,7 +241,7 @@ public class sqlUsuario {
         try 
         {
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT * FROM vista_usuarios where figura_educativa <> 'administrador'");
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios where figura_educativa <> 'administrador' ORDER BY idusuario");
             Resultados = sql.executeQuery();
             lista = new ArrayList<>();
             while(Resultados.next())
@@ -286,7 +286,7 @@ public class sqlUsuario {
         try 
         {
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT * FROM vista_usuarios where figura_educativa = 'capacitador_tutor' OR figura_educativa = 'asistente_educativo'");
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios where figura_educativa = 'capacitador_tutor' OR figura_educativa = 'asistente_educativo' ORDER BY idusuario");
             Resultados = sql.executeQuery();
             lista = new ArrayList<>();
             while(Resultados.next())
@@ -331,7 +331,7 @@ public class sqlUsuario {
         try 
         {
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT * FROM vista_usuarios where figura_educativa = 'capacitador_tutor'");
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios where figura_educativa = 'capacitador_tutor' ORDER BY idusuario");
             Resultados = sql.executeQuery();
             lista = new ArrayList<>();
             while(Resultados.next())
@@ -376,7 +376,7 @@ public class sqlUsuario {
         try 
         {
             con = conexion.getConexion(modeloUsuario);
-            sql = con.prepareStatement("SELECT * FROM vista_usuarios where idusuario = ?");
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios where idusuario = ? ");
             sql.setInt(1, nocontrol);
             Resultados = sql.executeQuery();
             lista = new ArrayList<>();
@@ -542,5 +542,131 @@ public class sqlUsuario {
             System.err.print(e.getMessage());
             throw e;
         }  
+    }
+    
+    public ArrayList<modeloTablaUsuarios> tablaBuscarNocontrol(int idusuario){
+        ArrayList <modeloTablaUsuarios> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios WHERE idusuario = ? ");
+            sql.setInt(1,idusuario );
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaUsuarios(  Resultados.getInt(1),
+                                                    Resultados.getString(2),
+                                                    Resultados.getString(3),
+                                                    Resultados.getString(4),
+                                                    Resultados.getString(5),
+                                                    Resultados.getString(6),
+                                                    Resultados.getString(7),
+                                                    Resultados.getString(8),
+                                                    Resultados.getString(9)
+                                               
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    public ArrayList<modeloTablaUsuarios> tablaBuscarNombreApellidos(String nombre, String ape_paterno, String ape_materno){
+        ArrayList <modeloTablaUsuarios> lista = null;
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try 
+        {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT * FROM vista_usuarios WHERE ape_paterno LIKE '%'||?||'%' and ape_materno LIKE '%'||?||'%' and nombre LIKE '%'||?||'%'");
+            sql.setString(1,ape_paterno.toUpperCase() );            
+            sql.setString(2,ape_materno.toUpperCase() );
+            sql.setString(3,nombre.toUpperCase() );
+            
+            Resultados = sql.executeQuery();
+            lista = new ArrayList<>();
+            while(Resultados.next())
+            {
+                lista.add(new modeloTablaUsuarios(  Resultados.getInt(1),
+                                                    Resultados.getString(2),
+                                                    Resultados.getString(3),
+                                                    Resultados.getString(4),
+                                                    Resultados.getString(5),
+                                                    Resultados.getString(6),
+                                                    Resultados.getString(7),
+                                                    Resultados.getString(8),
+                                                    Resultados.getString(9)
+                                               
+                    )
+                );
+            }
+        } 
+        catch (SQLException e) 
+        {
+            System.err.print(e.getMessage());
+        }
+        finally
+        {
+            try 
+            {
+                con.close();
+            } 
+            catch (SQLException e) 
+            {
+                System.err.print(e.getMessage());
+            }
+        }
+        return lista;
+    }
+    
+    
+    public void borrarUsuario(String nombreUsuario) throws SQLException{
+        conexion = new conexion();
+        
+        System.out.println("nombreUsuario: "+ nombreUsuario);
+        Statement statement;
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            statement = con.createStatement();
+            statement.execute("DROP USER "+ nombreUsuario) ;
+            
+        }catch (final SQLException e){
+            System.err.print(e.getMessage()); 
+            throw e; 
+        }
+    }
+    
+    public void borrarUsuarioDeTabla(String nombreUsuario) throws SQLException{
+        conexion = new conexion();
+        Statement statement;
+        try{
+            con = conexion.getConexion(modeloUsuario);
+            statement = con.createStatement();
+            statement.execute("DELETE FROM usuario WHERE usuario = "+"'"+nombreUsuario+"'") ;
+            
+        }catch (final SQLException e){
+            System.err.print(e.getMessage()); 
+            throw e; 
+        }
     }
 }
