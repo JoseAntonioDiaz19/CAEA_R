@@ -101,4 +101,69 @@ public class sqlReinscribir {
         return existe;
         
     }
+    
+    //Metodo aun no utilizado
+    public String activarReiscribir() throws SQLException{
+        String activar = "f";
+        
+        String fechaInicio; 
+        String fechaFin;
+        
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT (select current_date)>= ? and (select current_date) <= ? ");
+            Resultados = sql.executeQuery();
+            while(Resultados.next()){
+                activar = Resultados.getString(1);
+            }
+        } 
+        catch (SQLException e){
+            System.err.print(e.getMessage());
+            throw e; 
+        }
+        finally {
+            try{
+                con.close();
+            } 
+            catch (SQLException e) {
+                System.err.print(e.getMessage());
+                throw e; 
+            }
+        }
+        return activar;
+    }
+    
+    //Metodo aun no utilizado
+    public String fechaInicioRe() throws SQLException{
+        String fechaInicio = null; 
+        
+        ResultSet Resultados;
+        PreparedStatement sql;
+        conexion = new conexion();
+        try {
+            con = conexion.getConexion(modeloUsuario);
+            sql = con.prepareStatement("SELECT inicio_inscripcion/reinscripcion FROM cicloescolar = ?");
+            Resultados = sql.executeQuery();
+            while(Resultados.next()){
+                fechaInicio = Resultados.getString(1);
+            }
+        } 
+        catch (SQLException e){
+            System.err.print(e.getMessage());
+            throw e; 
+        }
+        finally {
+            try{
+                con.close();
+            } 
+            catch (SQLException e) {
+                System.err.print(e.getMessage());
+                throw e; 
+            }
+        }
+        return fechaInicio;
+    }
 }
