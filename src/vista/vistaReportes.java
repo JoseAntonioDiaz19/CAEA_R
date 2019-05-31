@@ -36,20 +36,14 @@ public class vistaReportes extends javax.swing.JDialog {
         labelTitulo = new javax.swing.JLabel();
         panelOpciones = new javax.swing.JPanel();
         labelCicloEscolar = new javax.swing.JLabel();
-        labelRegion = new javax.swing.JLabel();
         labelTrimestre = new javax.swing.JLabel();
-        labelGrado = new javax.swing.JLabel();
-        labelAlumno = new javax.swing.JLabel();
         boxCicloEscolar = new javax.swing.JComboBox<>();
-        boxRegion = new javax.swing.JComboBox<>();
         boxTrimestre = new javax.swing.JComboBox<>();
-        boxGrado = new javax.swing.JComboBox<>();
-        fieldNumeroControl = new javax.swing.JTextField();
         panelBotones = new javax.swing.JPanel();
         botonGenerarReporte = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(430, 400));
+        setPreferredSize(new java.awt.Dimension(350, 250));
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
@@ -96,18 +90,6 @@ public class vistaReportes extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         panelOpciones.add(labelCicloEscolar, gridBagConstraints);
 
-        labelRegion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelRegion.setForeground(new java.awt.Color(255, 255, 255));
-        labelRegion.setText("Región");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        panelOpciones.add(labelRegion, gridBagConstraints);
-
         labelTrimestre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelTrimestre.setForeground(new java.awt.Color(255, 255, 255));
         labelTrimestre.setText("Trimestre");
@@ -119,30 +101,6 @@ public class vistaReportes extends javax.swing.JDialog {
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         panelOpciones.add(labelTrimestre, gridBagConstraints);
-
-        labelGrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelGrado.setForeground(new java.awt.Color(255, 255, 255));
-        labelGrado.setText("Grado");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        panelOpciones.add(labelGrado, gridBagConstraints);
-
-        labelAlumno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        labelAlumno.setForeground(new java.awt.Color(255, 255, 255));
-        labelAlumno.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        labelAlumno.setText("Alumno");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        panelOpciones.add(labelAlumno, gridBagConstraints);
 
         boxCicloEscolar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         boxCicloEscolar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ciclo escolar" }));
@@ -156,18 +114,6 @@ public class vistaReportes extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 0, 10);
         panelOpciones.add(boxCicloEscolar, gridBagConstraints);
 
-        boxRegion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxRegion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Región" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        panelOpciones.add(boxRegion, gridBagConstraints);
-
         boxTrimestre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         boxTrimestre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trimestre", "1", "2", "3" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -179,43 +125,6 @@ public class vistaReportes extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
         panelOpciones.add(boxTrimestre, gridBagConstraints);
-
-        boxGrado.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Grado", "1", "2", "3", "4", "5", "6" }));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 10);
-        panelOpciones.add(boxGrado, gridBagConstraints);
-
-        fieldNumeroControl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fieldNumeroControl.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        fieldNumeroControl.setText("Número de control");
-        fieldNumeroControl.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                fieldNumeroControlFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                fieldNumeroControlFocusLost(evt);
-            }
-        });
-        fieldNumeroControl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldNumeroControlActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 10, 10, 10);
-        panelOpciones.add(fieldNumeroControl, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -244,9 +153,11 @@ public class vistaReportes extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 50);
         panelBotones.add(botonGenerarReporte, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -263,29 +174,9 @@ public class vistaReportes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fieldNumeroControlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNumeroControlActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldNumeroControlActionPerformed
-
     private void botonGenerarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGenerarReporteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_botonGenerarReporteActionPerformed
-
-    private void fieldNumeroControlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumeroControlFocusGained
-        // TODO add your handling code here:
-        if ("Número de control".equals(fieldNumeroControl.getText())) {
-            fieldNumeroControl.setText("");
-            fieldNumeroControl.setForeground(Color.BLACK);  
-        }
-    }//GEN-LAST:event_fieldNumeroControlFocusGained
-
-    private void fieldNumeroControlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNumeroControlFocusLost
-        // TODO add your handling code here:
-        if (fieldNumeroControl.getText().isEmpty()) {
-            fieldNumeroControl.setText("Número de control");
-             fieldNumeroControl.setForeground(new Color(153, 153,153));
-        }
-    }//GEN-LAST:event_fieldNumeroControlFocusLost
 
     /**
      * @param args the command line arguments
@@ -333,14 +224,8 @@ public class vistaReportes extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonGenerarReporte;
     private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxGrado;
-    private javax.swing.JComboBox<String> boxRegion;
     private javax.swing.JComboBox<String> boxTrimestre;
-    private javax.swing.JTextField fieldNumeroControl;
-    private javax.swing.JLabel labelAlumno;
     private javax.swing.JLabel labelCicloEscolar;
-    private javax.swing.JLabel labelGrado;
-    private javax.swing.JLabel labelRegion;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTrimestre;
     private javax.swing.JPanel panelBotones;

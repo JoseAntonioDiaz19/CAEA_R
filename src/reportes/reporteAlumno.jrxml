@@ -1,29 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD JasperReport//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
-
-<jasperReport name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-    <background>
-        <band/>
-    </background>
-    <title>
-        <band height="79"/>
-    </title>
-    <pageHeader>
-        <band height="35"/>
-    </pageHeader>
-    <columnHeader>
-        <band height="61"/>
-    </columnHeader>
-    <detail>
-        <band height="125"/>
-    </detail>
-    <columnFooter>
-        <band height="45"/>
-    </columnFooter>
-    <pageFooter>
-        <band height="54"/>
-    </pageFooter>
-    <summary>
-        <band height="42"/>
-    </summary>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6403d7b1-57fa-465b-b03a-ced048df10fb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#FFE2BF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#FFF3E6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="Table Dataset 1" uuid="eb070123-484b-4a57-8c73-ac22dd7572c4"/>
+	<queryString>
+		<![CDATA[SELECT etapa.idetapa, etapa.descripcion, count(*)  
+FROM alumno 
+JOIN grado_alumno 
+	ON alumno.nocontrol = grado_alumno.nocontrol
+JOIN avance
+	ON grado_alumno.idgrado_alumno = 
+avance.idgrado_alumno 
+JOIN etapa 
+	ON etapa.idetapa = avance.idetapa 
+WHERE trimestre = 1 and idcicloescolar ='2017-2018' 
+GROUP BY etapa.descripcion, etapa.idetapa, 
+grado_alumno.idcicloescolar
+ORDER BY etapa.idetapa]]>
+	</queryString>
+	<field name="idetapa" class="java.lang.Integer"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<field name="count" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="fa617cb3-e391-4b57-80a6-0ae717bf8c5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CONSEJO NACIONAL DE FOMENTO EDUCATIVO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="555" height="20" uuid="5934bf32-c376-474e-a3f7-b9f576d966da"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[DELEGACIÓN DEL CONAFE EN EL ESTADO DE CHIAPAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="32" width="555" height="20" uuid="343d3a24-b69c-42f5-ab09-a0260220a0f1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[GRAFICA DE AVANCE EN LAS ETAPAS Y CARACTERISTICAS DE ESCRITURA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="78" height="20" uuid="60f40aa5-d6bf-441a-a88e-92a153908769"/>
+				<text><![CDATA[Ciclo escolar:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="78" y="0" width="100" height="20" uuid="cfbfc757-b538-4f82-9cbe-946ba1a09cab"/>
+				<textFieldExpression><![CDATA[]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="20" width="78" height="20" uuid="5528afbc-48af-4016-bf5f-5c00e5fac8a2"/>
+				<text><![CDATA[Trimestre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="78" y="20" width="100" height="20" uuid="5939be72-3456-4d1d-b6bb-a8f35034a38a"/>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="62" height="29" uuid="ce5ee30c-6dde-4eac-83eb-47cdbf918b43"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ETAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="0" width="380" height="29" uuid="1eaf3097-00b0-4736-93a5-70f16dbfbbb0"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="29" uuid="88982a7b-38fb-464d-bf11-547eca6f0916"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CANTIDAD DE ALUMNOS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="62" height="29" uuid="2fad0316-32de-4e52-bb29-f68dc1369f59"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{idetapa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="3" width="380" height="29" uuid="07fd893c-d7e5-40fa-ab5f-3e2337851066"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="3" width="100" height="29" uuid="4ca4f978-27a2-4a3d-ac5d-1dc0b12388cd"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="184" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="135" y="0" width="320" height="182" uuid="096cc4e6-875f-4e45-a982-62daa3af630c"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset/>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="13" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch"/>
+	</summary>
 </jasperReport>
