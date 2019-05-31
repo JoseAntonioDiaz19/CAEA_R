@@ -86,6 +86,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
         fieldApeMaterno = new javax.swing.JTextField();
         fieldNombre = new javax.swing.JTextField();
         panelBotones = new javax.swing.JPanel();
+        botonAvancesCapturas = new javax.swing.JButton();
         botonBuscar = new javax.swing.JButton();
         botonRegistrar = new javax.swing.JButton();
         panelTabla = new javax.swing.JPanel();
@@ -306,6 +307,20 @@ public class vistaPrincipal extends javax.swing.JFrame {
         panelBotones.setBackground(new java.awt.Color(8, 38, 67));
         panelBotones.setLayout(new java.awt.GridBagLayout());
 
+        botonAvancesCapturas.setBackground(new java.awt.Color(0, 102, 102));
+        botonAvancesCapturas.setForeground(new java.awt.Color(255, 255, 255));
+        botonAvancesCapturas.setText("Avances en capturas");
+        botonAvancesCapturas.setBorder(null);
+        botonAvancesCapturas.setFocusPainted(false);
+        botonAvancesCapturas.setMargin(new java.awt.Insets(5, 14, 5, 14));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        panelBotones.add(botonAvancesCapturas, gridBagConstraints);
+
         botonBuscar.setBackground(new java.awt.Color(8, 38, 67));
         botonBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -315,12 +330,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
         botonBuscar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 10, 40);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
         panelBotones.add(botonBuscar, gridBagConstraints);
 
         botonRegistrar.setBackground(new java.awt.Color(8, 38, 67));
@@ -332,12 +347,12 @@ public class vistaPrincipal extends javax.swing.JFrame {
         botonRegistrar.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 40, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 5, 0);
         panelBotones.add(botonRegistrar, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -673,6 +688,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton botonAdminCiclosEscolares;
+    public javax.swing.JButton botonAvancesCapturas;
     public javax.swing.JButton botonBuscar;
     public javax.swing.JButton botonCerrarSesion;
     public javax.swing.JButton botonExpandir;

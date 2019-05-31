@@ -66,6 +66,8 @@ public class controlVistaPrincipal {
         ventanaPrincipal.itemAvances.addActionListener(this::itemAvances);
         ventanaPrincipal.itemReinscribir.addActionListener(this::itemReinscribir);
         ventanaPrincipal.itemEliminar.addActionListener(this::itemEliminar);
+        
+        ventanaPrincipal.botonAvancesCapturas.addActionListener(this::botonAvancesCapturas);
     }
     
     private void close(){ 
@@ -197,7 +199,7 @@ public class controlVistaPrincipal {
         int iteraciones =  busquedaNocontrol.size();
         System.out.println("iteraciones = " + iteraciones);
         if (iteraciones == 0) {
-            JOptionPane.showMessageDialog(null, "¡No existe el numero el numero de control!");
+            JOptionPane.showMessageDialog(null, "¡No existe el numero de control!");
        }
        
         System.out.println("iteraciones = " + iteraciones);
@@ -723,5 +725,11 @@ public class controlVistaPrincipal {
                 JOptionPane.showMessageDialog(null, "Se ha producido un error al intentar eliminar");
             }
         }
+    }
+    
+    private void botonAvancesCapturas(ActionEvent e){
+        vistaAvancesCapturas vistaAvancesCapturas = new vistaAvancesCapturas();
+        controlVistaAvancesCapturas controlVistaAvancesCapturas = new controlVistaAvancesCapturas(vistaAvancesCapturas, modeloUsuario);
+        vistaAvancesCapturas.setVisible(true);
     }
 }
