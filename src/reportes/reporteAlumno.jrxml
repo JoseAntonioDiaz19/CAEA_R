@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6403d7b1-57fa-465b-b03a-ced048df10fb">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="22"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -49,6 +49,9 @@ ORDER BY etapa.idetapa]]>
 	<field name="idetapa" class="java.lang.Integer"/>
 	<field name="descripcion" class="java.lang.String"/>
 	<field name="count" class="java.lang.Long"/>
+	<variable name="count_1" class="java.lang.Long" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{count}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -83,6 +86,13 @@ ORDER BY etapa.idetapa]]>
 				<reportElement x="448" y="5" width="107" height="25" uuid="0b63b05b-67b1-4ad2-8bac-28a6124d278b"/>
 				<imageExpression><![CDATA["C:\\Users\\Dizan\\Google Drive\\CAEA\\CAEA_R\\src\\img\\CONAFE.png"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="0" y="55" width="555" height="20" uuid="c4784835-3dfb-4ca7-9822-438bcdc588ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ZONA 06 TAPACHULA]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -158,9 +168,9 @@ ORDER BY etapa.idetapa]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="3" width="62" height="29" uuid="2fad0316-32de-4e52-bb29-f68dc1369f59"/>
+				<reportElement x="0" y="0" width="62" height="42" uuid="2fad0316-32de-4e52-bb29-f68dc1369f59"/>
 				<box topPadding="5" leftPadding="0" bottomPadding="5" rightPadding="0">
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="1.0" lineStyle="Solid"/>
@@ -172,7 +182,7 @@ ORDER BY etapa.idetapa]]>
 				<textFieldExpression><![CDATA[$F{idetapa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement isPrintRepeatedValues="false" x="62" y="3" width="380" height="29" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="07fd893c-d7e5-40fa-ab5f-3e2337851066"/>
+				<reportElement isPrintRepeatedValues="false" x="62" y="0" width="380" height="42" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#CCCCCC" uuid="07fd893c-d7e5-40fa-ab5f-3e2337851066"/>
 				<box topPadding="5" leftPadding="4" bottomPadding="5" rightPadding="5">
 					<pen lineWidth="1.0" lineStyle="Solid"/>
 					<topPen lineWidth="1.0" lineStyle="Solid"/>
@@ -186,7 +196,7 @@ ORDER BY etapa.idetapa]]>
 				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="442" y="3" width="113" height="29" uuid="4ca4f978-27a2-4a3d-ac5d-1dc0b12388cd"/>
+				<reportElement x="442" y="0" width="113" height="42" uuid="4ca4f978-27a2-4a3d-ac5d-1dc0b12388cd"/>
 				<box topPadding="5" leftPadding="0" bottomPadding="5">
 					<pen lineWidth="1.0"/>
 					<topPen lineWidth="1.0"/>
@@ -200,10 +210,16 @@ ORDER BY etapa.idetapa]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="257" splitType="Stretch">
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="11" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="304" splitType="Stretch">
 			<bar3DChart>
 				<chart>
-					<reportElement style="table" mode="Transparent" x="0" y="0" width="555" height="257" uuid="b644699d-132d-4742-8c43-0972330386a7"/>
+					<reportElement style="table" mode="Transparent" x="0" y="52" width="555" height="252" uuid="b644699d-132d-4742-8c43-0972330386a7"/>
 					<box>
 						<pen lineWidth="0.0"/>
 						<topPen lineWidth="0.0"/>
@@ -233,12 +249,28 @@ ORDER BY etapa.idetapa]]>
 					</valueAxisFormat>
 				</bar3DPlot>
 			</bar3DChart>
+			<textField pattern="###0">
+				<reportElement x="442" y="0" width="113" height="30" uuid="3850c76a-f68c-4896-a31c-4e49b3e7cf84"/>
+				<box topPadding="4" bottomPadding="5">
+					<pen lineWidth="1.25" lineStyle="Solid"/>
+					<topPen lineWidth="1.25" lineStyle="Solid"/>
+					<leftPen lineWidth="1.25" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.25" lineStyle="Solid"/>
+					<rightPen lineWidth="1.25" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{count_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="303" y="0" width="139" height="30" uuid="0781b96b-c504-46d8-8b93-ad059551d0be"/>
+				<box topPadding="5" bottomPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total ]]></text>
+			</staticText>
 		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="6" splitType="Stretch"/>
-	</pageFooter>
-	<summary>
-		<band height="5" splitType="Stretch"/>
 	</summary>
 </jasperReport>
