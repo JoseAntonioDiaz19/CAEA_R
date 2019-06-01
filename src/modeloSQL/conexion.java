@@ -26,9 +26,7 @@ public class conexion{
         Connection con = null;
         System.out.println(" :::::: Clase conexion :::::: ");
         try {
-            System.out.println("C o n e c t a n d o");
             Class.forName("org.postgresql.Driver");
-            System.out.println("C o n e c t a n d o ...");
             con = DriverManager.getConnection(url, usuario, password);
             System.out.println("C o n e c t a d o !!!");
         }
@@ -48,9 +46,7 @@ public class conexion{
         Connection con = null;
         System.out.println(" :::::: Clase conexion :::::: ");
         try {
-            System.out.println("C o n e c t a n d o");
             Class.forName("org.postgresql.Driver");
-            System.out.println("C o n e c t a n d o ...");
             con = DriverManager.getConnection(url, usuario, password);
             System.out.println("C o n e c t a d o !!!");
         }

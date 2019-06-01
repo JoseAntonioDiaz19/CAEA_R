@@ -222,9 +222,9 @@ public class vistaReportes extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonGenerarReporte;
-    private javax.swing.JComboBox<String> boxCicloEscolar;
-    private javax.swing.JComboBox<String> boxTrimestre;
+    public javax.swing.JButton botonGenerarReporte;
+    public javax.swing.JComboBox<String> boxCicloEscolar;
+    public javax.swing.JComboBox<String> boxTrimestre;
     private javax.swing.JLabel labelCicloEscolar;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTrimestre;

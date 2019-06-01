@@ -86,6 +86,7 @@ public class controlVistaPrincipal {
     
     public void botonReportes(ActionEvent e){
         vistaReportes = new vistaReportes(ventanaPrincipal, true);
+        controlVistaReportes controlVistaReportes = new controlVistaReportes(vistaReportes, modeloUsuario);
         vistaReportes.setVisible(true);   
     }
     
