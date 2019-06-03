@@ -473,6 +473,7 @@ public class vistaPrincipal extends javax.swing.JFrame {
 
         botonAdminCiclosEscolares.setBackground(new java.awt.Color(0, 87, 126));
         botonAdminCiclosEscolares.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/folder_add32x32.png"))); // NOI18N
+        botonAdminCiclosEscolares.setToolTipText("");
         botonAdminCiclosEscolares.setBorder(null);
         botonAdminCiclosEscolares.setFocusPainted(false);
         botonAdminCiclosEscolares.setMaximumSize(new java.awt.Dimension(74, 22));

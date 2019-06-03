@@ -1,12 +1,9 @@
 package vista;
-
 import java.awt.Color;
-
 /**
  * @author Dizan
  */
 public class vistaCiclosEscolares extends javax.swing.JDialog {
-
     boolean esBisiestoInicio = false; 
     boolean cambioAñoInicio = false;
     boolean esBisiestoFin = false; 
@@ -18,7 +15,6 @@ public class vistaCiclosEscolares extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
     public void mes31Inicio() {
         boxDiaInicio.removeAllItems();
         boxDiaInicio.addItem("Dia");
@@ -452,7 +448,7 @@ public class vistaCiclosEscolares extends javax.swing.JDialog {
     private void boxMesInicioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesInicioItemStateChanged
         // TODO add your handling code here:
         String seleccion = (String) boxMesInicio.getSelectedItem();
-        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("8") || seleccion.equals("10") || seleccion.equals("12"))  {
+        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("08") || seleccion.equals("10") || seleccion.equals("12"))  {
              mes31Inicio();
             //Abril, Junio, Septiembre y Noviembre.
         }
@@ -495,7 +491,7 @@ public class vistaCiclosEscolares extends javax.swing.JDialog {
     private void boxMesFinItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxMesFinItemStateChanged
         // TODO add your handling code here:
         String seleccion = (String) boxMesFin.getSelectedItem();
-        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("8") || seleccion.equals("10") || seleccion.equals("12"))  {
+        if (seleccion.equals("01") || seleccion.equals("03") || seleccion.equals("05") || seleccion.equals("07") ||seleccion.equals("08") || seleccion.equals("10") || seleccion.equals("12"))  {
              mes31Fin();
             //Abril, Junio, Septiembre y Noviembre.
         }
