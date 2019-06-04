@@ -47,9 +47,9 @@ public class controlVistaAltaAlumno {
         mes= String.valueOf(vistaAltaAlumno.boxMes.getSelectedItem());
         dia= String.valueOf(vistaAltaAlumno.boxDia.getSelectedItem()); 
         Fecha= año+'-'+mes+'-'+dia;
+        
         modeloAlumno.setNumeroControl(Integer.valueOf(vistaAltaAlumno.fieldNumeroControl.getText()));
-        modeloAlumno.setIdRegion( Integer.parseInt(substring(vistaAltaAlumno.boxRegion.getSelectedItem().toString(), 0,3))
-        );
+        modeloAlumno.setIdRegion( Integer.parseInt(substring(vistaAltaAlumno.boxRegion.getSelectedItem().toString(), 0,3)));
         modeloAlumno.setNombre(vistaAltaAlumno.fieldNombre.getText());
         modeloAlumno.setApe_paterno(vistaAltaAlumno.fieldApe_paterno.getText());
         modeloAlumno.setApe_materno(vistaAltaAlumno.fieldApe_materno.getText());
@@ -58,20 +58,25 @@ public class controlVistaAltaAlumno {
         modeloAlumno.setCicloEscolar(String.valueOf(vistaAltaAlumno.boxCicloEscolar.getSelectedItem()));
         modeloAlumno.setGrado(Integer.parseInt(vistaAltaAlumno.boxGrado.getSelectedItem().toString()));
         
-        boolean NoexisteNocontrol = sqlAlumno.existeNocontrolAlumno(modeloAlumno.getNumeroControl());
-        if (NoexisteNocontrol) {
-            try {
-                sqlAlumno.insertarAlta(modeloAlumno);
-                JOptionPane.showMessageDialog(vistaAltaAlumno, "La operación se realizó correctamente");
-                vistaAltaAlumno.dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(controlVistaAltaAlumno.class.getName()).log(Level.SEVERE, null, ex);
-                vistaAltaAlumno.labelMensaje.setText("Revise si los datos capturados son correctos");
+        if (modeloAlumno.getNombre().equals("") || modeloAlumno.getApe_paterno().equals("") || modeloAlumno.getApe_materno().equals("")) {
+            JOptionPane.showMessageDialog(null, "Los campos de nombre y apellidos no deben estar vacios");
+        } else {
+            boolean NoexisteNocontrol = sqlAlumno.existeNocontrolAlumno(modeloAlumno.getNumeroControl());
+            if (NoexisteNocontrol) {
+                try {
+                    sqlAlumno.insertarAlta(modeloAlumno);
+                    JOptionPane.showMessageDialog(vistaAltaAlumno, "La operación se realizó correctamente");
+                    vistaAltaAlumno.dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(controlVistaAltaAlumno.class.getName()).log(Level.SEVERE, null, ex);
+                    vistaAltaAlumno.labelMensaje.setText("Revise si los datos capturados son correctos");
+                    vistaAltaAlumno.labelMensaje.setForeground(new Color(204,51,0));
+                }
+            }else{
+                vistaAltaAlumno.labelMensaje.setText("El número control ya existe");
                 vistaAltaAlumno.labelMensaje.setForeground(new Color(204,51,0));
-            }
-        }else{
-            vistaAltaAlumno.labelMensaje.setText("El número control ya existe");
-            vistaAltaAlumno.labelMensaje.setForeground(new Color(204,51,0));
+           }
+            
         }
     }
     

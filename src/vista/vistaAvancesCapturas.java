@@ -38,10 +38,10 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
     
     private void popupMenuTabla(){
        
-        popup.add(itemEditar);
-        popup.add(itemAvances);
-        popup.add(itemReinscribir);
-        popup.add(itemEliminar);
+//        popup.add(itemEditar);
+//        popup.add(itemAvances);
+//        popup.add(itemReinscribir);
+//        popup.add(itemEliminar);
         boxSituacion.setComponentPopupMenu(popup);
     }
     

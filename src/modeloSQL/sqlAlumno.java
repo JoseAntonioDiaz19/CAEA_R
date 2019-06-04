@@ -33,7 +33,7 @@ public class sqlAlumno {
                     +alumno.getIdRegion()+",'"
                     +alumno.getNombre()+"','"
                     +alumno.getApe_paterno()+"','"
-                    +alumno.getApe_paterno()+"','"
+                    +alumno.getApe_materno()+"','"
                     +alumno.getSexo()+"','"
                     +alumno.getFecha_nacimiento()+"','"
                     +alumno.getCicloEscolar()+"',"

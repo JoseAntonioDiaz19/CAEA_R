@@ -30,6 +30,7 @@ public class controlVistaUsuarios {
         vistaAltaUsuario.btnbuscarusuario.addActionListener(this::btnbuscarusuario);
         vistaAltaUsuario.itemSeleccionar.addActionListener(this::itemSeleccionar);
         vistaAltaUsuario.itemEliminar.addActionListener(this::itemEliminar);
+        vistaAltaUsuario.btnLimpiar.addActionListener(this::botonLimpiar);
         llenarDatosInterfaz();
     }
     
@@ -55,6 +56,11 @@ public class controlVistaUsuarios {
         
         String fecha = null;
         
+    if (modeloAltaUsuario2.getNombre().equals("Nombre") || modeloAltaUsuario2.getApe_paterno().equals("Apellido Paterno") || modeloAltaUsuario2.getApe_materno().equals("Apellido Materno") || modeloAltaUsuario2.getUsuario().equals("Usuario")|| modeloAltaUsuario2.getContraseña().equals("Contraseña")) {
+        JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+
+    } else {
+
         if (vistaAltaUsuario.jDateChooserVigencia.getDate() == null) {
             JOptionPane.showMessageDialog(null, "¡¡¡Seleccione una fecha!!!");
         }
@@ -78,6 +84,7 @@ public class controlVistaUsuarios {
             try {
                 sqlUsuario.altaUsuario(modeloAltaUsuario2);
                 JOptionPane.showMessageDialog(null, "Usuario creado correctamente");
+                buscarPorNocontrol();
             } catch (SQLException ex) {
                 Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Error al crear el usuario");
@@ -92,6 +99,7 @@ public class controlVistaUsuarios {
                         fecha);
 
                JOptionPane.showMessageDialog(null, "Permisos asignados correctamente");
+                buscarPorNocontrol();
 
                 } catch (SQLException ex) {
                     Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,7 +116,8 @@ public class controlVistaUsuarios {
                         fecha);
 
                 JOptionPane.showMessageDialog(null, "Permisos asignados correctamente");
-
+                buscarPorNocontrol();
+                
                 } catch (SQLException ex) {
                     Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(null, "Error al asignar permisos");
@@ -125,6 +134,7 @@ public class controlVistaUsuarios {
                         fecha);
 
                 JOptionPane.showMessageDialog(null, "Permisos asignados correctamente");
+                buscarPorNocontrol();
 
                 } catch (SQLException ex) {
                     Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,6 +151,7 @@ public class controlVistaUsuarios {
                         fecha);
 
                 JOptionPane.showMessageDialog(null, "Permisos asignados correctamente");
+                buscarPorNocontrol();
 
                 } catch (SQLException ex) {
                     Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -151,10 +162,15 @@ public class controlVistaUsuarios {
 
         }else{
             JOptionPane.showMessageDialog(null, "El nombre de usuario o el nocontrol ya existe");
+            
         }
-    }else{JOptionPane.showMessageDialog(null, "Llene todos los campos");}
-         
+    }else{
+        JOptionPane.showMessageDialog(null, "Llene todos los campos");
     }
+    
+  }
+    
+}
     
     private void btnactualizarusuario(ActionEvent e){
         sqlUsuario sqlUsuario = new sqlUsuario(modeloUsuario);
@@ -183,11 +199,13 @@ public class controlVistaUsuarios {
         try {
         sqlUsuario.actualizarDatosUsuario(modeloAltaUsuario, idfiguraEducativa );
         JOptionPane.showMessageDialog(null, "Actualizado correctamente");
+        
+            buscarPorNocontrol();
 
         } catch (SQLException ex) {
             Logger.getLogger(controlVistaUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al actualizar");
-        }   
+        }  
     }
     
     private void btnbuscarusuario(ActionEvent e){
@@ -240,9 +258,6 @@ public class controlVistaUsuarios {
         }
     }
     
-    private void btneliminarusuario(ActionEvent e){
-    
-    }
     
     private void llenarDatosInterfaz(){
         
@@ -250,7 +265,7 @@ public class controlVistaUsuarios {
         ArrayList <String> lista;
         lista = sqlUsuario.llenarFigurasEducativas();
         int iteraciones = lista.size();
-         
+        vistaAltaUsuario.boxFigura_educativa.removeAllItems();
         int idfiguraConectada = modeloUsuario.getIdfigura_educativa();
         System.out.println("idfiguraConectada = " + idfiguraConectada);
         
@@ -512,5 +527,19 @@ public class controlVistaUsuarios {
                                     busqueda.get(i).getVigencia()
             });
        }     
+    }
+    
+    private void botonLimpiar(ActionEvent e){
+        
+        vistaAltaUsuario.fieldIdUsuario.setText("");
+        vistaAltaUsuario.fieldApe_materno.setText("Apellido Materno");
+        vistaAltaUsuario.fieldApe_paterno.setText("Apellido Paterno");
+        vistaAltaUsuario.fieldNombre.setText("Nombre");
+        vistaAltaUsuario.txtcontraseñausuario.setText("Contraseña");
+        vistaAltaUsuario.txtnombreUser.setText("Usuario");
+        vistaAltaUsuario.boxFigura_educativa.setSelectedIndex(0);
+        vistaAltaUsuario.boxSexo.setSelectedIndex(0);
+        vistaAltaUsuario.jDateChooserVigencia.setCalendar(null);
+        llenarDatosInterfaz();
     }
 }

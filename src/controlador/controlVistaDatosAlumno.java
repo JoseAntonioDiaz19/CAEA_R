@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.modeloDatosAlumno;
 import modelo.modeloSesionUsuario;
 import modeloSQL.sqlDatosAlumno;
@@ -54,29 +55,32 @@ public class controlVistaDatosAlumno {
         modeloDatosAlumnoNuevo.setFecha_nacimiento(fecha);
         modeloDatosAlumnoNuevo.setCicloescolar((String) vistaDatosAlumno.boxCicloEscolar.getSelectedItem());
         modeloDatosAlumnoNuevo.setGrado(Integer.parseInt(vistaDatosAlumno.boxGrado.getSelectedItem().toString()));
-        System.out.println("Grado " + modeloDatosAlumnoNuevo.getGrado());
         modeloDatosAlumnoNuevo.setSituacion((String) vistaDatosAlumno.boxSituacion.getSelectedItem());
        
         int region = Integer.parseInt(modeloDatosAlumnoNuevo.getRegion().substring(1, 3));
-        System.out.println("region = " + region);
         
         sqlDatosAlumno  sqlDatosAlumno = new sqlDatosAlumno(modeloUsuario);
         int idgrado_alumno = sqlDatosAlumno.idgrado_alumno( modeloDatosAlumnoAnterior.getNocontrol(), 
                                                             modeloDatosAlumnoAnterior.getGrado(), 
                                                             modeloDatosAlumnoAnterior.getCicloescolar());
-        
-        System.out.println("idgrado_alumno = " + idgrado_alumno);
        
-        try {
+       
+         if (modeloDatosAlumnoNuevo.getNombre().equals("") || modeloDatosAlumnoNuevo.getApe_paterno().equals("") || modeloDatosAlumnoNuevo.getApe_materno().equals("")) {
+            JOptionPane.showMessageDialog(null, "Los campos de nombre y apellidos no deben estar vacios");
+        
+         } else {
+            try {
             sqlDatosAlumno.actualizar(modeloDatosAlumnoNuevo, modeloDatosAlumnoAnterior,
                                       region, 
                                       vistaDatosAlumno.boxSituacion.getSelectedIndex()-1, 
                                       vistaDatosAlumno.boxSituacionFinal.getSelectedIndex()-1,idgrado_alumno);
             
-        } catch (SQLException ex) {
-            Logger.getLogger(controlVistaDatosAlumno.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        vistaDatosAlumno.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(controlVistaDatosAlumno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            vistaDatosAlumno.dispose();
+             
+         }
     }
 }

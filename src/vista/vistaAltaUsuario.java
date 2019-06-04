@@ -1,11 +1,8 @@
 package vista;
 import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -23,10 +20,8 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         super(parent, modal);
         this.setLocationRelativeTo(null);
         initComponents();
-        JTextField [] tfs ={fieldIdUsuario,fieldNombre,fieldApe_paterno,fieldApe_materno,txtnombreUser,txtcontraseñausuario};
         scrollUsuarios.getViewport().setBackground(new Color(8,38,67));
         modeloTabla = (DefaultTableModel) tablaUsuarios.getModel() ;
-        HintText(tfs);
         popupMenuTabla();
     }
     
@@ -34,58 +29,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         popup.add(itemSeleccionar);
         popup.add(itemEliminar);
         tablaUsuarios.setComponentPopupMenu(popup);
-    }
-    
-    private void HintText(JTextField [] tfs)
-    {
-        for(JTextField jtf: tfs){
-            
-            jtf.addFocusListener(new FocusListener(){
-                @Override
-                public void focusGained(FocusEvent fe) 
-                {
-                    if(jtf.getText().equals("Numero de Control")){
-                        jtf.setText("");
-                    }
-                    if(jtf.getText().equals("Nombre")){
-                        jtf.setText("");
-                        
-                    }
-                    if(jtf.getText().equals("Apellido Paterno")){
-                        jtf.setText("");
-                        
-                    }if(jtf.getText().equals("Apellido Materno")){
-                        jtf.setText("");
-                        
-                    }if(jtf.getText().equals("Usuario")){
-                        jtf.setText("");
-                        
-                    }if(jtf.getText().equals("Contraseña")){
-                        jtf.setText("");
-                        
-                    }
-                }
-
-                @Override
-                public void focusLost(FocusEvent fe) 
-                {
-                if(jtf.equals(fieldIdUsuario) && jtf.getText().equals("")){
-                    jtf.setText(("Numero de Control"));
-                } if(jtf.equals(fieldNombre) && jtf.getText().equals("")){
-                    jtf.setText(("Nombre"));
-                }  if(jtf.equals(fieldApe_paterno) && jtf.getText().equals("")){
-                    jtf.setText(("Apellido Paterno"));
-                } if(jtf.equals(fieldApe_materno) && jtf.getText().equals("")){
-                    jtf.setText(("Apellido Materno"));
-                }   if(jtf.equals(txtnombreUser) && jtf.getText().equals("")){
-                    jtf.setText(("Usuario"));
-                }    if(jtf.equals(txtcontraseñausuario) && jtf.getText().equals("")){
-                    jtf.setText(("Contraseña"));
-                }     
-                }
-                
-            });
-        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,9 +45,10 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         labelTitulo = new javax.swing.JLabel();
         panelDatos = new javax.swing.JPanel();
         fieldIdUsuario = new javax.swing.JTextField();
-        fieldNombre = new javax.swing.JTextField();
+        panelNombre = new javax.swing.JPanel();
         fieldApe_paterno = new javax.swing.JTextField();
         fieldApe_materno = new javax.swing.JTextField();
+        fieldNombre = new javax.swing.JTextField();
         boxFigura_educativa = new javax.swing.JComboBox<>();
         boxSexo = new javax.swing.JComboBox<>();
         txtnombreUser = new javax.swing.JTextField();
@@ -112,6 +56,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnbuscarusuario = new javax.swing.JButton();
         btnagregarusuario = new javax.swing.JButton();
         btnactualizarusuario = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         labelVigencia = new javax.swing.JLabel();
         jDateChooserVigencia = new com.toedter.calendar.JDateChooser();
         panelTabla = new javax.swing.JPanel();
@@ -151,14 +96,17 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         panelPrincipal.add(panelTitulo, gridBagConstraints);
 
         panelDatos.setBackground(new java.awt.Color(8, 38, 67));
-        panelDatos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelDatos.setLayout(new java.awt.GridBagLayout());
 
         fieldIdUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fieldIdUsuario.setText("Numero de Control");
+        fieldIdUsuario.setPreferredSize(new java.awt.Dimension(65, 21));
         fieldIdUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fieldIdUsuarioFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldIdUsuarioFocusLost(evt);
             }
         });
         fieldIdUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -170,23 +118,44 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(fieldIdUsuario, gridBagConstraints);
 
-        fieldNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fieldNombre.setText("Nombre");
-        fieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
+        panelNombre.setBackground(new java.awt.Color(0, 51, 102));
+        panelNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        panelNombre.setLayout(new java.awt.GridBagLayout());
+
+        fieldApe_paterno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fieldApe_paterno.setText("Apellido Paterno");
+        fieldApe_paterno.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                fieldNombreFocusGained(evt);
+                fieldApe_paternoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldApe_paternoFocusLost(evt);
             }
         });
-        fieldNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldNombreActionPerformed(evt);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 5, 5);
+        panelNombre.add(fieldApe_paterno, gridBagConstraints);
+
+        fieldApe_materno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fieldApe_materno.setText("Apellido Materno");
+        fieldApe_materno.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fieldApe_maternoFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldApe_maternoFocusLost(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -197,13 +166,21 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(fieldNombre, gridBagConstraints);
+        panelNombre.add(fieldApe_materno, gridBagConstraints);
 
-        fieldApe_paterno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fieldApe_paterno.setText("Apellido Paterno");
-        fieldApe_paterno.addFocusListener(new java.awt.event.FocusAdapter() {
+        fieldNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fieldNombre.setText("Nombre");
+        fieldNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                fieldApe_paternoFocusGained(evt);
+                fieldNombreFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                fieldNombreFocusLost(evt);
+            }
+        });
+        fieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNombreActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -213,37 +190,29 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(fieldApe_paterno, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 0);
+        panelNombre.add(fieldNombre, gridBagConstraints);
 
-        fieldApe_materno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fieldApe_materno.setText("Apellido Materno");
-        fieldApe_materno.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                fieldApe_maternoFocusGained(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelDatos.add(fieldApe_materno, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        panelDatos.add(panelNombre, gridBagConstraints);
 
         boxFigura_educativa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         boxFigura_educativa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-Figura Educativa-" }));
-        boxFigura_educativa.setPreferredSize(new java.awt.Dimension(65, 21));
+        boxFigura_educativa.setMinimumSize(new java.awt.Dimension(65, 21));
+        boxFigura_educativa.setPreferredSize(new java.awt.Dimension(6, 21));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 0, 5);
         panelDatos.add(boxFigura_educativa, gridBagConstraints);
 
         boxSexo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -255,7 +224,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 0, 5);
         panelDatos.add(boxSexo, gridBagConstraints);
 
         txtnombreUser.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -272,7 +241,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 0, 5);
         panelDatos.add(txtnombreUser, gridBagConstraints);
 
         txtcontraseñausuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -284,7 +253,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        gridBagConstraints.insets = new java.awt.Insets(10, 5, 0, 5);
         panelDatos.add(txtcontraseñausuario, gridBagConstraints);
 
         btnbuscarusuario.setBackground(new java.awt.Color(8, 38, 67));
@@ -294,7 +263,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnbuscarusuario.setBorder(null);
         btnbuscarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
@@ -309,7 +278,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnagregarusuario.setBorder(null);
         btnagregarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
@@ -324,13 +293,28 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
         btnactualizarusuario.setBorder(null);
         btnactualizarusuario.setFocusPainted(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.ipadx = 15;
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weighty = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelDatos.add(btnactualizarusuario, gridBagConstraints);
+
+        btnLimpiar.setBackground(new java.awt.Color(8, 38, 67));
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setBorder(null);
+        btnLimpiar.setFocusPainted(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        panelDatos.add(btnLimpiar, gridBagConstraints);
 
         labelVigencia.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         labelVigencia.setForeground(new java.awt.Color(255, 255, 255));
@@ -410,25 +394,37 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     }//GEN-LAST:event_txtnombreUserActionPerformed
 
     private void fieldIdUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldIdUsuarioFocusGained
-        // TODO add your handling code here:
-//        fieldApe_materno.setText("Apellido Materno");
-//        fieldApe_paterno.setText("Apellido Paterno");
-//        fieldNombre.setText("Nombre");
+        if ("Numero de Control".equals(fieldIdUsuario.getText())) {
+            fieldIdUsuario.setText("");
+            fieldIdUsuario.setForeground(Color.BLACK);   
+        }
+        fieldApe_materno.setText("Apellido Materno");
+        fieldApe_paterno.setText("Apellido Paterno");
+        fieldNombre.setText("Nombre");
     }//GEN-LAST:event_fieldIdUsuarioFocusGained
 
     private void fieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusGained
-        // TODO add your handling code here:
-//        fieldIdUsuario.setText("Numero de Control");
+        if ("Nombre".equals(fieldNombre.getText())) {
+                fieldNombre.setText("");
+                fieldNombre.setForeground(Color.BLACK);  
+            }
+            fieldIdUsuario.setText("Numero de Control");
     }//GEN-LAST:event_fieldNombreFocusGained
 
     private void fieldApe_paternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_paternoFocusGained
-        // TODO add your handling code here:
-//        fieldIdUsuario.setText("Numero de Control");
+         if ("Apellido Paterno".equals(fieldApe_paterno.getText())) {
+                fieldApe_paterno.setText("");
+                fieldApe_paterno.setForeground(Color.BLACK); 
+            }
+            fieldIdUsuario.setText("Numero de Control");
     }//GEN-LAST:event_fieldApe_paternoFocusGained
 
     private void fieldApe_maternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_maternoFocusGained
-        // TODO add your handling code here:
-//        fieldIdUsuario.setText("Numero de Control");
+         if ("Apellido Materno".equals(fieldApe_materno.getText())) {
+                fieldApe_materno.setText("");
+                fieldApe_materno.setForeground(Color.BLACK);  
+            } 
+            fieldIdUsuario.setText("Numero de Control");
     }//GEN-LAST:event_fieldApe_maternoFocusGained
 
     private void fieldIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdUsuarioActionPerformed
@@ -438,6 +434,38 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     private void fieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNombreActionPerformed
+
+    private void fieldIdUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldIdUsuarioFocusLost
+        // TODO add your handling code here:
+        if (fieldIdUsuario.getText().isEmpty()) {
+            fieldIdUsuario.setText("Numero de Control");
+            fieldIdUsuario.setForeground(new Color(153, 153,153));
+        }
+    }//GEN-LAST:event_fieldIdUsuarioFocusLost
+
+    private void fieldNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusLost
+        // TODO add your handling code here:
+        if (fieldNombre.getText().isEmpty()) {
+            fieldNombre.setText("Nombre");
+            fieldNombre.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_fieldNombreFocusLost
+
+    private void fieldApe_paternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_paternoFocusLost
+        // TODO add your handling code here:
+        if (fieldApe_paterno.getText().isEmpty()) {
+            fieldApe_paterno.setText("Apellido Paterno");
+            fieldApe_paterno.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_fieldApe_paternoFocusLost
+
+    private void fieldApe_maternoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_maternoFocusLost
+        // TODO add your handling code here:
+        if (fieldApe_materno.getText().isEmpty()) {
+            fieldApe_materno.setText("Apellido Materno");
+            fieldApe_materno.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_fieldApe_maternoFocusLost
 
     /**
      * @param args the command line arguments
@@ -484,6 +512,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JComboBox<String> boxFigura_educativa;
     public javax.swing.JComboBox<String> boxSexo;
+    public javax.swing.JButton btnLimpiar;
     public javax.swing.JButton btnactualizarusuario;
     public javax.swing.JButton btnagregarusuario;
     public javax.swing.JButton btnbuscarusuario;
@@ -495,6 +524,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelVigencia;
     private javax.swing.JPanel panelDatos;
+    private javax.swing.JPanel panelNombre;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel panelTabla;
     private javax.swing.JPanel panelTitulo;

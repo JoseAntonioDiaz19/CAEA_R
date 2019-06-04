@@ -56,7 +56,7 @@ public class modeloUsuario {
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
-        this.nombre = nombre.toUpperCase();
+        this.nombre = nombre.toUpperCase().trim();
     }
 
     /**
@@ -70,7 +70,7 @@ public class modeloUsuario {
      * @param ape_paterno the ape_paterno to set
      */
     public void setApe_paterno(String ape_paterno) {
-        this.ape_paterno = ape_paterno.toUpperCase();
+        this.ape_paterno = ape_paterno.toUpperCase().trim();
     }
 
     /**
@@ -84,7 +84,7 @@ public class modeloUsuario {
      * @param ape_materno the ape_materno to set
      */
     public void setApe_materno(String ape_materno) {
-        this.ape_materno = ape_materno.toUpperCase();
+        this.ape_materno = ape_materno.toUpperCase().trim();
     }
 
     /**

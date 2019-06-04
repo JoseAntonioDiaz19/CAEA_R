@@ -194,7 +194,7 @@ public class controlVistaPrincipal {
         ventanaPrincipal.modeloTabla.setRowCount(0);
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
         ArrayList <modeloTablaPrincipal>  busquedaNocontrol;
-        String nocontrol = ventanaPrincipal.fieldNumerocontrol.getText();
+        String nocontrol = ventanaPrincipal.fieldNumerocontrol.getText().trim();
         busquedaNocontrol = sqlPrincipal.buscarPorNocontrol(nocontrol);
        
         int iteraciones =  busquedaNocontrol.size();
@@ -475,9 +475,9 @@ public class controlVistaPrincipal {
     
     private void buscarApellidosNombre(){
         ventanaPrincipal.modeloTabla.setRowCount(0);
-        String ape_paterno = ventanaPrincipal.fieldApePaterno.getText().toUpperCase();
-        String ape_materno = ventanaPrincipal.fieldApeMaterno.getText().toUpperCase();
-        String nombre = ventanaPrincipal.fieldNombre.getText().toUpperCase();
+        String ape_paterno = ventanaPrincipal.fieldApePaterno.getText().toUpperCase().trim();
+        String ape_materno = ventanaPrincipal.fieldApeMaterno.getText().toUpperCase().trim();
+        String nombre = ventanaPrincipal.fieldNombre.getText().toUpperCase().trim();
         sqlPrincipal sqlPrincipal = new sqlPrincipal(modeloUsuario);
         
         ArrayList <modeloTablaPrincipal>  busqueda;
