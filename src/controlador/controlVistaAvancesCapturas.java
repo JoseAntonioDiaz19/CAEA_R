@@ -39,6 +39,7 @@ public class controlVistaAvancesCapturas {
         vistaAvancesCapturas.boxCicloEscolar.addItemListener(this::boxCicloEscolar);
         vistaAvancesCapturas.boxRegion.addItemListener(this::boxRegion);
         vistaAvancesCapturas.boxGrado.addItemListener(this::boxGrado);
+        vistaAvancesCapturas.boxSituacion.addItemListener(this::boxSituacion);
     }
     
     private void llenarCiclosEscolares(){
@@ -72,13 +73,13 @@ public class controlVistaAvancesCapturas {
    }
     
     private void llenarSituaciones(){
-        //Llenar situaciones
-        sqlDatosAlumno sqlDatosAlumno=new sqlDatosAlumno(modeloUsuario);
-        ArrayList <String>  situacion;
-        situacion = sqlDatosAlumno.situacionFinal();
-        int iteracionesSituacion = situacion.size();
-        for (int i = 0; i < iteracionesSituacion; i++) {
-            vistaAvancesCapturas.boxSitacion.addItem(situacion.get(i));
+        //llenar situacion final
+        sqlDatosAlumno sqlDatosAlumno = new sqlDatosAlumno(modeloUsuario);
+        ArrayList <String>  situacionFinal;
+        situacionFinal = sqlDatosAlumno.situacionFinal();
+        int iteracionesSituacionFinal = situacionFinal.size();
+        for (int i = 0; i < iteracionesSituacionFinal; i++) {
+            vistaAvancesCapturas.boxSituacion.addItem(situacionFinal.get(i));
         }
     }
         
@@ -149,6 +150,39 @@ public class controlVistaAvancesCapturas {
                 && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloRegionGrado();
         } 
+    }
+    
+    private void boxSituacion(ItemEvent eventItem){
+        String itemGrado = (String) vistaAvancesCapturas.boxGrado.getSelectedItem();
+        String itemCiclo = (String) vistaAvancesCapturas.boxCicloEscolar.getSelectedItem();
+        String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
+        String itemSituacion = (String) vistaAvancesCapturas.boxSituacion.getSelectedItem();
+        
+        if (!itemSituacion.equals("- Situacion actual/final -")) {
+             buscarSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarGradoSituacion();
+        } 
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") && !itemRegion.equals("- Seleccione Region -")) {
+            buscarRegionSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarRegionGradoSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarGradoSituacion();
+        }
+        if (!itemSituacion.equals("- Situacion actual/final -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemRegion.equals("- Seleccione Region -")) {
+            buscarCicloescolarRegionSituacion();
+        }
+        if (!itemSituacion.equals("- Situacion actual/final -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarRegionGradoSituacion();
+        }
     }
    
     private void buscarPorCicloEscolar(){
@@ -328,6 +362,228 @@ public class controlVistaAvancesCapturas {
         for (int i = 0; i < iteraciones; i++) {
                 vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
                                     busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+                });
+            }      
+        }
+    
+        private void buscarSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarSituacion(estado_actual_final);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+                });
+            }      
+        }
+        
+        private void buscarGradoSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        int itemGrado = Integer.parseInt((String) vistaAvancesCapturas.boxGrado.getSelectedItem());
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarGradoSituacion(estado_actual_final, itemGrado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+            });
+       }      
+    }
+    
+    private void buscarRegionSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(0,itemRegion.length());
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarRegionSituacion(estado_actual_final, itemRegion);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+            });
+       }      
+    }
+    private void buscarRegionGradoSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        int itemGrado = Integer.parseInt((String) vistaAvancesCapturas.boxGrado.getSelectedItem());
+        String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(0,itemRegion.length());
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarRegionGradoSituacion(estado_actual_final, itemGrado ,itemRegion);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+            });
+       }      
+    }
+    
+    private void buscarCicloescolarSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        String cicloescolar = String.valueOf(vistaAvancesCapturas.boxCicloEscolar.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarCicloescolarSituacion(estado_actual_final,cicloescolar);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+            });
+       }      
+    }
+    private void buscarCicloescolarGradoSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        int itemGrado = Integer.parseInt((String) vistaAvancesCapturas.boxGrado.getSelectedItem());
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        String cicloescolar = String.valueOf(vistaAvancesCapturas.boxCicloEscolar.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarCicloescolarGradoSituacion(estado_actual_final,cicloescolar, itemGrado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+            });
+       }      
+    }
+    
+    private void buscarCicloescolarRegionSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(0,itemRegion.length());
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        String cicloescolar = String.valueOf(vistaAvancesCapturas.boxCicloEscolar.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarCicloescolarRegionSituacion(estado_actual_final,cicloescolar, itemRegion);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
+                                                    busqueda.get(i).getRegion(),
+                                                    busqueda.get(i).getNocontrol(),
+                                                    busqueda.get(i).getIdgrado(),
+                                                    busqueda.get(i).getApe_paterno(),
+                                                    busqueda.get(i).getApe_materno(),
+                                                    busqueda.get(i).getNombre(),
+                                                    busqueda.get(i).getT1(),
+                                                    busqueda.get(i).getT2(),
+                                                    busqueda.get(i).getT3(),
+                                                    busqueda.get(i).getEstado_actual_final()
+            });
+       }      
+    }
+    
+    private void buscarCicloescolarRegionGradoSituacion(){
+        vistaAvancesCapturas.modeloTabla.setRowCount(0);
+        int itemGrado = Integer.parseInt((String) vistaAvancesCapturas.boxGrado.getSelectedItem());
+        String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
+        itemRegion = itemRegion.substring(0,itemRegion.length());
+        String estado_actual_final = String.valueOf(vistaAvancesCapturas.boxSituacion.getSelectedItem());
+        String cicloescolar = String.valueOf(vistaAvancesCapturas.boxCicloEscolar.getSelectedItem());
+        sqlAvancesCapturas sqlAvancesCapturas= new sqlAvancesCapturas(modeloUsuario);
+        
+        ArrayList <modeloAvancesCapturas>  busqueda;
+        busqueda = sqlAvancesCapturas.buscarCicloescolarRegionGradoSituacion(estado_actual_final,cicloescolar, itemRegion, itemGrado);
+        int iteraciones =  busqueda.size();
+
+        for (int i = 0; i < iteraciones; i++) {
+                vistaAvancesCapturas.modeloTabla.addRow(new Object[]{
+                                   busqueda.get(i).getIdcicloescolar(),
                                                     busqueda.get(i).getRegion(),
                                                     busqueda.get(i).getNocontrol(),
                                                     busqueda.get(i).getIdgrado(),
