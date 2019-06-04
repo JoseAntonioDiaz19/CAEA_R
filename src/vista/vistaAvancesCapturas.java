@@ -200,7 +200,6 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tablaSituacion.setColumnSelectionAllowed(true);
         tablaSituacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tablaSituacion.setGridColor(new java.awt.Color(153, 204, 255));
         tablaSituacion.setSelectionBackground(new java.awt.Color(204, 204, 255));

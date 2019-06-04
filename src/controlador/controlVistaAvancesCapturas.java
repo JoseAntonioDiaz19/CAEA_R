@@ -7,7 +7,6 @@ import modeloSQL.sqlAvancesCapturas;
 import modeloSQL.sqlDatosAlumno;
 import modeloSQL.sqlPrincipal;
 import vista.vistaAvancesCapturas;
-
 /**
  * @author Dizan
  */
@@ -88,6 +87,7 @@ public class controlVistaAvancesCapturas {
         String itemCiclo = (String) vistaAvancesCapturas.boxCicloEscolar.getSelectedItem();
         String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
         String itemGrado = (String) vistaAvancesCapturas.boxGrado.getSelectedItem();
+        String itemSituacion = (String) vistaAvancesCapturas.boxSituacion.getSelectedItem();
         
         if (!itemCiclo.equals("- Seleccione Ciclo Escolar -")) {
             buscarPorCicloEscolar();
@@ -105,13 +105,36 @@ public class controlVistaAvancesCapturas {
                 && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloRegionGrado();
         }  
+         if (!itemSituacion.equals("- Situacion actual/final -") && 
+                !itemCiclo.equals("- Seleccione Ciclo Escolar -")) {
+            buscarCicloescolarSituacion();
+        }
+         
+          if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarRegionGradoSituacion();
+        }
+          
+        if (!itemSituacion.equals("- Situacion actual/final -") && 
+                !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarGradoSituacion();
+        }
         
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -")) {
+            buscarCicloescolarRegionSituacion();
+        }
     }
     
     private void boxRegion(ItemEvent eventItem){
         String itemCiclo = (String) vistaAvancesCapturas.boxCicloEscolar.getSelectedItem();
         String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
         String itemGrado = (String) vistaAvancesCapturas.boxGrado.getSelectedItem();
+        String itemSituacion = (String) vistaAvancesCapturas.boxSituacion.getSelectedItem();
         
         if (!itemRegion.equals("- Seleccione Region -")) {
             buscarPorRegion();
@@ -124,32 +147,87 @@ public class controlVistaAvancesCapturas {
         if (!itemGrado.equals("- Seleccione Grado -") && !itemRegion.equals("- Seleccione Region -")) {
             buscarRegionGrado();
         }  
-       if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+        
+        if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") 
                 && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloRegionGrado();
         }  
+       
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemRegion.equals("- Seleccione Region -")) {
+            buscarRegionSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarRegionGradoSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarRegionGradoSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -")) {
+            buscarCicloescolarRegionSituacion();
+        }
+        
     }
     
     private void boxGrado(ItemEvent eventItem){
         String itemGrado = (String) vistaAvancesCapturas.boxGrado.getSelectedItem();
         String itemCiclo = (String) vistaAvancesCapturas.boxCicloEscolar.getSelectedItem();
         String itemRegion = (String) vistaAvancesCapturas.boxRegion.getSelectedItem();
+        String itemSituacion = (String) vistaAvancesCapturas.boxSituacion.getSelectedItem();
         
         if (!itemGrado.equals("- Seleccione Grado -")) {
              buscarPorGrado();
         }
         
-        if (!itemGrado.equals("- Seleccione Grado -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") ) {
+        if (!itemGrado.equals("- Seleccione Grado -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") ) {
             buscarCicloGrado();
         }
         
-        if (!itemGrado.equals("- Seleccione Grado -") && !itemRegion.equals("- Seleccione Region -")) {
+        if (!itemGrado.equals("- Seleccione Grado -") 
+                && !itemRegion.equals("- Seleccione Region -")) {
             buscarRegionGrado();
         } 
+        
         if (!itemCiclo.equals("- Seleccione Ciclo Escolar -") 
-                && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloRegionGrado();
         } 
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarGradoSituacion();
+        } 
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarRegionGradoSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") && 
+                !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarGradoSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
+            buscarCicloescolarRegionGradoSituacion();
+        }
     }
     
     private void boxSituacion(ItemEvent eventItem){
@@ -162,25 +240,43 @@ public class controlVistaAvancesCapturas {
              buscarSituacion();
         }
         
-        if (!itemSituacion.equals("- Situacion actual/final -") && !itemGrado.equals("- Seleccione Grado -")) {
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
             buscarGradoSituacion();
         } 
         
-        if (!itemSituacion.equals("- Situacion actual/final -") && !itemRegion.equals("- Seleccione Region -")) {
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemRegion.equals("- Seleccione Region -")) {
             buscarRegionSituacion();
         }
         
-        if (!itemSituacion.equals("- Situacion actual/final -") && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
             buscarRegionGradoSituacion();
         }
         
-        if (!itemSituacion.equals("- Situacion actual/final -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemGrado.equals("- Seleccione Grado -")) {
+        if (!itemSituacion.equals("- Situacion actual/final -") && 
+                !itemCiclo.equals("- Seleccione Ciclo Escolar -")) {
+            buscarCicloescolarSituacion();
+        }
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") && 
+                !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloescolarGradoSituacion();
         }
-        if (!itemSituacion.equals("- Situacion actual/final -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemRegion.equals("- Seleccione Region -")) {
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -")) {
             buscarCicloescolarRegionSituacion();
         }
-        if (!itemSituacion.equals("- Situacion actual/final -") && !itemCiclo.equals("- Seleccione Ciclo Escolar -") && !itemRegion.equals("- Seleccione Region -") && !itemGrado.equals("- Seleccione Grado -")) {
+        
+        if (!itemSituacion.equals("- Situacion actual/final -") 
+                && !itemCiclo.equals("- Seleccione Ciclo Escolar -") 
+                && !itemRegion.equals("- Seleccione Region -") 
+                && !itemGrado.equals("- Seleccione Grado -")) {
             buscarCicloescolarRegionGradoSituacion();
         }
     }

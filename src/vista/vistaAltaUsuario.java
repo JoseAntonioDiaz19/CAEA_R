@@ -398,9 +398,6 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
             fieldIdUsuario.setText("");
             fieldIdUsuario.setForeground(Color.BLACK);   
         }
-        fieldApe_materno.setText("Apellido Materno");
-        fieldApe_paterno.setText("Apellido Paterno");
-        fieldNombre.setText("Nombre");
     }//GEN-LAST:event_fieldIdUsuarioFocusGained
 
     private void fieldNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldNombreFocusGained
@@ -408,7 +405,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
                 fieldNombre.setText("");
                 fieldNombre.setForeground(Color.BLACK);  
             }
-            fieldIdUsuario.setText("Numero de Control");
+        
     }//GEN-LAST:event_fieldNombreFocusGained
 
     private void fieldApe_paternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_paternoFocusGained
@@ -416,7 +413,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
                 fieldApe_paterno.setText("");
                 fieldApe_paterno.setForeground(Color.BLACK); 
             }
-            fieldIdUsuario.setText("Numero de Control");
+            
     }//GEN-LAST:event_fieldApe_paternoFocusGained
 
     private void fieldApe_maternoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fieldApe_maternoFocusGained
@@ -424,7 +421,7 @@ public class vistaAltaUsuario extends javax.swing.JDialog {
                 fieldApe_materno.setText("");
                 fieldApe_materno.setForeground(Color.BLACK);  
             } 
-            fieldIdUsuario.setText("Numero de Control");
+           
     }//GEN-LAST:event_fieldApe_maternoFocusGained
 
     private void fieldIdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdUsuarioActionPerformed

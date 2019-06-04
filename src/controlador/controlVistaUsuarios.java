@@ -266,6 +266,7 @@ public class controlVistaUsuarios {
         lista = sqlUsuario.llenarFigurasEducativas();
         int iteraciones = lista.size();
         vistaAltaUsuario.boxFigura_educativa.removeAllItems();
+        vistaAltaUsuario.boxFigura_educativa.addItem("-Figura Educativa-");
         int idfiguraConectada = modeloUsuario.getIdfigura_educativa();
         System.out.println("idfiguraConectada = " + idfiguraConectada);
         
@@ -531,15 +532,19 @@ public class controlVistaUsuarios {
     
     private void botonLimpiar(ActionEvent e){
         
-        vistaAltaUsuario.fieldIdUsuario.setText("");
+        vistaAltaUsuario.fieldIdUsuario.setText("Numero de Control");
         vistaAltaUsuario.fieldApe_materno.setText("Apellido Materno");
         vistaAltaUsuario.fieldApe_paterno.setText("Apellido Paterno");
         vistaAltaUsuario.fieldNombre.setText("Nombre");
         vistaAltaUsuario.txtcontraseñausuario.setText("Contraseña");
         vistaAltaUsuario.txtnombreUser.setText("Usuario");
+        vistaAltaUsuario.boxFigura_educativa.addItem("-Figura Educativa-");
         vistaAltaUsuario.boxFigura_educativa.setSelectedIndex(0);
         vistaAltaUsuario.boxSexo.setSelectedIndex(0);
         vistaAltaUsuario.jDateChooserVigencia.setCalendar(null);
+        vistaAltaUsuario.txtnombreUser.setEnabled(true);
+        vistaAltaUsuario.txtcontraseñausuario.setEnabled(true);
+        vistaAltaUsuario.jDateChooserVigencia.setEnabled(true);
         llenarDatosInterfaz();
     }
 }

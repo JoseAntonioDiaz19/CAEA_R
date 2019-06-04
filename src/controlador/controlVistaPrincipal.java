@@ -80,8 +80,14 @@ public class controlVistaPrincipal {
 
     public void botonCerrarSesion(ActionEvent e){
        System.out.println("Cerrar sesion boton");
-       ventanaPrincipal.dispose();
-       close();
+       
+       int respuesta = JOptionPane.showConfirmDialog(null,"¿Realmente desea salir?");
+        if (respuesta == JOptionPane.YES_OPTION) {
+            ventanaPrincipal.dispose();
+            close();
+        }else{
+           
+        }
     }
     
     public void botonReportes(ActionEvent e){
@@ -97,7 +103,7 @@ public class controlVistaPrincipal {
             ventanaPrincipal.dispose();
             close();
         }else{
-            JOptionPane.showMessageDialog(vistaSesionUsuario, "Te salvaste!!!");
+           
         }
     }
     
