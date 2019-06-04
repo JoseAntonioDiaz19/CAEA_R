@@ -30,7 +30,7 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
   int xx,xy;
     public vistaAvancesCapturas() {
         initComponents();
-        modeloTabla = (DefaultTableModel) boxSituacion.getModel() ;
+        modeloTabla = (DefaultTableModel) tablaSituacion.getModel() ;
         popupMenuTabla();
         personalizarComponentes();
        
@@ -42,7 +42,7 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
 //        popup.add(itemAvances);
 //        popup.add(itemReinscribir);
 //        popup.add(itemEliminar);
-        boxSituacion.setComponentPopupMenu(popup);
+        tablaSituacion.setComponentPopupMenu(popup);
     }
     
     private void personalizarComponentes(){
@@ -68,15 +68,14 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
         boxCicloEscolar = new javax.swing.JComboBox<>();
         boxRegion = new javax.swing.JComboBox<>();
         boxGrado = new javax.swing.JComboBox<>();
-        boxSitacion = new javax.swing.JComboBox<>();
+        boxSituacion = new javax.swing.JComboBox<>();
         panelBotones = new javax.swing.JPanel();
         panelTabla = new javax.swing.JPanel();
         scrollTablaPrincipal = new javax.swing.JScrollPane();
-        boxSituacion = new javax.swing.JTable();
+        tablaSituacion = new javax.swing.JTable();
 
         setExtendedState(MAXIMIZED_BOTH);
         setName("Avances en las capturas"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1200, 600));
         getContentPane().setLayout(new java.awt.GridLayout(1, 1));
 
         panelPrincipal.setBackground(new java.awt.Color(8, 38, 67));
@@ -141,12 +140,11 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         panelCampos.add(boxGrado, gridBagConstraints);
 
-        boxSitacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxSitacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Situacion -" }));
-        boxSitacion.setEnabled(false);
-        boxSitacion.addActionListener(new java.awt.event.ActionListener() {
+        boxSituacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boxSituacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "- Situacion actual/final -" }));
+        boxSituacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxSitacionActionPerformed(evt);
+                boxSituacionActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,7 +154,7 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.weightx = 0.5;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        panelCampos.add(boxSitacion, gridBagConstraints);
+        panelCampos.add(boxSituacion, gridBagConstraints);
 
         panelBotones.setBackground(new java.awt.Color(8, 38, 67));
         panelBotones.setLayout(new java.awt.GridBagLayout());
@@ -185,8 +183,8 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
         scrollTablaPrincipal.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 0, 5, 0));
         scrollTablaPrincipal.setOpaque(false);
 
-        boxSituacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boxSituacion.setModel(new javax.swing.table.DefaultTableModel(
+        tablaSituacion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tablaSituacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -202,46 +200,46 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        boxSituacion.setColumnSelectionAllowed(true);
-        boxSituacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        boxSituacion.setGridColor(new java.awt.Color(153, 204, 255));
-        boxSituacion.setSelectionBackground(new java.awt.Color(204, 204, 255));
-        scrollTablaPrincipal.setViewportView(boxSituacion);
-        boxSituacion.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (boxSituacion.getColumnModel().getColumnCount() > 0) {
-            boxSituacion.getColumnModel().getColumn(0).setMinWidth(80);
-            boxSituacion.getColumnModel().getColumn(0).setPreferredWidth(100);
-            boxSituacion.getColumnModel().getColumn(0).setMaxWidth(120);
-            boxSituacion.getColumnModel().getColumn(1).setMinWidth(80);
-            boxSituacion.getColumnModel().getColumn(1).setPreferredWidth(100);
-            boxSituacion.getColumnModel().getColumn(1).setMaxWidth(120);
-            boxSituacion.getColumnModel().getColumn(2).setMinWidth(80);
-            boxSituacion.getColumnModel().getColumn(2).setPreferredWidth(100);
-            boxSituacion.getColumnModel().getColumn(2).setMaxWidth(120);
-            boxSituacion.getColumnModel().getColumn(3).setMinWidth(50);
-            boxSituacion.getColumnModel().getColumn(3).setPreferredWidth(70);
-            boxSituacion.getColumnModel().getColumn(3).setMaxWidth(80);
-            boxSituacion.getColumnModel().getColumn(4).setMinWidth(120);
-            boxSituacion.getColumnModel().getColumn(4).setPreferredWidth(150);
-            boxSituacion.getColumnModel().getColumn(4).setMaxWidth(200);
-            boxSituacion.getColumnModel().getColumn(5).setMinWidth(120);
-            boxSituacion.getColumnModel().getColumn(5).setPreferredWidth(150);
-            boxSituacion.getColumnModel().getColumn(5).setMaxWidth(200);
-            boxSituacion.getColumnModel().getColumn(6).setMinWidth(120);
-            boxSituacion.getColumnModel().getColumn(6).setPreferredWidth(150);
-            boxSituacion.getColumnModel().getColumn(6).setMaxWidth(200);
-            boxSituacion.getColumnModel().getColumn(7).setMinWidth(40);
-            boxSituacion.getColumnModel().getColumn(7).setPreferredWidth(50);
-            boxSituacion.getColumnModel().getColumn(7).setMaxWidth(70);
-            boxSituacion.getColumnModel().getColumn(8).setMinWidth(40);
-            boxSituacion.getColumnModel().getColumn(8).setPreferredWidth(50);
-            boxSituacion.getColumnModel().getColumn(8).setMaxWidth(70);
-            boxSituacion.getColumnModel().getColumn(9).setMinWidth(40);
-            boxSituacion.getColumnModel().getColumn(9).setPreferredWidth(50);
-            boxSituacion.getColumnModel().getColumn(9).setMaxWidth(70);
-            boxSituacion.getColumnModel().getColumn(10).setMinWidth(100);
-            boxSituacion.getColumnModel().getColumn(10).setPreferredWidth(120);
-            boxSituacion.getColumnModel().getColumn(10).setMaxWidth(200);
+        tablaSituacion.setColumnSelectionAllowed(true);
+        tablaSituacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tablaSituacion.setGridColor(new java.awt.Color(153, 204, 255));
+        tablaSituacion.setSelectionBackground(new java.awt.Color(204, 204, 255));
+        scrollTablaPrincipal.setViewportView(tablaSituacion);
+        tablaSituacion.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tablaSituacion.getColumnModel().getColumnCount() > 0) {
+            tablaSituacion.getColumnModel().getColumn(0).setMinWidth(80);
+            tablaSituacion.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tablaSituacion.getColumnModel().getColumn(0).setMaxWidth(120);
+            tablaSituacion.getColumnModel().getColumn(1).setMinWidth(80);
+            tablaSituacion.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tablaSituacion.getColumnModel().getColumn(1).setMaxWidth(120);
+            tablaSituacion.getColumnModel().getColumn(2).setMinWidth(80);
+            tablaSituacion.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tablaSituacion.getColumnModel().getColumn(2).setMaxWidth(120);
+            tablaSituacion.getColumnModel().getColumn(3).setMinWidth(50);
+            tablaSituacion.getColumnModel().getColumn(3).setPreferredWidth(70);
+            tablaSituacion.getColumnModel().getColumn(3).setMaxWidth(80);
+            tablaSituacion.getColumnModel().getColumn(4).setMinWidth(120);
+            tablaSituacion.getColumnModel().getColumn(4).setPreferredWidth(150);
+            tablaSituacion.getColumnModel().getColumn(4).setMaxWidth(200);
+            tablaSituacion.getColumnModel().getColumn(5).setMinWidth(120);
+            tablaSituacion.getColumnModel().getColumn(5).setPreferredWidth(150);
+            tablaSituacion.getColumnModel().getColumn(5).setMaxWidth(200);
+            tablaSituacion.getColumnModel().getColumn(6).setMinWidth(120);
+            tablaSituacion.getColumnModel().getColumn(6).setPreferredWidth(150);
+            tablaSituacion.getColumnModel().getColumn(6).setMaxWidth(200);
+            tablaSituacion.getColumnModel().getColumn(7).setMinWidth(40);
+            tablaSituacion.getColumnModel().getColumn(7).setPreferredWidth(50);
+            tablaSituacion.getColumnModel().getColumn(7).setMaxWidth(70);
+            tablaSituacion.getColumnModel().getColumn(8).setMinWidth(40);
+            tablaSituacion.getColumnModel().getColumn(8).setPreferredWidth(50);
+            tablaSituacion.getColumnModel().getColumn(8).setMaxWidth(70);
+            tablaSituacion.getColumnModel().getColumn(9).setMinWidth(40);
+            tablaSituacion.getColumnModel().getColumn(9).setPreferredWidth(50);
+            tablaSituacion.getColumnModel().getColumn(9).setMaxWidth(70);
+            tablaSituacion.getColumnModel().getColumn(10).setMinWidth(100);
+            tablaSituacion.getColumnModel().getColumn(10).setPreferredWidth(120);
+            tablaSituacion.getColumnModel().getColumn(10).setMaxWidth(200);
         }
 
         panelTabla.add(scrollTablaPrincipal);
@@ -266,9 +264,9 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxGradoActionPerformed
 
-    private void boxSitacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxSitacionActionPerformed
+    private void boxSituacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxSituacionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_boxSitacionActionPerformed
+    }//GEN-LAST:event_boxSituacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,8 +322,7 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> boxCicloEscolar;
     public javax.swing.JComboBox<String> boxGrado;
     public javax.swing.JComboBox<String> boxRegion;
-    public javax.swing.JComboBox<String> boxSitacion;
-    public javax.swing.JTable boxSituacion;
+    public javax.swing.JComboBox<String> boxSituacion;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelCampos;
@@ -333,5 +330,6 @@ public class vistaAvancesCapturas extends javax.swing.JFrame {
     private javax.swing.JPanel panelTabla;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JScrollPane scrollTablaPrincipal;
+    public javax.swing.JTable tablaSituacion;
     // End of variables declaration//GEN-END:variables
 }
